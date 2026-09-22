@@ -34,7 +34,7 @@ export default function Contact() {
       <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,#411c80_0%,#301265_50%,#1f0849_100%)] lg:bg-none">
         <div className="relative mx-auto grid h-full w-full -translate-y-[10px] items-center gap-6 px-10 pt-[139px] lg:w-[992px] lg:translate-y-0 lg:grid-cols-[492px_481px] lg:px-0 lg:pb-0 lg:pt-[180px]">
           <div>
-            <h1 className="figma-heading-gradient figma-heading-contact text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-1px]">
+            <h1 className="figma-heading-gradient figma-heading-contact text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
               <span className="text-white lg:text-brand-lime">Contact</span> Us
             </h1>
             <p className="mt-3 max-w-md text-xs font-light leading-[18px] text-white lg:mt-8 lg:max-w-none lg:text-2xl lg:leading-[normal]">

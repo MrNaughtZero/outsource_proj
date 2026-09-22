@@ -62,7 +62,7 @@ export default function HowItWorks() {
           </div>
           <div className="mt-4 text-center lg:order-1 lg:mt-0 lg:w-[484px] lg:text-left">
             <h1
-              className="how-hero-heading text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-1px]"
+              className="how-hero-heading text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]"
             >
               A clearer way to work with your outsourced <span className="text-brand-lime">finance team.</span>
             </h1>

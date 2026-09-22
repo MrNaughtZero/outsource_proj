@@ -96,7 +96,7 @@ export default function Solutions() {
           <div className="team-options-hero-canvas relative mx-auto h-[270px] w-full max-w-[1279px] px-[144px] pb-8">
             <div className="team-options-hero-copy relative w-[609px]">
               <h1
-                className="team-options-hero-title figma-heading-gradient text-[64px] font-medium leading-[72px] tracking-[-1px]"
+                className="team-options-hero-title figma-heading-gradient text-[64px] font-medium leading-[72px] tracking-[-2px]"
                 style={{ backgroundImage: 'linear-gradient(105.52113990702776deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%)' }}
               >
                 <span className="block whitespace-nowrap">Finance <span className="text-brand-lime">team options</span></span>
