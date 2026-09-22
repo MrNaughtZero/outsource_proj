@@ -226,7 +226,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex w-full max-w-[992px] items-start lg:pt-[196px]">
           <div className="w-full lg:w-[677px]">
             <div className="flex flex-col gap-[18px]">
-              <h1 className="home-hero-title text-[36px] font-medium leading-[42px] tracking-[-0.36px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-0.64px]">
+              <h1 className="home-hero-title text-[36px] font-medium leading-[42px] tracking-[-0.54px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-0.96px]">
                 <span className="block text-brand-lime">Outsourced</span>
                 <span className="home-hero-finance block">Finance Professionals</span>
               </h1>

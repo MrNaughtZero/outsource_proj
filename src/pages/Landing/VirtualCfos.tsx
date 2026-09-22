@@ -16,7 +16,7 @@ export default function VirtualCfos() {
     heroHeight={778}
     mobileHeroHeight={781}
     fluidPhoneHero
-    mobileTitleClassName="tracking-[-.36px]"
+    mobileTitleClassName="tracking-[-.54px]"
     mobileQualification="UK-syllabus trained and assessed"
     mobileHeroPrice="From £15.50 per hour."
     detailSectionHeight={686}

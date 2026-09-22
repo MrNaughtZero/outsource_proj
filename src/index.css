@@ -40,6 +40,52 @@ textarea {
   font-family: "DM Sans", system-ui, sans-serif;
 }
 
+/* Lighter editorial typography: headings and paragraphs step down by one
+   weight while navigation, buttons, labels and other controls stay unchanged. */
+:is(h1, h2, h3, h4, h5, h6, p) {
+  font-weight: 300;
+  letter-spacing: -0.005em;
+}
+
+.font-extralight :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 100; }
+.font-light :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 200; }
+.font-normal :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 300; }
+.font-medium :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 400; }
+.font-semibold :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 500; }
+.font-bold :is(h1, h2, h3, h4, h5, h6, p) { font-weight: 600; }
+
+:is(h1, h2, h3, h4, h5, h6, p) b,
+:is(h1, h2, h3, h4, h5, h6, p) strong {
+  font-weight: 600;
+}
+
+:is(h1, h2, h3, h4, h5, h6, p).font-extralight,
+:is(h1, h2, h3, h4, h5, h6, p) .font-extralight { font-weight: 100; }
+:is(h1, h2, h3, h4, h5, h6, p).font-light,
+:is(h1, h2, h3, h4, h5, h6, p) .font-light { font-weight: 200; }
+:is(h1, h2, h3, h4, h5, h6, p).font-normal,
+:is(h1, h2, h3, h4, h5, h6, p) .font-normal { font-weight: 300; }
+:is(h1, h2, h3, h4, h5, h6, p).font-medium,
+:is(h1, h2, h3, h4, h5, h6, p) .font-medium { font-weight: 400; }
+:is(h1, h2, h3, h4, h5, h6, p).font-semibold,
+:is(h1, h2, h3, h4, h5, h6, p) .font-semibold { font-weight: 500; }
+:is(h1, h2, h3, h4, h5, h6, p).font-bold,
+:is(h1, h2, h3, h4, h5, h6, p) .font-bold { font-weight: 600; }
+
+@media (min-width: 1024px) {
+  .lg\:font-light :is(h1, h2, h3, h4, h5, h6, p),
+  :is(h1, h2, h3, h4, h5, h6, p).lg\:font-light,
+  :is(h1, h2, h3, h4, h5, h6, p) .lg\:font-light { font-weight: 200; }
+
+  .lg\:font-medium :is(h1, h2, h3, h4, h5, h6, p),
+  :is(h1, h2, h3, h4, h5, h6, p).lg\:font-medium,
+  :is(h1, h2, h3, h4, h5, h6, p) .lg\:font-medium { font-weight: 400; }
+
+  .lg\:font-bold :is(h1, h2, h3, h4, h5, h6, p),
+  :is(h1, h2, h3, h4, h5, h6, p).lg\:font-bold,
+  :is(h1, h2, h3, h4, h5, h6, p) .lg\:font-bold { font-weight: 600; }
+}
+
 .role-detail-mobile-title {
   background-image: linear-gradient(90deg, #cabcf6 0%, #f6f1fd 100%);
   background-repeat: no-repeat;

@@ -102,10 +102,10 @@ export default function RoleDetailPage({
         </div>
         <div className="role-detail-hero-row relative mx-auto flex w-full flex-col items-start gap-4 py-6 lg:max-w-[991px] lg:flex-row lg:items-center lg:gap-6 lg:p-0">
           <div className="order-2 flex w-full flex-col items-start gap-4 lg:order-1 lg:w-[484px] lg:shrink-0 lg:gap-8">
-            <h1 className={`role-detail-mobile-title w-full text-[36px] font-medium leading-[42px] lg:hidden ${mobileTitleClassName || 'tracking-[-.75px]'}`}>
+            <h1 className={`role-detail-mobile-title w-full text-[36px] font-medium leading-[42px] lg:hidden ${mobileTitleClassName || 'tracking-[-.93px]'}`}>
               <span>Outsourced </span><span className="text-brand-lime">{title}</span>
             </h1>
-            <h1 className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-.64px]">
+            <h1 className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-.96px]">
               <span className="lg:block">Outsourced</span>{' '}
               <span className={`text-brand-lime lg:block ${titleClassName}`}>{title}</span>
             </h1>

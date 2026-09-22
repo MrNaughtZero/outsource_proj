@@ -15,7 +15,7 @@ export default function Bookkeepers() {
     heroImageAlt="Bookkeeping records and reporting tools"
     heroHeight={747}
     fluidPhoneHero
-    mobileTitleClassName="tracking-[-.36px]"
+    mobileTitleClassName="tracking-[-.54px]"
     detailSectionHeight={770}
     detailCardHeight={650}
     category="Day-to-day bookkeeping"

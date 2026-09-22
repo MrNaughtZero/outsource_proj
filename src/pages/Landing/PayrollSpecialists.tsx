@@ -8,7 +8,7 @@ import stepDelivery from '../../assets/landing/accountants/step-delivery.svg';
 export default function PayrollSpecialists() {
   return <RoleDetailPage
     title="Payroll Specialists"
-    titleClassName="lg:whitespace-nowrap lg:tracking-[-4px]"
+    titleClassName="lg:whitespace-nowrap lg:tracking-[-4.32px]"
     intro="Add dedicated payroll specialists to your team, helping you maintain continuity and manage changing workloads with confidence."
     qualification="UK-syllabus trained and assessed"
     heroPrice="From £11.50 per hour."
@@ -16,7 +16,7 @@ export default function PayrollSpecialists() {
     heroImageAlt="Payroll calendar and reporting tools"
     heroHeight={747}
     fluidPhoneHero
-    mobileTitleClassName="tracking-[-.36px]"
+    mobileTitleClassName="tracking-[-.54px]"
     detailSectionHeight={770}
     detailCardHeight={650}
     category="Payroll administration"

@@ -95,7 +95,7 @@ export default function Roles() {
         <img src={heroPattern} alt="" aria-hidden className="absolute inset-0 hidden h-full w-full object-cover lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,0.53)] lg:block" />
         <div className="relative flex w-full flex-col items-start gap-4 py-6 pt-11 md:items-center md:py-0 md:pt-0 lg:max-w-[714px] lg:gap-8 lg:p-0">
-          <h1 className="figma-heading-gradient figma-heading-roles w-full text-left text-[30px] font-medium leading-9 md:text-center lg:text-[64px] lg:leading-[72px] lg:tracking-[-.64px]">
+          <h1 className="figma-heading-gradient figma-heading-roles w-full text-left text-[30px] font-medium leading-9 md:text-center lg:text-[64px] lg:leading-[72px] lg:tracking-[-.96px]">
             <span className="lg:whitespace-nowrap">The right <span className="text-brand-lime">finance expertise</span></span>{' '}
             <br className="hidden lg:block" />
             <span>for your team.</span>

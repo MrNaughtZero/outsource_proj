@@ -62,11 +62,11 @@ export default function HowItWorks() {
           </div>
           <div className="mt-4 text-center lg:order-1 lg:mt-0 lg:w-[484px] lg:text-left">
             <h1
-              className="how-hero-heading text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-.64px]"
+              className="how-hero-heading text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-.96px]"
             >
               A clearer way to work with your outsourced <span className="text-brand-lime">finance team.</span>
             </h1>
-            <p className="mt-4 text-lg leading-6 lg:mt-8 lg:text-2xl lg:font-light lg:leading-[normal] lg:tracking-normal">
+            <p className="mt-4 text-lg leading-6 lg:mt-8 lg:text-2xl lg:font-light lg:leading-[normal] lg:tracking-[-0.005em]">
               Work directly with dedicated finance professionals through our secure workspace, while we manage the people and day-to-day delivery.
             </p>
           </div>

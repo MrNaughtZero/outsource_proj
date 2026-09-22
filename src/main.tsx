@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import '@fontsource/dm-sans/100.css'
 import '@fontsource/dm-sans/200.css'
 import '@fontsource/dm-sans/300.css'
 import '@fontsource/dm-sans/400.css'

@@ -39,7 +39,7 @@ export default function AboutMobile() {
         <div className="absolute left-0 top-[57px] h-[444px] w-full overflow-hidden">
           <img src={hero} alt="Outsource.com team" className="absolute left-1/2 top-0 h-auto w-[max(100%,673px)] max-w-none -translate-x-1/2 -translate-y-[9.68%]" />
         </div>
-        <div className="absolute left-10 right-10 top-[157px] flex flex-col items-center text-center text-[36px] font-medium leading-[42px] tracking-[-.36px] max-[379px]:left-5 max-[379px]:right-5">
+        <div className="absolute left-10 right-10 top-[157px] flex flex-col items-center text-center text-[36px] font-normal leading-[42px] tracking-[-.54px] max-[379px]:left-5 max-[379px]:right-5">
           <div className="flex items-center whitespace-nowrap">
             <span className="w-[110px] shrink-0"><span className="inline-block origin-left bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(99.75872692332885deg, rgb(133, 101, 186) 36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%)', transform: 'scaleX(0.9284)' }}>Real <span className="text-brand-lime">Pe</span></span></span>
             <span className="flex flex-col items-start pt-1"><img src={eye} alt="o" className="h-[18px] w-[19px] object-contain" /></span>

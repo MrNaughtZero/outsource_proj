@@ -34,7 +34,7 @@ const TRUST = [
 
 function HeroTitle() {
   return (
-    <div className="flex w-full flex-nowrap items-center justify-center whitespace-nowrap text-[64px] font-medium leading-[72px] tracking-[-.64px]">
+    <div className="flex w-full flex-nowrap items-center justify-center whitespace-nowrap text-[64px] font-normal leading-[72px] tracking-[-.96px]">
       <span className="figma-heading-gradient figma-heading-about-first shrink-0">Real <span className="text-brand-lime">Pe</span></span>
       <img src={eye} alt="o" className="mx-0.5 mt-3 h-8 w-[34px] shrink-0" />
       <span className="figma-heading-gradient figma-heading-about-second shrink-0"><span className="text-brand-lime">ple</span>, Real Visibility</span>

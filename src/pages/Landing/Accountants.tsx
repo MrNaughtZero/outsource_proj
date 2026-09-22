@@ -17,7 +17,7 @@ export default function Accountants() {
     heroHeight={716}
     fluidPhoneHero
     mobileHeroImageTop="-3.53%"
-    mobileTitleClassName="tracking-[-.36px]"
+    mobileTitleClassName="tracking-[-.54px]"
     detailSectionHeight={770}
     detailCardHeight={650}
     category="Accounts and reporting"

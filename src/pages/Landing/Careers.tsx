@@ -63,7 +63,7 @@ export default function Careers() {
             {/* Copy + register */}
             <div className="flex flex-col items-start gap-[50px]">
               <div className="w-full">
-                <h1 className="figma-heading-gradient figma-heading-careers text-[64px] font-medium leading-[72px] tracking-[-.64px]">
+                <h1 className="figma-heading-gradient figma-heading-careers text-[64px] font-medium leading-[72px] tracking-[-.96px]">
                   <span className="block">Build your</span>
                   <span className="block">career with</span>
                   <span className="block text-brand-lime">Outsource.com</span>

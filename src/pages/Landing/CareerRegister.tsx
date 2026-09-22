@@ -42,7 +42,7 @@ export default function CareerRegister() {
       {/* ===== Hero heading ===== */}
       <section className="relative overflow-hidden">
         <div className="relative mx-auto w-full px-10 pt-[201px] lg:w-[992px] lg:px-0 lg:pt-[180px]">
-          <h1 className="figma-heading-gradient figma-heading-register text-[36px] font-medium leading-[42px] tracking-[-.8px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-.64px]">
+          <h1 className="figma-heading-gradient figma-heading-register text-[36px] font-medium leading-[42px] tracking-[-.98px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-.96px]">
             <span className="block lg:inline">Start Your <span className="text-brand-lime">Journey</span></span>{' '}
             <span className="block text-white lg:inline lg:text-transparent">With Us</span>
           </h1>
