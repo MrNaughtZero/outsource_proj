@@ -30,7 +30,7 @@ export default function SupportScenarios() {
       <main className="solutions-page-desktop hidden bg-brand-purple-dark text-white lg:block">
         <section className="h-96 bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,0)]">
           <div className="fig-shell pt-[180px]">
-            <h1 className="figma-heading-gradient figma-heading-support whitespace-nowrap text-[64px] font-medium leading-[72px] tracking-[-.96px]">
+            <h1 className="figma-heading-gradient figma-heading-support whitespace-nowrap text-[64px] font-medium leading-[72px] tracking-[-1px]">
               Real Problems. Real <span className="text-brand-lime">Solutions.</span>
             </h1>
             <p className="mt-8 w-[984px] text-2xl font-light leading-[normal]">

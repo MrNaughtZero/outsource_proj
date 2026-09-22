@@ -105,7 +105,7 @@ export default function RoleDetailPage({
             <h1 className={`role-detail-mobile-title w-full text-[36px] font-medium leading-[42px] lg:hidden ${mobileTitleClassName || 'tracking-[-.93px]'}`}>
               <span>Outsourced </span><span className="text-brand-lime">{title}</span>
             </h1>
-            <h1 className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-.96px]">
+            <h1 className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-1px]">
               <span className="lg:block">Outsourced</span>{' '}
               <span className={`text-brand-lime lg:block ${titleClassName}`}>{title}</span>
             </h1>
