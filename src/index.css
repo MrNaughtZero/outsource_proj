@@ -1,0 +1,942 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent any accidental horizontal scroll on marketing pages */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  /* Dark base so mobile overscroll / rubber-band never flashes black or white.
+     Matches the pages' primary background (brand-purple-dark #1F0849). */
+  background-color: #1f0849;
+}
+
+html {
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.fig-page {
+  background: #1f0849;
+  color: white;
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+/* The Figma source uses DM Sans throughout. Keep legacy class names working
+   while the pages are migrated without allowing Poppins to override it. */
+.font-poppins {
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+.role-detail-mobile-title {
+  background-image: linear-gradient(90deg, #cabcf6 0%, #f6f1fd 100%);
+  background-repeat: no-repeat;
+  background-size: 313px 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.role-detail-mobile-title .text-brand-lime {
+  color: #ccf043;
+  -webkit-text-fill-color: #ccf043;
+}
+
+.fig-shell {
+  width: min(992px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.how-tools-carousel {
+  scrollbar-width: none;
+}
+
+.how-tools-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .how-tools-carousel-mobile {
+    width: calc(100vw - 40px);
+  }
+}
+
+@media (max-width: 379px) {
+  .how-tools-carousel-mobile {
+    width: calc(100vw - 20px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .how-tools-carousel-mobile {
+    width: calc(100vw - max(40px, (100vw - 720px) / 2));
+  }
+}
+
+.scenario-cards-carousel {
+  scrollbar-width: none;
+}
+
+.scenario-cards-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .scenario-cards-carousel.support-scenario-tabs-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #5c34a1 #1d0646;
+    scrollbar-gutter: stable;
+  }
+
+  .scenario-cards-carousel.support-scenario-tabs-scrollbar::-webkit-scrollbar {
+    display: block;
+    height: 10px;
+  }
+
+  .scenario-cards-carousel.support-scenario-tabs-scrollbar::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background: #1d0646;
+  }
+
+  .scenario-cards-carousel.support-scenario-tabs-scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid #1d0646;
+    border-radius: 9999px;
+    background: #5c34a1;
+  }
+}
+
+.scenario-cards-scrollbar {
+  --scenario-cards-thumb-width: 206px;
+  appearance: none;
+  height: 12px;
+  padding: 2px;
+  border: 0;
+  border-radius: 8px;
+  background: #1d0646;
+  cursor: pointer;
+}
+
+.scenario-cards-scrollbar::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+}
+
+.scenario-cards-scrollbar::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--scenario-cards-thumb-width);
+  height: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #5c34a1;
+}
+
+.scenario-cards-scrollbar::-moz-range-track {
+  height: 8px;
+  border: 0;
+  background: transparent;
+}
+
+.scenario-cards-scrollbar::-moz-range-thumb {
+  width: var(--scenario-cards-thumb-width);
+  height: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #5c34a1;
+}
+
+.scenario-cards-scrollbar:focus-visible {
+  outline: 2px solid #ccf043;
+  outline-offset: 3px;
+}
+
+.how-tools-scrollbar {
+  --how-tools-thumb-width: 97px;
+  appearance: none;
+  height: 12px;
+  padding: 2px;
+  border: 0;
+  border-radius: 8px;
+  background: #27085e;
+  cursor: pointer;
+}
+
+.how-tools-scrollbar::-webkit-slider-runnable-track {
+  height: 8px;
+  background: transparent;
+}
+
+.how-tools-scrollbar::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--how-tools-thumb-width);
+  height: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #5c34a1;
+}
+
+.how-tools-scrollbar::-moz-range-track {
+  height: 8px;
+  border: 0;
+  background: transparent;
+}
+
+.how-tools-scrollbar::-moz-range-thumb {
+  width: var(--how-tools-thumb-width);
+  height: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #5c34a1;
+}
+
+.how-tools-scrollbar:focus-visible {
+  outline: 2px solid #ccf043;
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .how-tools-carousel-mobile {
+    width: min(1136px, calc(100vw - max(24px, (100vw - 992px) / 2)));
+  }
+
+  .how-hero-heading {
+    background-image: linear-gradient(96.29762786118162deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .how-hero-heading .text-brand-lime {
+    color: #ccf043;
+    -webkit-text-fill-color: #ccf043;
+  }
+
+  .how-tools-scrollbar {
+    --how-tools-thumb-width: 206px;
+  }
+}
+
+@media (max-width: 767px) {
+  .fig-shell {
+    width: calc(100% - 40px);
+  }
+
+  .marketing-main {
+    margin-top: -57px;
+  }
+
+  .marketing-main.role-marketing-main {
+    margin-top: 0;
+  }
+}
+
+/* Scroll-reveal: sections fade + slide up as they enter the viewport.
+   The .reveal class is added by JS only when IntersectionObserver is
+   supported and reduced-motion is not requested, so content stays
+   visible as a safe fallback. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Very subtle floating animation for the dashboard mockup */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.animate-floaty {
+  animation: floaty 4.5s ease-in-out infinite;
+}
+
+@keyframes marketing-menu-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes marketing-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marketing-menu-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes marketing-menu-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.marketing-menu-backdrop {
+  animation: marketing-menu-fade-in 220ms ease-out both;
+}
+
+.marketing-menu-panel {
+  animation: marketing-menu-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.marketing-menu-backdrop.is-closing {
+  animation: marketing-menu-fade-out 280ms ease-in both;
+}
+
+.marketing-menu-panel.is-closing {
+  animation: marketing-menu-exit 280ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+/* Team Options desktop uses a fixed 1280px Figma canvas centred inside wider
+   browser windows. These page-scoped rules deliberately own the exact layout
+   measurements instead of relying on newly generated arbitrary utilities in a
+   long-running Tailwind dev process. */
+@media (min-width: 1024px) {
+  .team-options-desktop,
+  .team-options-desktop * {
+    box-sizing: border-box;
+  }
+
+  .team-options-hero-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 992px;
+    height: 270px;
+    margin-inline: auto;
+    padding: 0 0 32px;
+  }
+
+  .team-options-hero-art-stage {
+    top: 180px;
+    left: 0;
+    width: 100%;
+    height: 270px;
+  }
+
+  .team-options-hero-art {
+    position: absolute;
+    top: 0;
+    right: -51px;
+    left: auto;
+    width: 990px;
+    max-width: none;
+    height: 270px;
+  }
+
+  .team-options-hero-copy {
+    position: relative;
+    width: 650px;
+  }
+
+  .team-options-hero-title {
+    width: 650px;
+  }
+
+  .team-options-hero-subtitle {
+    width: 609px;
+  }
+
+  .team-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    width: min(1071px, calc(100% - 48px));
+    max-width: 1071px;
+    height: 730px;
+    margin-inline: auto;
+  }
+
+  .team-option-card {
+    min-width: 0;
+    height: 730px;
+    padding: 58px 38px;
+  }
+
+  .team-options-section-canvas {
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    margin-inline: auto;
+    padding: 60px 144px;
+  }
+
+  .team-options-built-row,
+  .team-options-members-grid,
+  .team-options-quality-row,
+  .team-options-cta-row {
+    width: 992px;
+  }
+
+  .team-options-built-row {
+    height: 122px;
+  }
+
+  .team-options-members-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  .team-options-members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 230px);
+    gap: 24px;
+    height: 325px;
+    align-items: start;
+  }
+
+  .team-options-members-intro {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height: 256px;
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .team-options-members-heading {
+    width: 230px;
+    letter-spacing: -1.5px;
+    font-variation-settings: "opsz" 14;
+  }
+
+  .team-options-member-card {
+    display: flex;
+    align-items: center;
+    height: 325px;
+    padding: 28px 22px;
+  }
+
+  .team-options-member-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 182px;
+    gap: 30px;
+  }
+
+  .team-options-member-copy {
+    display: flex;
+    flex-direction: column;
+    width: 182px;
+    gap: 24px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .team-options-quality-row {
+    height: 68px;
+  }
+
+  .team-options-cta-row {
+    height: 136px;
+    gap: 150px;
+  }
+
+  .team-options-cta-copy {
+    width: 629px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-floaty,
+  .marketing-menu-backdrop,
+  .marketing-menu-panel {
+    animation: none;
+  }
+}
+
+/* "How it works / relief" section — dark purple base. The ring textures are
+   real PNG assets (bg_texture.png + one-percent-home.png) overlaid per section
+   in Home.tsx, so no CSS-generated rings here. */
+.relief-section {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, #190938 0%, #1c0a45 55%, #1e0849 100%);
+  overflow: hidden;
+}
+/* Edge and IE draw their own password reveal (and clear) control inside the
+   field. On the login screen it sat right beside our own show/hide toggle, so
+   Edge users saw two eye icons. Chrome and Firefox have no such control, so
+   hiding it makes every browser match what the design specifies. */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+.login-rings {
+  background-image: radial-gradient(circle at center, transparent 35%, rgba(92, 52, 161, .8) 36%, rgba(92, 52, 161, .8) 57%, transparent 58%);
+  background-size: 125px 125px;
+}
+
+.login-hero {
+  background-image: radial-gradient(circle at 83% 48%, transparent 0 82px, rgba(255,255,255,.12) 83px 145px, transparent 146px);
+}
+
+@media (min-width: 1024px) {
+  .platform-login-stage {
+    height: 100%;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+  }
+
+  .platform-login-vector {
+    height: 106.8478%;
+    left: 47.96875%;
+    top: -13.468%;
+    width: 82.421875%;
+  }
+
+  .platform-login-ellipse {
+    height: auto;
+    left: 41.875%;
+    top: -22.1739%;
+    width: 94.921875%;
+  }
+
+  .platform-login-intro {
+    left: 44.296875%;
+    top: 14.8913%;
+    width: 38.75%;
+  }
+
+  .platform-login-intro h1 {
+    font-size: clamp(30px, 2.96875vw, 52px);
+  }
+
+  .platform-login-intro p {
+    font-size: clamp(15px, 1.40625vw, 24px);
+  }
+
+  .platform-login-workspace {
+    height: 44.56897vw;
+    left: 45.703125%;
+    top: 43.587%;
+    width: 70.46875vw;
+    object-fit: contain;
+    object-position: left top;
+  }
+
+  .platform-login-panel {
+    bottom: auto;
+    height: 96.6304%;
+    left: 1.171875%;
+    right: auto;
+    top: 1.52174%;
+    width: 38.28125%;
+  }
+
+  .platform-login-panel > img {
+    height: 43.8695%;
+  }
+
+  .platform-login-panel-content {
+    left: 16.3265%;
+    right: 16.3265%;
+    top: 20.13498%;
+  }
+
+  .platform-login-panel-logo {
+    width: 73.3333%;
+  }
+
+  .platform-login-form-wrap {
+    margin-top: clamp(159px, 21.6304vh, 258px);
+  }
+}
+
+.home-hero-picture {
+  left: 0;
+  width: 100%;
+}
+
+.home-hero-glow {
+  background: radial-gradient(circle at center, rgba(65, 28, 128, .69) 0%, rgba(45, 19, 90, .845) 50%, #180a34 100%);
+}
+
+.home-hero-art {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  object-position: center center;
+}
+
+.home-hero-shade {
+  background: rgba(31, 8, 73, .35);
+}
+
+.home-hero-title {
+  background-image: linear-gradient(96.9752544183756deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-hero-title > .text-brand-lime {
+  color: #ccf043;
+  -webkit-text-fill-color: #ccf043;
+}
+
+.home-hero-finance {
+  background-image: linear-gradient(107.15712702285275deg, rgb(133, 101, 186) -41.3%, rgb(255, 255, 255) 37.966%, rgb(133, 101, 186) 101.73%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-product-sections {
+  background: radial-gradient(ellipse at 50% 42%, #381871 0%, #1f0849 70%);
+}
+
+.home-workflow-rings {
+  background: none;
+}
+
+.home-step-tell { left: calc(50% - 96.5px); top: 0; }
+.home-step-match { left: calc(50% - 96.5px); top: 136px; }
+.home-step-add { left: calc(50% - 96.5px); top: 296px; }
+.home-step-deliver { left: calc(50% - 96.5px); top: 456px; }
+
+@media (min-width: 1024px) {
+  .contact-page {
+    background-image: linear-gradient(to bottom, #1f0849 0, #2d1160 454px, #1f0849 1291px);
+  }
+
+  .figma-heading-gradient {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .figma-heading-gradient .text-brand-lime {
+    color: #ccf043;
+    -webkit-text-fill-color: #ccf043;
+  }
+
+  .figma-heading-about-first { background-image: linear-gradient(100.89308133988175deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-about-second { background-image: linear-gradient(114.94549449431247deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-team { background-image: linear-gradient(98.37074688978726deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-support { background-image: linear-gradient(131.9068945866092deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-careers { background-image: linear-gradient(98.23430030675682deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-roles { background-image: linear-gradient(108.03550901019635deg, #8565ba -60%, #f6f1fd 35%, #8565ba 115%); }
+  .figma-heading-accountants { background-image: linear-gradient(102.44666510687162deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-register { background-image: linear-gradient(132.10886202496297deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-succession { background-image: linear-gradient(99.22131609445564deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+  .figma-heading-contact { background-image: linear-gradient(113.81841292768976deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%); }
+
+  .role-detail-hero { height: var(--role-hero-height); }
+  .role-detail-hero-row { height: calc(var(--role-hero-height) - 236px); }
+  .role-detail-capabilities { height: var(--role-detail-height); }
+  .role-detail-cards,
+  .role-detail-card { height: var(--role-card-height); }
+  .role-detail-process { background: linear-gradient(to top, #180a34, #1f0849); }
+
+  .home-product-sections {
+    background: radial-gradient(ellipse 50% 34.4% at 50% 47.3%, #381871 0%, #1f0849 100%);
+  }
+
+  .home-hero-picture {
+    bottom: auto;
+    height: 820px;
+    left: 0;
+    right: 0;
+    top: -1px;
+    width: 100%;
+  }
+
+  .home-hero-art {
+    height: 898px;
+    inset: auto -182px auto auto;
+    object-fit: fill;
+    top: -15px;
+    width: 1314px;
+  }
+
+  .home-hero-shade {
+    background: none;
+  }
+
+  .home-hero-glow {
+    background: radial-gradient(ellipse 50% 50% at center, rgba(65, 28, 128, .69) 0%, rgba(45, 19, 90, .845) 50%, #180a34 100%);
+  }
+
+  .home-hero-title {
+    background-image: linear-gradient(107.15712702285275deg, rgb(133, 101, 186) 36.003%, rgb(255, 255, 255) 37.966%, rgb(133, 101, 186) 101.73%);
+  }
+
+  .home-workflow-rings {
+    background: none;
+  }
+
+  .home-workflow-ring-wide { position: absolute; left: .22px; top: 57px; width: 1218px; height: 420px; }
+  .home-workflow-ring-middle { position: absolute; left: 100px; top: 126px; width: 1018px; height: 351px; }
+  .home-workflow-ring-outer { position: absolute; left: -68px; top: 10px; width: 1354px; height: 467px; }
+
+  .home-step-tell { left: 137.22px; top: 142px; }
+  .home-step-match { left: 393.72px; top: 36.5px; }
+  .home-step-add { left: 683.72px; top: 35px; }
+  .home-step-add p { width: 185px; }
+  .home-step-deliver { left: 940.22px; top: 142px; }
+  .home-step-deliver p { width: 176px; }
+}
+
+@media (max-width: 1023px) {
+  .home-onboarding {
+    background: radial-gradient(ellipse 79% 72% at 50% 106%, #492786 0%, #341768 50%, #1f0849 100%);
+  }
+
+  .role-detail-hero { height: var(--role-mobile-hero-height); }
+  .role-detail-hero-pattern {
+    top: auto;
+    bottom: -1.5%;
+    width: auto;
+  }
+  .role-detail-capabilities {
+    height: var(--role-mobile-detail-height);
+    background: #1f0849;
+  }
+  .role-detail-process {
+    background: radial-gradient(ellipse 185% 75% at 50% -30%, #492786 0%, #341768 50%, #1f0849 100%);
+  }
+
+  .careers-mobile > section:nth-child(2) { height: 506px; }
+  .careers-mobile > section:nth-child(3) { height: 1194px; }
+  .careers-mobile > section:nth-child(4) { height: 540px; }
+  .careers-mobile > section:nth-child(5) { height: 243px; }
+  .contact-page > section:nth-child(1) { height: 327px; }
+  .contact-page > section:nth-child(2) { height: 1123px; }
+  .succession-page > section:nth-child(1) { height: 722px; }
+  .succession-page > section:nth-child(2) { height: 602px; }
+  .succession-page > section:nth-child(3) { height: 262px; }
+  .career-register-page > section:nth-child(1) { height: 505px; }
+  .career-register-page > section:nth-child(2) { height: 1069px; }
+}
+
+@media (max-width: 767px) {
+  .role-detail-hero.role-detail-hero--fluid-phone {
+    height: auto;
+    min-height: var(--role-mobile-hero-height);
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .role-detail-hero--fluid-phone .role-detail-hero-artwork {
+    height: 300px;
+  }
+
+  .role-detail-hero--fluid-phone .role-detail-hero-art {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (max-width: 1023px) {
+  .support-mobile > section:nth-child(1) { height: 433px; padding-top: 177px; }
+  .team-mobile > section:nth-child(1) { padding-top: 237px; }
+  .team-mobile > section:nth-child(5) { height: 168px; }
+}
+
+@media (min-width: 1024px) {
+  .careers-page > section:nth-child(1) { height: 777px; }
+  .careers-page > section:nth-child(2) { height: 218px; }
+  .careers-page > section:nth-child(3) { height: 704px; }
+  .careers-page > section:nth-child(4) { height: 512px; }
+  .contact-page > section:nth-child(1) { height: 454px; }
+  .contact-page > section:nth-child(2) { height: 837px; }
+  .succession-page > section:nth-child(1) { height: 681px; }
+  .succession-page > section:nth-child(2) { height: 394px; }
+  .succession-page > section:nth-child(3) { height: 407px; }
+  .career-register-page > section:nth-child(1) { height: 406px; }
+  .career-register-page > section:nth-child(2) { height: 994px; }
+}
+
+/* Mobile Figma canvases are 393px wide. Keep their exact vertical rhythm at
+   phone sizes, then let the same content expand to the full tablet width.
+   Every rule in this block is below the desktop breakpoint. */
+@media (max-width: 767px) {
+  .home-hero { height: 696px; }
+  .home-assurances { height: 606px; }
+  .home-roles { height: 812px; }
+  .home-onboarding { height: 860px; }
+  .home-platform { height: 570px; }
+  .home-performance { height: 873px; }
+  .home-relief { height: 676px; overflow: hidden; }
+
+  .how-page > section:nth-child(4) { height: 880px; }
+
+  .contact-page > section:nth-child(1) { height: 327px; }
+  .contact-page > section:nth-child(2) { height: 1087px; }
+  .career-register-page > section:nth-child(1) { height: 485px; }
+  .career-register-page > section:nth-child(2) { height: 870px; }
+
+  .support-mobile > section:nth-child(1) { height: 365px; padding-top: 0; }
+  .team-mobile > section:nth-child(1) { height: 479px; padding-top: 180px; }
+  .team-mobile > section:nth-child(5) { height: 271px; }
+  .careers-mobile > section:nth-child(2) { height: 380px; }
+  .careers-mobile > section:nth-child(3) { height: 628px; }
+  .careers-mobile > section:nth-child(4) { height: 540px; }
+  .careers-mobile > section:nth-child(5) { height: 225px; }
+
+}
+
+@media (max-width: 379px) {
+  .home-page .px-10,
+  .about-mobile .px-10,
+  .how-page .px-10,
+  .team-mobile .px-10,
+  .support-mobile .px-10,
+  .support-detail-page .px-10,
+  .careers-mobile .px-10,
+  .contact-page .px-10,
+  .career-register-page .px-10 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .platform-login-intro {
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+  .platform-login-panel-content {
+    left: 20px;
+    right: 20px;
+  }
+  .platform-login-stage > div:first-of-type {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-page > section > div,
+  .home-product-sections > section > div,
+  .about-mobile > section > div,
+  .how-page > section > div,
+  .team-mobile > section > div,
+  .support-mobile > section > div,
+  .support-detail-page > section > div,
+  .careers-mobile > section > div,
+  .contact-page > section > div,
+  .career-register-page > section > div {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-relief {
+    height: auto !important;
+    min-height: 520px;
+  }
+
+  .how-page > section:nth-child(1) h1,
+  .how-page > section:nth-child(1) p { text-align: center; }
+  .how-page > section:nth-child(4) { height: 900px; }
+  .how-page > section:nth-child(3) > div { max-width: 720px; }
+  .how-page > section:nth-child(4) > div { max-width: 720px; }
+
+  .platform-login-intro {
+    left: 40px;
+    width: calc(100% - 80px);
+  }
+  .platform-login-intro h1 { max-width: 560px; }
+  .platform-login-panel-content {
+    left: 40px;
+    right: 40px;
+  }
+
+  .contact-page > section:nth-child(1) { height: 384px; }
+  .contact-page > section:nth-child(2) { height: 1087px; }
+  .career-register-page > section:nth-child(1) { height: 485px; }
+  .career-register-page > section:nth-child(2) { height: 870px; }
+
+  .support-mobile > section:nth-child(1) { height: 365px; padding-top: 0; }
+  .team-mobile > section:nth-child(1) { height: 479px; padding-top: 180px; }
+  .team-mobile > section:nth-child(5) { height: 271px; }
+  .careers-mobile > section:nth-child(2) { height: 380px; }
+  .careers-mobile > section:nth-child(3) { height: 628px; }
+  .careers-mobile > section:nth-child(4) { height: 540px; }
+  .careers-mobile > section:nth-child(5) { height: 225px; }
+}
+
+@media (max-width: 380px) {
+  .careers-mobile > section.careers-mobile-highlights {
+    height: auto;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact-page {
+    background-color: #1f0849;
+    background-image: radial-gradient(ellipse 89% 810px at 50% 9px, #411c80 0%, #301265 50%, #1f0849 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 909px;
+  }
+
+  .contact-page > section:nth-child(1),
+  .contact-page > section:nth-child(2) {
+    background: transparent;
+  }
+
+  .careers-mobile > section.careers-mobile-register {
+    height: auto;
+  }
+}
