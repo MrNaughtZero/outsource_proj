@@ -24,6 +24,7 @@ const CareerRegister = lazy(() => import('./pages/Landing/CareerRegister'));
 const Insights = lazy(() => import('./pages/Landing/Insights'));
 const ComingSoon = lazy(() => import('./pages/Landing/ComingSoon'));
 const PlatformLogin = lazy(() => import('./pages/Landing/PlatformLogin'));
+const ResetPassword = lazy(() => import('./pages/Landing/ResetPassword'));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -46,6 +47,7 @@ function App() {
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/login" element={<PlatformLogin />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           {/* Public Marketing Site */}
           <Route element={<MarketingLayout />}>
             <Route path="/" element={<Home />} />

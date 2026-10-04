@@ -34,7 +34,7 @@ const TRUST = [
 
 function HeroTitle() {
   return (
-    <div className="flex w-full flex-nowrap items-center justify-center whitespace-nowrap text-[64px] font-normal leading-[72px] tracking-[-2px]">
+    <div className="about-hero-title flex w-full flex-nowrap items-center justify-center whitespace-nowrap text-[64px] leading-[72px] tracking-[-0.64px]">
       <span className="figma-heading-gradient figma-heading-about-first shrink-0">Real <span className="text-brand-lime">Pe</span></span>
       <img src={eye} alt="o" className="mx-0.5 mt-3 h-8 w-[34px] shrink-0" />
       <span className="figma-heading-gradient figma-heading-about-second shrink-0"><span className="text-brand-lime">ple</span>, Real Visibility</span>
@@ -69,11 +69,11 @@ function ValuesSection() {
 
 function LocationsSection() {
   return (
-    <section className="h-[791px] bg-gradient-to-b from-transparent to-[#190a36] pb-[120px] pt-[60px]">
+    <section className="h-[811px] bg-gradient-to-b from-transparent to-[#190a36] pb-[120px] pt-[80px]">
       <div className="flex flex-col items-center gap-[91px]">
         <div className="text-center">
           <h2 className="text-[42px] font-medium leading-[48px]"><span className="text-brand-lime">Manchester-led.</span> Dhaka-powered.</h2>
-          <p className="mt-4 text-2xl font-light leading-6">Managed delivery from our Dhaka office, with UK oversight and accountability.</p>
+          <p className="mt-4 text-2xl font-light leading-6">Dedicated finance professionals in Dhaka, with UK leadership and accountability.</p>
         </div>
         <div className="flex flex-col items-center">
           <img src={globe} alt="Manchester and Dhaka" className="mb-[-149px] h-[423px] w-[1064px] object-cover" />
@@ -92,7 +92,7 @@ function LocationsSection() {
                 <img src={dhaka} alt="" className="h-[50px] w-[50px] shrink-0" />
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold leading-[30px] text-brand-lime">Dhaka, <span className="font-light">Bangladesh</span></h3>
-                  <p className="mt-4 text-lg leading-6">Dedicated finance professionals, managed delivery and scale.</p>
+                  <p className="mt-4 text-lg leading-6">Your people, working from our secure, managed delivery centre.</p>
                 </div>
               </div>
             </article>
@@ -105,7 +105,7 @@ function LocationsSection() {
 
 function TrustSection() {
   return (
-    <section className="h-[406px] bg-[#190a36] px-8 py-[60px] xl:px-[144px]">
+    <section className="h-[446px] bg-[#190a36] px-8 py-[80px] xl:px-[144px]">
       <h2 className="text-center text-[32px] font-medium leading-10">Built for <span className="text-brand-lime">Quality &amp; Trust</span></h2>
       <div className="mx-auto mt-[60px] flex w-full max-w-[992px] items-stretch gap-3">
         {TRUST.map(([title, body, icon], index) => (
@@ -127,7 +127,7 @@ function TrustSection() {
 
 function CommitmentSection() {
   return (
-    <section className="h-[662px] bg-gradient-to-b from-brand-purple-mid/0 to-brand-purple-mid/50 px-8 pb-[120px] pt-[60px] xl:px-[144px]">
+    <section className="h-[682.232px] bg-gradient-to-b from-brand-purple-mid/0 to-brand-purple-mid/50 px-8 pb-[120px] pt-[80px] xl:px-[144px]">
       <div className="mx-auto w-full max-w-[992px]">
         <div className="text-center">
           <h2 className="text-[42px] font-medium leading-[48px]">Our commitment to <span className="text-brand-lime">Quality</span></h2>
@@ -169,9 +169,9 @@ export default function About() {
   return (
     <>
       <div className="about-page hidden bg-brand-purple-dark text-white lg:block">
-        <section className="relative h-[1181px] overflow-hidden">
+        <section className="relative h-[1250px] overflow-hidden">
           <img src={hero} alt="Outsource.com team" className="absolute left-1/2 top-[-231px] h-[1035px] w-[1497px] max-w-none -translate-x-1/2" />
-          <div className="relative flex h-full flex-col items-center justify-between px-8 pb-[90px] pt-[144px] xl:px-[144px]">
+          <div className="relative flex h-full flex-col items-center justify-between px-8 pb-[100px] pt-[144px] xl:px-[144px]">
             <HeroTitle />
             <ValuesSection />
           </div>

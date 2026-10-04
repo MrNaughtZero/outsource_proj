@@ -22,18 +22,20 @@ function ReliefCard({
   return (
     <Link
       to={to}
-      className={`group relative flex min-h-[124px] flex-col rounded-lg border p-5 transition-transform hover:-translate-y-1 lg:h-[226px] lg:border-0 lg:p-8 lg:ring-1 lg:ring-inset ${lime ? 'border-brand-purple/70 bg-brand-lime text-brand-purple-mid lg:ring-[rgba(92,52,161,0.67)]' : 'border-brand-purple/50 bg-gradient-to-r from-brand-purple to-brand-purple/15 text-white lg:bg-gradient-to-b lg:ring-brand-purple/50'} ${className}`}
+      className={`relief-card ${lime ? 'relief-card-call' : 'relief-card-arrow'} group relative flex min-h-[124px] flex-col rounded-lg border p-5 transition-[background-color,border-color,box-shadow] duration-200 ease-out lg:h-[226px] lg:border-0 lg:p-8 lg:ring-1 lg:ring-inset ${lime ? 'border-brand-purple/70 bg-brand-lime text-brand-purple-mid lg:ring-[rgba(92,52,161,0.67)] hover:bg-white hover:border-brand-lime hover:ring-1 hover:ring-inset hover:ring-brand-lime lg:hover:ring-2' : 'border-brand-purple/50 bg-gradient-to-r from-brand-purple to-brand-purple/15 text-white lg:bg-gradient-to-b lg:ring-brand-purple/50 hover:bg-brand-purple hover:border-brand-periwinkle hover:ring-brand-periwinkle'} ${className}`}
     >
-      <h3 className={`pr-10 text-lg font-bold leading-6 lg:pr-0 lg:text-2xl lg:leading-8 ${lime ? 'pl-10 lg:pl-0' : ''}`}>
-        {title} {highlight && <span className={lime ? '' : 'text-brand-lime'}>{highlight}</span>}
-      </h3>
-      <p className="mt-3 text-xs leading-[18px] lg:hidden">{mobileCopy ?? copy}</p>
+      <div className="relief-card-heading contents">
+        <h3 className={`pr-10 text-lg font-bold leading-6 lg:pr-0 lg:text-2xl lg:leading-8 ${lime ? 'pl-10 lg:pl-0' : ''}`}>
+          {title} {highlight && <span className={lime ? '' : 'text-brand-lime'}>{highlight}</span>}
+        </h3>
+        <img
+          src={lime ? arrowPurple : arrowLight}
+          alt=""
+          className={`absolute h-8 w-8 shrink-0 lg:bottom-8 lg:left-auto lg:right-8 lg:top-auto ${lime ? 'left-5 top-5' : 'right-5 top-5'}`}
+        />
+      </div>
+      <p className="relief-card-mobile-copy mt-3 text-lg leading-6 lg:hidden">{mobileCopy ?? copy}</p>
       <p className="mt-4 hidden text-lg leading-6 lg:block">{copy}</p>
-      <img
-        src={lime ? arrowPurple : arrowLight}
-        alt=""
-        className={`absolute h-8 w-8 shrink-0 lg:bottom-8 lg:left-auto lg:right-8 lg:top-auto ${lime ? 'left-5 top-5' : 'right-5 top-5'}`}
-      />
     </Link>
   );
 }

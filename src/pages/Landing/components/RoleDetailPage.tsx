@@ -1,7 +1,9 @@
+import CompareCostsSection from './CompareCostsSection';
 import type { CSSProperties, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ReliefSection from './ReliefSection';
 import heroPattern from '../../../assets/landing/accountants/hero-pattern.png';
+import mobileHeroPattern from '../../../assets/landing/role-detail/hero-pattern-mobile.png';
 import checkIcon from '../../../assets/landing/accountants/check.svg';
 import timelineFirst from '../../../assets/landing/accountants/timeline-first.svg';
 import timelineMiddle from '../../../assets/landing/accountants/timeline-middle.svg';
@@ -12,6 +14,7 @@ type Step = { icon: string; copy: string };
 export type RoleDetailPageProps = {
   title: string;
   titleClassName?: string;
+  heroClassName?: string;
   intro: string;
   qualification: string;
   heroPrice: string;
@@ -25,6 +28,7 @@ export type RoleDetailPageProps = {
   mobileQualification?: string;
   mobileHeroPrice?: string;
   heroImageFit?: 'cover' | 'contain';
+  compareCostRole?: string;
   detailSectionHeight: number;
   mobileDetailSectionHeight?: number;
   detailCardHeight: number;
@@ -40,7 +44,7 @@ function CheckList({ items }: { items: string[] }) {
   return (
     <ul className="flex w-full flex-col gap-4 lg:gap-6">
       {items.map((item) => (
-        <li key={item} className="flex min-h-[18px] items-start gap-4 text-xs leading-[18px] lg:min-h-[26px] lg:text-lg lg:leading-6">
+        <li key={item} className="flex min-h-[18px] items-start gap-4 text-lg leading-6 lg:min-h-[26px] lg:text-lg lg:leading-6">
           <img src={checkIcon} alt="" aria-hidden className="h-[18px] w-[18px] shrink-0 lg:mt-px lg:h-6 lg:w-6" />
           <span>{item}</span>
         </li>
@@ -65,40 +69,43 @@ function DetailCard({ title, highlight, subtitle, items, footnote }: {
   footnote?: string;
 }) {
   return (
-    <article className="role-detail-card flex w-full flex-col gap-4 rounded-lg border-2 border-[rgba(92,52,161,0.8)] bg-gradient-to-r from-[rgba(65,28,128,0.8)] to-[rgba(59,24,123,0.2)] px-6 py-[30px] lg:flex-1 lg:gap-6 lg:bg-gradient-to-b lg:px-[38px] lg:py-[58px]">
+    <article className="role-detail-card fading-card-border fading-card-border-responsive flex w-full flex-col gap-4 rounded-lg border-2 border-[rgba(92,52,161,0.8)] bg-gradient-to-r from-[rgba(65,28,128,0.8)] to-[rgba(59,24,123,0.2)] px-6 py-[30px] lg:flex-1 lg:gap-6 lg:bg-gradient-to-b lg:px-[38px] lg:py-[58px]">
       <div className="flex w-full flex-col gap-2 lg:gap-3 lg:px-1.5">
         <h2 className="text-lg font-bold leading-6 lg:text-[30px] lg:leading-9">{title} <span className="text-brand-lime">{highlight}</span></h2>
-        <p className="text-xs font-light leading-[18px] lg:text-lg lg:leading-6">{subtitle}</p>
+        <p className="text-lg font-light leading-6 lg:text-lg lg:leading-6">{subtitle}</p>
       </div>
       <div className="h-0 w-full shrink-0 border-t border-[rgba(92,52,161,0.8)]" />
       <div className={`flex w-full flex-col items-start ${footnote ? 'gap-6 lg:gap-9' : ''}`}>
         <CheckList items={items} />
-        {footnote && <p className="text-xs font-light leading-[18px] text-brand-periwinkle lg:text-lg lg:leading-6">{footnote}</p>}
+        {footnote && <p className="text-lg font-light leading-6 text-brand-periwinkle lg:text-lg lg:leading-6">{footnote}</p>}
       </div>
     </article>
   );
 }
 
 export default function RoleDetailPage({
-  title, titleClassName = '', intro, qualification, heroPrice, heroImage, heroImageAlt, heroHeight,
+  title, titleClassName = '', heroClassName = '', intro, qualification, heroPrice, heroImage, heroImageAlt, heroHeight,
   mobileHeroHeight = 757, fluidPhoneHero = false, mobileHeroImageTop = '-0.17%', mobileTitleClassName = '',
-  mobileQualification, mobileHeroPrice, heroImageFit = 'contain', detailSectionHeight,
+  mobileQualification, mobileHeroPrice, heroImageFit = 'contain', detailSectionHeight, compareCostRole,
   mobileDetailSectionHeight = 956, detailCardHeight, category,
   handles, benefitSubtitle, benefits, footnote, steps,
 }: RoleDetailPageProps) {
   const dimensions = {
     '--role-hero-height': `${heroHeight}px`,
     '--role-mobile-hero-height': `${mobileHeroHeight}px`,
-    '--role-detail-height': `${detailSectionHeight}px`,
+    '--role-detail-height': `${detailSectionHeight + (compareCostRole ? 100 : 0)}px`,
     '--role-mobile-detail-height': `${mobileDetailSectionHeight}px`,
     '--role-card-height': `${detailCardHeight}px`,
   } as CSSProperties;
 
   return (
-    <div className="role-detail-page bg-brand-purple-dark font-dmsans text-white" style={dimensions}>
-      <section className={`role-detail-hero relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,0.53)] px-5 py-[60px] min-[380px]:px-10 lg:block lg:px-10 lg:pb-20 lg:pt-[156px] ${fluidPhoneHero ? 'role-detail-hero--fluid-phone' : ''}`}>
-        <div className="absolute inset-0 opacity-50">
-          <img src={heroPattern} alt="" aria-hidden className="role-detail-hero-pattern absolute left-[-21.04%] top-[14.25%] h-[81.93%] w-[110.16%] max-w-none" />
+    <div className={`role-detail-page bg-brand-purple-dark font-dmsans text-white ${fluidPhoneHero ? 'role-detail-page--mobile-glow' : ''}`} style={dimensions}>
+      <section className={`role-detail-hero ${heroClassName} relative flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,0.53)] px-5 py-[60px] min-[380px]:px-10 lg:block lg:px-10 lg:pb-20 lg:pt-[156px] ${fluidPhoneHero ? 'role-detail-hero--fluid-phone' : ''}`}>
+        <div aria-hidden className="role-detail-hero-background pointer-events-none absolute inset-0 opacity-50">
+          <picture>
+            <source media="(max-width: 1023px)" srcSet={mobileHeroPattern} />
+            <img src={heroPattern} alt="" className="role-detail-hero-pattern absolute left-[-21.04%] top-[14.25%] h-[81.93%] w-[110.16%] max-w-none" />
+          </picture>
         </div>
         <div className="role-detail-hero-row relative mx-auto flex w-full flex-col items-start gap-4 py-6 lg:max-w-[991px] lg:flex-row lg:items-center lg:gap-6 lg:p-0">
           <div className="order-2 flex w-full flex-col items-start gap-4 lg:order-1 lg:w-[484px] lg:shrink-0 lg:gap-8">
@@ -114,7 +121,7 @@ export default function RoleDetailPage({
               <p className="mt-6 font-bold lg:mt-[28px]"><span className="lg:hidden">{mobileQualification ?? qualification}</span><span className="hidden lg:inline">{qualification}</span></p>
               <p className="mt-6 italic text-brand-lime lg:mt-[28px]"><span className="lg:hidden">{mobileHeroPrice ?? heroPrice}</span><span className="hidden lg:inline">{heroPrice}</span></p>
             </div>
-            <Link to="/contact" className="inline-flex h-14 items-center justify-center rounded-lg border border-brand-periwinkle px-8 text-lg font-normal text-white transition-colors hover:bg-white hover:text-brand-purple-mid">Book a call</Link>
+            <Link to="/contact" className="inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-14 lg:w-auto lg:px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">Book a call</Link>
           </div>
           <div className={`role-detail-hero-artwork relative order-1 w-full overflow-hidden md:h-[210px] lg:order-2 lg:h-full lg:min-w-0 lg:flex-1 ${fluidPhoneHero ? 'aspect-[313/210] h-auto md:aspect-auto' : 'h-[210px]'}`}>
             <img src={heroImage} alt={heroImageAlt} style={{ top: mobileHeroImageTop }} className={`role-detail-hero-art absolute left-[.08%] h-[144.76%] w-[99.92%] max-w-none lg:static lg:h-full lg:w-full ${heroImageFit === 'cover' ? 'object-cover' : 'object-contain'}`} />
@@ -128,6 +135,7 @@ export default function RoleDetailPage({
           <DetailCard title="What they can" highlight="handle" subtitle={category} items={handles} />
           <DetailCard title="What you" highlight="get" subtitle={benefitSubtitle} items={benefits} footnote={footnote} />
         </div>
+        {compareCostRole && <CompareCostsSection role={compareCostRole} className="mx-auto mt-[30px] w-full lg:mt-8 lg:max-w-[991px]" />}
       </section>
 
       <section className="role-detail-process h-[620px] overflow-hidden rounded-t-[24px] px-5 pb-20 pt-[60px] min-[380px]:px-10 lg:h-[374px] lg:rounded-none lg:px-[144px] lg:py-[60px]">

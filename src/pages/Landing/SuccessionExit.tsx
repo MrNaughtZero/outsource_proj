@@ -40,12 +40,12 @@ export default function SuccessionExit() {
       <div className="lg:mx-auto lg:flex lg:h-[247px] lg:w-[1072px] lg:max-w-[calc(100%-32px)] lg:items-center lg:gap-6 lg:rounded-lg lg:border lg:border-brand-purple/40 lg:bg-gradient-to-b lg:from-brand-purple-mid lg:to-brand-purple-mid/20 lg:p-[59px]">
         <div className="lg:flex lg:w-[510px] lg:shrink-0 lg:flex-col lg:gap-4">
           <h2 className="text-2xl font-bold leading-7 text-brand-lime lg:text-[42px] lg:font-medium lg:leading-[48px]">Outpractice.com</h2>
-          <p className="mt-3 text-xs font-light leading-[18px] lg:mt-0 lg:text-lg lg:leading-6">OutPractice.com is a specialist service for succession and exit planning. You will be taken to their website to learn more.</p>
+          <p className="mt-3 text-lg font-light leading-6 lg:mt-0 lg:text-lg lg:leading-6">OutPractice.com is a specialist service for succession and exit planning. You will be taken to their website to learn more.</p>
         </div>
         <div className="relative hidden self-stretch lg:block lg:w-0 lg:before:absolute lg:before:inset-y-0 lg:before:left-0 lg:before:w-px lg:before:bg-white/20" />
         <div className="lg:flex lg:min-w-0 lg:flex-1 lg:flex-col lg:gap-6">
           <p className="hidden text-lg font-light leading-6 lg:block">Learn more about succession planning, valuation and exit options.</p>
-          <a href="https://outpractice.com" target="_blank" rel="noreferrer" className="mt-8 flex h-[55px] w-full items-center justify-center gap-[10px] rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid lg:mt-0 lg:border lg:border-brand-purple-mid">Visit Outpractice.com <ArrowUpRight size={23}/></a>
+          <a href="https://outpractice.com" target="_blank" rel="noreferrer" className="mt-8 flex h-[55px] w-full items-center justify-center gap-[10px] rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid lg:mt-0 lg:border lg:border-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime">Visit Outpractice.com <ArrowUpRight size={23}/></a>
         </div>
       </div>
     </section>

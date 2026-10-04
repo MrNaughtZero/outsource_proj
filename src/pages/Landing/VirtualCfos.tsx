@@ -14,11 +14,9 @@ export default function VirtualCfos() {
     heroImage={heroArt}
     heroImageAlt="Financial leadership dashboards and forecasting tools"
     heroHeight={778}
-    mobileHeroHeight={781}
+    mobileHeroHeight={798}
     fluidPhoneHero
     mobileTitleClassName="tracking-[-.54px]"
-    mobileQualification="UK-syllabus trained and assessed"
-    mobileHeroPrice="From £15.50 per hour."
     detailSectionHeight={686}
     mobileDetailSectionHeight={896}
     detailCardHeight={566}

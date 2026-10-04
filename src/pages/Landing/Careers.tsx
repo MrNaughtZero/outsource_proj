@@ -72,7 +72,7 @@ export default function Careers() {
                   Explore career opportunities in Dhaka and Manchester. Register your interest and we’ll contact you when a suitable role becomes available.
                 </p>
               </div>
-              <button onClick={handleRegister} className="flex h-[55px] items-center justify-center rounded-lg border border-brand-periwinkle px-8 text-lg font-normal text-white">
+              <button onClick={handleRegister} className="flex h-[55px] items-center justify-center rounded-lg border border-brand-periwinkle px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">
                 Register your interest
               </button>
             </div>
@@ -100,7 +100,7 @@ export default function Careers() {
             {DESKTOP_LOCATIONS.map((loc) => (
               <div
                 key={loc.city}
-                className="flex h-full flex-col gap-6 rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 px-[30px] py-[58px]"
+                className="fading-card-border flex h-full flex-col gap-6 rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 px-[30px] py-[58px]"
               >
                 <div className="flex flex-col gap-6 px-[6px]">
                   <div className="flex items-start gap-6">
@@ -176,7 +176,7 @@ export default function Careers() {
               </p>
               <button
                 onClick={handleRegister}
-                className="inline-flex h-[55px] w-[246px] shrink-0 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime text-lg font-medium text-brand-purple-mid"
+                className="inline-flex h-[55px] w-[246px] shrink-0 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
               >
                 Register your interest
               </button>

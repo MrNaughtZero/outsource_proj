@@ -96,7 +96,7 @@ export const SUPPORT_SCENARIOS: readonly SupportScenario[] = [
   },
   {
     slug: 'accountability',
-    label: 'Accountability',
+    label: 'Oversight',
     cardCopy: 'Know who is responsible',
     titleStart: 'Want to outsource with ',
     titleHighlight: 'confidence?',

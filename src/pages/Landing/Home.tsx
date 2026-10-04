@@ -1,3 +1,9 @@
+import CompareCostsSection from './components/CompareCostsSection';
+import MobileHomeRoleCard from './components/MobileHomeRoleCard';
+import mobileAccountants from '../../assets/landing/roles/mobile/accountants.png';
+import mobileBookkeepers from '../../assets/landing/roles/mobile/bookkeepers.png';
+import mobilePayroll from '../../assets/landing/roles/mobile/payroll-specialist.png';
+import mobileCfo from '../../assets/landing/home/role-mobile-cfo.png';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import homeHero from '../../assets/landing/images/home_hero_may_2026.png';
@@ -17,15 +23,22 @@ import tellUsIcon from '../../assets/landing/home/tell-us.png';
 import matchTalentIcon from '../../assets/landing/home/match-talent.png';
 import addTeamIcon from '../../assets/landing/home/add-team.png';
 import deliveryIcon from '../../assets/landing/home/delivery.svg';
+import roleDivider from '../../assets/landing/home/role-divider.svg';
+import roleViewArrow from '../../assets/landing/home/role-view-arrow.svg';
+import roleViewArrowHover from '../../assets/landing/home/role-view-arrow-hover.svg';
 import rolesPlusIcon from '../../assets/landing/home/roles-plus.svg';
 import workflowMobile from '../../assets/landing/home/workflow-mobile.svg';
 import workflowEllipseWide from '../../assets/landing/home/workflow-ellipse-wide.svg';
 import workflowEllipseMiddle from '../../assets/landing/home/workflow-ellipse-middle.svg';
 import workflowEllipseOuter from '../../assets/landing/home/workflow-ellipse-outer.svg';
 import manageTasksIcon from '../../assets/landing/home/manage-tasks.svg';
+import manageTasksMobileIcon from '../../assets/landing/home/manage-tasks-mobile.svg';
 import shareFilesIcon from '../../assets/landing/home/share-files.svg';
+import shareFilesMobileIcon from '../../assets/landing/home/share-files-mobile.svg';
 import trackProgressIcon from '../../assets/landing/home/track-progress.svg';
+import trackProgressMobileIcon from '../../assets/landing/home/track-progress-mobile.svg';
 import liveUpdatesIcon from '../../assets/landing/home/live-updates.svg';
+import liveUpdatesMobileIcon from '../../assets/landing/home/live-updates-mobile.svg';
 import phoneIcon from '../../assets/landing/home/phone.svg';
 import whatsappIcon from '../../assets/landing/home/whatsapp.svg';
 import saveIcon from '../../assets/landing/home/save.svg';
@@ -33,30 +46,30 @@ import ReliefSection from './components/ReliefSection';
 
 const assurances = [
   { icon: hqIcon, title: 'Manchester HQ', copy: 'UK standards. Clear accountability' },
-  { icon: messageIcon, title: 'Direct Access', copy: 'Talk directly to the people doing the work' },
+  { icon: messageIcon, title: 'Direct Access', copy: 'Speak to your people throughout working hours' },
   { icon: shieldIcon, title: 'Managed Delivery', copy: 'Clear ownership. Consistent delivery' },
   { icon: eyeIcon, title: 'Complete Visibility', copy: 'Tasks, updates and progress in one workspace' },
 ] as const;
 
 const roles = [
-  { image: accountants, title: 'Accountants', mobileTitle: 'Accountants', to: '/roles/accountants' },
-  { image: bookkeepers, title: 'Bookkeepers', mobileTitle: 'Bookkeepers', to: '/roles/bookkeepers' },
-  { image: payroll, title: 'Payroll Specialists', mobileTitle: 'Payroll Specialist', to: '/roles/payroll-specialists' },
-  { image: virtualCfo, title: 'Virtual CFOs', mobileTitle: 'Virtual CFOs', to: '/roles/virtual-cfos' },
+  { image: accountants, mobileImage: mobileAccountants, title: 'Accountants', mobileTitle: 'Accountants', to: '/roles/accountants', details: ['UK-syllabus trained & technically tested.', 'Management reporting & month-end', 'Accounts preparation & year-end support'] },
+  { image: bookkeepers, mobileImage: mobileBookkeepers, title: 'Bookkeepers', mobileTitle: 'Bookkeepers', to: '/roles/bookkeepers', details: ['Tested in practical UK bookkeeping', 'Journals & ledgers', 'Bank reconciliations & expense coding'] },
+  { image: payroll, mobileImage: mobilePayroll, title: 'Payroll Specialists', mobileTitle: 'Payroll Specialist', to: '/roles/payroll-specialists', details: ['Trained in UK payroll', 'Payroll runs, deadlines & RTI', 'Auto-enrollment & statutory compliance'] },
+  { image: virtualCfo, mobileImage: mobileCfo, title: 'Virtual CFOs', mobileTitle: 'Virtual CFOs', to: '/roles/virtual-cfos', details: ['Management reporting & KPIs', 'Cash flow forecasting & analysis', 'Commercial insight & decision support'] },
 ] as const;
 
 const onboardingSteps = [
-  { image: tellUsIcon, label: 'Tell us what you need', className: 'home-step-tell', imageClassName: 'lg:h-[86px] lg:w-[120px]' },
-  { image: matchTalentIcon, label: 'We match & test the right people', className: 'home-step-match', imageClassName: 'lg:h-[89px] lg:w-[139px]' },
-  { image: addTeamIcon, label: 'We help you onboard your team members', className: 'home-step-add', imageClassName: 'lg:h-[92px] lg:w-[87px]' },
+  { image: tellUsIcon, label: 'Tell us what you need', mobileLabel: 'Tell Us what you need', className: 'home-step-tell', imageClassName: 'lg:h-[86px] lg:w-[120px]' },
+  { image: matchTalentIcon, label: 'We match & test the right people', mobileLabel: 'Meet your people,\nthen we help you onboard', className: 'home-step-match', imageClassName: 'lg:h-[89px] lg:w-[139px]' },
+  { image: addTeamIcon, label: 'Meet your people, then we help you onboard', className: 'home-step-add', imageClassName: 'lg:h-[92px] lg:w-[87px]' },
   { image: deliveryIcon, label: 'We manage delivery end-to-end', className: 'home-step-deliver', imageClassName: 'lg:h-[70px] lg:w-[76px]' },
 ] as const;
 
 const platformFeatures = [
-  { icon: manageTasksIcon, title: 'Manage Tasks' },
-  { icon: shareFilesIcon, title: 'Share Files' },
-  { icon: trackProgressIcon, title: 'Track Progress' },
-  { icon: liveUpdatesIcon, title: 'View updates' },
+  { icon: manageTasksIcon, mobileIcon: manageTasksMobileIcon, title: 'Manage Tasks' },
+  { icon: shareFilesIcon, mobileIcon: shareFilesMobileIcon, title: 'Share Files' },
+  { icon: trackProgressIcon, mobileIcon: trackProgressMobileIcon, title: 'Track Progress' },
+  { icon: liveUpdatesIcon, mobileIcon: liveUpdatesMobileIcon, title: 'View updates' },
 ] as const;
 
 const performanceFeatures = [
@@ -73,9 +86,15 @@ function AssuranceSection() {
   return (
     <section className="home-assurances bg-gradient-to-b from-[#180a34] to-brand-purple-dark px-10 py-[60px] lg:px-0 lg:py-[120px]">
       <div className="mx-auto flex max-w-[992px] flex-col gap-[60px]">
-        <Heading className="lg:text-center">
-          Outsourcing. <span className="text-brand-lime">Without Compromise.</span>
-        </Heading>
+        <div className="flex flex-col gap-4 lg:text-center">
+          <Heading>
+            Outsourcing{' '}<span className="block text-brand-lime lg:inline">Made Simple<span className="hidden lg:inline">.</span></span>
+          </Heading>
+          <p className="text-lg font-light leading-6">
+            Choose how many people you need and for how long. Work directly with them during UK working hours.{' '}<br className="hidden lg:block" />
+            Our straightforward pricing includes management and our online platform.
+          </p>
+        </div>
         <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[repeat(4,230px)] lg:gap-6">
           {assurances.map((item, index) => (
             <Fragment key={item.title}>
@@ -83,9 +102,9 @@ function AssuranceSection() {
                 <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center">
                   <img src={item.icon} alt="" className={index === 0 ? 'h-9 w-11' : 'h-[50px] w-[50px]'} />
                 </div>
-                <div className="flex flex-col gap-3 lg:gap-4">
+                <div className="flex flex-col gap-3 lg:w-full lg:gap-4">
                   <h3 className="text-lg font-bold leading-6 lg:text-2xl lg:leading-6">{item.title}</h3>
-                  <p className="text-xs leading-[18px] text-brand-periwinkle lg:text-lg lg:leading-6">{item.copy}</p>
+                  <p className="text-lg leading-6 text-brand-periwinkle lg:text-lg lg:leading-6">{item.copy}</p>
                 </div>
                 {index < assurances.length - 1 && <span aria-hidden className="absolute inset-y-0 -right-3 hidden border-r border-white/30 lg:block" />}
               </article>
@@ -108,7 +127,10 @@ function RolesSection() {
         </div>
         <div className="mt-[60px] grid grid-cols-1 gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">
           {roles.map((role) => (
-            <Link key={role.title} to={role.to} className="flex h-[103px] min-w-0 items-center gap-5 overflow-hidden rounded-lg bg-[#f9f7fd] p-2 pr-5 lg:h-[290px] lg:flex-col lg:items-stretch lg:gap-0 lg:border-0 lg:p-0 lg:ring-2 lg:ring-inset lg:ring-brand-lavender">
+            <Fragment key={role.title}>
+            <MobileHomeRoleCard role={role} />
+            <article className="home-role-card group/home-role transition-[background-color,box-shadow] duration-300 ease-out relative hidden lg:flex h-[103px] min-w-0 items-center gap-5 overflow-hidden rounded-lg bg-[#f9f7fd] p-2 pr-5 lg:h-[290px] lg:flex-col lg:items-stretch lg:gap-0 lg:border-0 lg:p-0 lg:ring-2 lg:ring-inset lg:ring-brand-lavender lg:hover:bg-brand-purple-dark lg:hover:ring-transparent lg:focus-within:bg-brand-purple-dark lg:focus-within:ring-transparent">
+              <Link to={role.to} aria-label={role.title} className="absolute inset-0 z-10 lg:hidden" />
               <div className="h-[87px] w-[85px] shrink-0 lg:h-[246px] lg:w-full lg:flex-none lg:px-3">
                 <img src={role.image} alt={role.title} className="h-full w-full object-contain object-bottom lg:object-center" />
               </div>
@@ -119,9 +141,26 @@ function RolesSection() {
                 </h3>
                 <img src={rolesPlusIcon} alt="" className="h-6 w-6 shrink-0 lg:hidden" />
               </div>
-            </Link>
+              <span className="home-role-details pointer-events-none absolute inset-0 hidden flex-col justify-between bg-brand-purple-dark p-6 text-lg leading-6 opacity-0 transition-opacity duration-300 ease-out lg:flex lg:group-hover/home-role:pointer-events-auto lg:group-hover/home-role:opacity-100 lg:group-focus-within/home-role:pointer-events-auto lg:group-focus-within/home-role:opacity-100">
+                <span className="flex flex-col gap-2 text-brand-periwinkle">
+                  {role.details.map((detail, index) => <Fragment key={detail}>
+                    {index > 0 && <img src={roleDivider} alt="" className="h-px w-[182px] max-w-none" />}
+                    <span className="font-normal">{detail}</span>
+                  </Fragment>)}
+                </span>
+                <Link to={role.to} className="home-role-view group/role-view flex w-fit items-end gap-2 font-semibold text-brand-lime transition-colors duration-200 ease-out hover:text-white hover:underline focus-visible:text-white focus-visible:underline">
+                  <span>{role.title === 'Payroll Specialists' ? <>View<br />Payroll Specialists</> : `View ${role.title}`}</span>
+                  <span className="relative h-[20.75px] w-[15px] shrink-0">
+                    <img src={roleViewArrow} alt="" className="absolute inset-0 max-w-none group-hover/role-view:invisible group-focus-visible/role-view:invisible" />
+                    <img src={roleViewArrowHover} alt="" className="invisible absolute inset-0 max-w-none group-hover/role-view:visible group-focus-visible/role-view:visible" />
+                  </span>
+                </Link>
+              </span>
+            </article>
+            </Fragment>
           ))}
         </div>
+        <CompareCostsSection className="mt-[60px] lg:mt-14" />
       </div>
     </section>
   );
@@ -132,8 +171,7 @@ function OnboardingSection() {
     <section className="home-onboarding h-[860px] overflow-hidden px-10 py-[60px] lg:h-[555px] lg:px-0 lg:pb-0 lg:pt-[120px]">
       <div className="mx-auto max-w-[992px] text-center">
         <Heading>
-          <span className="lg:hidden"><span className="text-brand-lime">People.</span> Onboarded Seamlessly.</span>
-          <span className="hidden lg:inline">Your <span className="text-brand-lime">Finance Team</span>. Onboarded Seamlessly.</span>
+          Seamless <span className="text-brand-lime">Onboarding</span>
         </Heading>
         <p className="mt-3 text-lg font-light leading-6">
           <span className="lg:hidden">Onboarding in simple terms</span>
@@ -149,7 +187,7 @@ function OnboardingSection() {
           {onboardingSteps.map((step) => (
             <div key={step.label} className={`home-workflow-step absolute flex w-[193px] flex-col items-center gap-3 lg:w-[150px] ${step.className}`}>
               <img src={step.image} alt="" className={`h-[60px] w-auto max-w-[120px] object-contain lg:max-w-none ${step.imageClassName}`} />
-              <p className="text-center text-lg leading-6">{step.label}</p>
+              <p className={`text-center text-lg leading-6 ${step.className === 'home-step-match' ? 'w-[219px] lg:w-auto' : ''}`}>{'mobileLabel' in step ? <><span className="whitespace-pre-line lg:hidden">{step.mobileLabel}</span><span className="hidden lg:inline">{step.label}</span></> : step.label}</p>
             </div>
           ))}
         </div>
@@ -164,15 +202,18 @@ function PlatformSection() {
       <div className="mx-auto max-w-[992px] text-center">
         <Heading>One <span className="text-brand-lime">Platform,</span> Total Visibility</Heading>
         <p className="mt-3 text-lg font-light leading-6">Your people, tasks, files and updates in one place.</p>
-        <div className="relative left-1/2 mt-10 aspect-[992/503] w-[367px] max-w-none -translate-x-1/2 max-[379px]:w-[calc(100vw-40px)] lg:left-auto lg:mt-[60px] lg:w-full lg:translate-x-0">
+        <div className="home-platform-art relative left-1/2 mt-10 aspect-[992/503] w-[367px] max-w-none -translate-x-1/2 max-[379px]:w-[calc(100vw-40px)] lg:left-auto lg:mt-[60px] lg:w-full lg:translate-x-0">
           <img src={platform} alt="Outsource workspace dashboard" className="absolute left-0 top-[7.43%] h-[85.08%] w-full object-contain" />
         </div>
-        <div className="mx-auto mt-10 grid max-w-[520px] grid-cols-4 gap-x-3 gap-y-5 max-[380px]:grid-cols-2 lg:mt-[60px] lg:max-w-none lg:flex lg:flex-nowrap lg:items-stretch lg:gap-3">
+        <div className="home-platform-features mx-auto mt-10 grid max-w-[520px] grid-cols-4 gap-x-3 gap-y-5 max-[380px]:grid-cols-2 lg:mt-[60px] lg:max-w-none lg:flex lg:flex-nowrap lg:items-stretch lg:gap-3">
           {platformFeatures.map((feature, index) => (
             <Fragment key={feature.title}>
               <article className="relative flex min-w-0 flex-col items-center gap-2 lg:flex-[1_0_0] lg:gap-3 lg:px-[30px]">
-                <img src={feature.icon} alt="" className="h-10 w-10 object-contain lg:h-[50px] lg:w-[50px]" />
-                <h3 className="text-xs font-normal leading-[18px] lg:w-[136px] lg:text-lg lg:font-bold lg:leading-6 lg:text-brand-lime">{feature.title}</h3>
+                <picture className="contents">
+                  <source className="hidden" media="(max-width: 1023px)" srcSet={feature.mobileIcon} />
+                  <img src={feature.icon} alt="" className="h-10 w-10 object-contain lg:h-[50px] lg:w-[50px]" />
+                </picture>
+                <h3 className="text-lg font-normal leading-6 lg:w-[136px] lg:text-lg lg:font-bold lg:leading-6 lg:text-brand-lime">{feature.title}</h3>
               </article>
               {index < platformFeatures.length - 1 && (
                 <span aria-hidden className="relative hidden w-0 shrink-0 self-stretch lg:block">
@@ -193,7 +234,7 @@ function PerformanceSection() {
       <img src={backgroundTexture} alt="" className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover opacity-60 lg:block" />
       <div className="relative mx-auto flex max-w-[992px] flex-col items-center gap-10 lg:h-full lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="w-full lg:flex lg:w-[398px] lg:flex-col lg:gap-8 lg:py-8">
-          <Heading className="text-center lg:text-left">
+          <Heading className="text-left">
             <span className="block whitespace-nowrap"><span className="text-brand-lime">Direct access</span> to your</span>
             <span className="block">people</span>
           </Heading>
@@ -207,7 +248,7 @@ function PerformanceSection() {
             ))}
           </div>
         </div>
-        <img src={platformMessages} alt="Outsource workspace conversation and video call" className="w-[367px] max-w-[117%] object-contain max-[379px]:w-[calc(100vw-40px)] lg:h-[616px] lg:w-[540px]" />
+        <div className="home-direct-art"><img src={platformMessages} alt="Outsource workspace conversation and video call" /></div>
       </div>
     </section>
   );
@@ -216,7 +257,7 @@ function PerformanceSection() {
 export default function Home() {
   return (
     <div className="home-page bg-brand-purple-dark text-white">
-      <section className="home-hero relative flex h-[650px] overflow-hidden px-10 pb-[60px] pt-[177px] lg:h-[819px] lg:px-0 lg:pb-0 lg:pt-0">
+      <section className="home-hero relative flex h-[650px] overflow-hidden px-10 pb-[60px] pt-[157px] lg:h-[819px] lg:px-0 lg:pb-0 lg:pt-0">
         <div className="home-hero-glow absolute inset-0" />
         <picture className="home-hero-picture absolute inset-y-0 block overflow-hidden">
           <source media="(max-width: 1023px)" srcSet={mobileHomeHero} />
@@ -234,9 +275,9 @@ export default function Home() {
             </div>
             <div className="mt-8 text-lg font-light leading-6 lg:text-2xl lg:leading-normal">
               <p>Dedicated accountants, bookkeepers and payroll specialists who work as part of your team - with <span className="text-brand-lime">direct access, managed delivery</span> and <span className="text-brand-lime">complete visibility.</span></p>
-              <p className="mt-6 font-extralight italic">From £11.50 per hour.</p>
+              <p className="mt-6 font-extralight italic">From £9.50 per hour.</p>
             </div>
-            <Link to="/contact" className="mt-8 inline-flex rounded-lg border border-brand-periwinkle px-8 py-4 text-lg transition-colors hover:bg-white hover:text-brand-purple-mid lg:mt-[50px]">Book a call</Link>
+            <Link to="/contact" className="mt-8 inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-auto lg:w-auto lg:px-8 lg:py-4 text-lg transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid lg:mt-[50px]">Book a call</Link>
           </div>
         </div>
       </section>

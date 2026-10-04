@@ -46,7 +46,7 @@ export default function Insights() {
       <section className="relative overflow-hidden bg-brand-purple-dark pb-16 pt-36 lg:pt-44">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-purple-dark via-brand-purple-dark to-brand-purple/40" />
         <div className="relative mx-auto max-w-container px-6 text-center lg:px-10">
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-medium text-brand-lime">
+          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-lg font-medium text-brand-lime">
             Insights
           </span>
           <h1 className="mt-6 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
@@ -64,19 +64,19 @@ export default function Insights() {
           {ARTICLES.map((a) => (
             <article
               key={a.title}
-              className="group flex flex-col overflow-hidden rounded-3xl ring-1 ring-gray-100 transition-shadow hover:shadow-xl"
+              className="group flex flex-col overflow-hidden rounded-3xl bg-brand-purple-mid/40 ring-1 ring-brand-purple transition-shadow hover:shadow-xl"
             >
               {/* Decorative cover */}
               <div className="relative h-40 bg-gradient-to-br from-brand-purple to-brand-purple-mid">
-                <span className="absolute left-4 top-4 rounded-full bg-brand-lime px-3 py-1 text-xs font-semibold text-brand-purple-dark">
+                <span className="absolute left-4 top-4 rounded-full bg-brand-lime px-3 py-1 text-lg font-semibold text-brand-purple-dark">
                   {a.tag}
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <p className="text-xs text-gray-400">{a.date}</p>
-                <h3 className="mt-2 text-lg font-semibold text-brand-purple-dark">{a.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{a.excerpt}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple group-hover:gap-2.5 transition-all">
+                <p className="text-lg text-brand-periwinkle">{a.date}</p>
+                <h3 className="mt-2 text-lg font-semibold text-white">{a.title}</h3>
+                <p className="mt-2 flex-1 text-lg leading-6 text-brand-periwinkle">{a.excerpt}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-lg font-semibold text-brand-lime group-hover:gap-2.5 transition-all">
                   Read more <ArrowRight size={16} />
                 </span>
               </div>
@@ -104,7 +104,7 @@ export default function Insights() {
             />
             <button
               type="submit"
-              className="rounded-full bg-brand-purple px-7 py-3 text-sm font-semibold text-brand-lime transition-colors hover:bg-brand-purple-mid"
+              className="rounded-full bg-brand-purple px-7 py-3 text-sm font-semibold text-brand-lime transition-colors duration-300 ease-out hover:bg-brand-lime hover:text-brand-purple-mid"
             >
               Subscribe
             </button>

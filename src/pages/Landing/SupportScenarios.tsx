@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react';
+import useDesktopDragScroll from './hooks/useDesktopDragScroll';
 import SupportScenariosMobile from './mobile/SupportScenariosMobile';
 import ReliefSection from './components/ReliefSection';
 import { DEFAULT_SUPPORT_SCENARIO, findSupportScenario, SUPPORT_SCENARIOS } from './supportScenariosData';
 
 export default function SupportScenarios() {
   const cardsScrollerRef = useRef<HTMLDivElement>(null);
+  useDesktopDragScroll(cardsScrollerRef);
   const [cardsScrollProgress, setCardsScrollProgress] = useState(0);
   const [activeScenarioSlug, setActiveScenarioSlug] = useState(DEFAULT_SUPPORT_SCENARIO.slug);
   const activeScenario = findSupportScenario(activeScenarioSlug);
@@ -40,7 +42,7 @@ export default function SupportScenarios() {
         </section>
 
         <section className="pb-[120px]">
-          <div className="fig-shell min-h-[773px] overflow-hidden rounded-lg border border-brand-purple bg-gradient-to-b from-brand-purple-mid to-[rgba(65,28,128,.28)] px-[59px] py-[39px]">
+          <div className="fig-shell flex max-w-[991px] flex-col items-start overflow-hidden rounded-lg border border-brand-purple bg-gradient-to-b from-brand-purple-mid to-[rgba(65,28,128,.28)] px-[59px] py-[39px]">
             <div className="flex min-h-[204px] w-[871px] items-center gap-6">
               <div className="flex min-h-[204px] w-[491px] shrink-0 flex-col gap-3 py-6">
                 <h2 className="text-[42px] font-medium leading-[48px]">
@@ -76,7 +78,7 @@ export default function SupportScenarios() {
                       {index + 1}
                     </span>
                     <div className="flex min-w-0 flex-1 items-center gap-2">
-                      <h3 className="shrink-0 whitespace-nowrap text-lg font-bold leading-6">{title}</h3>
+                      <h3 className="shrink-0 whitespace-nowrap text-lg font-bold leading-6 text-brand-lime">{title}</h3>
                       <span aria-hidden className="h-px min-w-0 flex-1 bg-white/20" />
                     </div>
                   </li>
@@ -84,7 +86,7 @@ export default function SupportScenarios() {
               </ol>
               <div className="grid w-full grid-cols-3 gap-3">
                 {activeScenario.steps.map(([title, body]) => (
-                  <p key={title} className="px-4 text-xs font-normal leading-[18px]">
+                  <p key={title} className="px-4 text-lg font-normal leading-6">
                     {body}
                   </p>
                 ))}
@@ -93,7 +95,7 @@ export default function SupportScenarios() {
 
             <div className="mt-[30px] flex w-[871px] flex-col gap-3">
               <p className="text-lg font-light leading-6 text-brand-lime">{activeScenario.supportTitle}</p>
-              <div className="flex items-center gap-3 text-xs leading-[18px] text-brand-periwinkle">
+              <div className="flex flex-wrap items-center gap-3 text-lg leading-6 text-brand-periwinkle">
                 {activeScenario.supportItems.map((point, index) => (
                   <div key={point} className="contents">
                     <span className="whitespace-nowrap">{point}</span>
@@ -106,7 +108,7 @@ export default function SupportScenarios() {
             <div
               ref={cardsScrollerRef}
               onScroll={updateCardsScrollProgress}
-              className="scenario-cards-carousel mt-[30px] flex h-[179px] w-[931px] gap-6 overflow-x-auto"
+              className="desktop-drag-scroll scenario-cards-carousel mt-[30px] flex h-[150px] w-[931px] gap-6 overflow-x-auto"
             >
               {SUPPORT_SCENARIOS.map((scenario) => (
                 <button
@@ -114,10 +116,10 @@ export default function SupportScenarios() {
                   type="button"
                   aria-pressed={scenario.slug === activeScenario.slug}
                   onClick={() => setActiveScenarioSlug(scenario.slug)}
-                  className={`flex h-[179px] w-[254px] shrink-0 flex-col rounded-lg p-[30px] text-left transition-colors ${
+                  className={`solutions-scenario-card relative flex h-[150px] w-[254px] shrink-0 flex-col rounded-lg p-[30px] text-left ring-inset transition-[background-color,box-shadow] duration-300 ease-out ${
                     scenario.slug === activeScenario.slug
-                      ? 'border-[1.5px] border-brand-lime bg-[#4e2790]'
-                      : 'border-2 border-brand-purple bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 hover:border-brand-lime/70'
+                      ? 'bg-[#4e2790] ring-[1.5px] ring-brand-lime'
+                      : 'bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 hover:bg-none hover:bg-[#4e2790]'
                   }`}
                 >
                   <span className="text-lg font-bold uppercase leading-6 text-brand-lime">{scenario.label}</span>
@@ -142,7 +144,7 @@ export default function SupportScenarios() {
 
         <ReliefSection
           firstCard={{
-            to: '/careers',
+            to: '/roles',
             title: 'Explore',
             highlight: 'finance roles',
             copy: 'Find the finance professionals available for your team.',

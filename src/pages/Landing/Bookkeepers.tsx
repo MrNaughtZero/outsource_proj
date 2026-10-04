@@ -10,17 +10,19 @@ export default function Bookkeepers() {
     title="Bookkeepers"
     intro="Add experienced bookkeepers to your team, giving you dependable day-to-day support and more time to focus on your clients and business."
     qualification="UK-syllabus trained and assessed"
-    heroPrice="From £11.50 per hour."
+    heroPrice="From £9.50 per hour."
     heroImage={heroArt}
     heroImageAlt="Bookkeeping records and reporting tools"
     heroHeight={747}
+    mobileHeroHeight={750}
     fluidPhoneHero
     mobileTitleClassName="tracking-[-.54px]"
+    compareCostRole="bookkeeper"
     detailSectionHeight={770}
     detailCardHeight={650}
     category="Day-to-day bookkeeping"
     handles={['Transaction processing', 'Sales and purchase invoices', 'Expense recording', 'Bank reconciliations', 'Supplier payment preparation', 'Credit control support', 'Monthly bookkeeping reports']}
-    benefitSubtitle={<>From <span className="text-brand-lime">£11.50</span> per hour*</>}
+    benefitSubtitle={<>From <span className="text-brand-lime">£9.50</span> per hour*</>}
     benefits={['Your bookkeeper in our Dhaka office', 'Direct contact via Workspace & WhatsApp', 'Secure Workspace and UK cloud storage', 'UK-based support and accountability', 'Supervision and quality checks', 'Continuity cover', 'UK professional indemnity cover']}
     footnote="*Rates vary by experience, team size and commitment length."
     steps={[

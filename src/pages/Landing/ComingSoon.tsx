@@ -16,7 +16,7 @@ export default function ComingSoon({ title }: { title: string }) {
         </p>
         <Link
           to="/"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 text-sm font-semibold text-brand-purple-dark transition-colors hover:bg-brand-lime-hover"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-7 py-3.5 text-sm font-semibold text-brand-purple-dark transition-colors duration-200 ease-linear hover:bg-white hover:text-brand-purple-mid"
         >
           <ArrowLeft size={18} /> Back to Home
         </Link>

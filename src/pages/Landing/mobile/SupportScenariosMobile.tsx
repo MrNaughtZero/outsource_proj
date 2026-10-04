@@ -1,9 +1,15 @@
-import { BarChart3, Compass, MessageCircle, PoundSterling, ShieldCheck, UsersRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ReliefSection from '../components/ReliefSection';
 import { SUPPORT_SCENARIOS } from '../supportScenariosData';
+import compassIcon from '../../../assets/landing/solutions/compass.svg';
+import messageIcon from '../../../assets/landing/solutions/message-chat.svg';
+import poundIcon from '../../../assets/landing/solutions/pound-circle.svg';
+import capacityIcon from '../../../assets/landing/solutions/users-plus.svg';
+import oversightIcon from '../../../assets/landing/solutions/shield-check.svg';
+import growthIcon from '../../../assets/landing/solutions/bar-group.svg';
+import arrowIcon from '../../../assets/landing/solutions/arrow-right.svg';
 
-const SCENARIO_ICONS = [Compass, MessageCircle, PoundSterling, UsersRound, ShieldCheck, BarChart3] as const;
+const SCENARIO_ICONS = [compassIcon, messageIcon, poundIcon, capacityIcon, oversightIcon, growthIcon] as const;
 
 export default function SupportScenariosMobile() {
   return (
@@ -15,20 +21,18 @@ export default function SupportScenariosMobile() {
         </div>
       </section>
 
-      <section className="min-h-[484px] bg-gradient-to-b from-[#38176f] to-[#2c105c] px-10 py-[60px] max-[380px]:px-5">
-        <div className="grid grid-cols-2 gap-5 max-[380px]:grid-cols-1">
+      <section className="solutions-mobile-cards rounded-t-3xl px-10 pb-[60px] max-[379px]:px-5">
+        <div className="mx-auto grid w-full max-w-[310px] grid-cols-2 gap-5 max-[767px]:!max-w-none max-[380px]:grid-cols-1">
           {SUPPORT_SCENARIOS.map((scenario, index) => {
-            const Icon = SCENARIO_ICONS[index];
-
             return (
             <Link
               key={scenario.slug}
               to={`/support-scenarios/${scenario.slug}`}
-              className="relative flex min-h-[108px] min-w-0 flex-col rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 p-4"
+              className="solutions-mobile-card relative flex min-h-[154px] min-w-0 flex-col rounded-lg bg-[linear-gradient(to_top,rgba(65,28,128,0.8)_0%,rgba(59,24,123,0.2)_223.82%)] p-4"
             >
-              <div className="flex items-start justify-between"><Icon className="h-[30px] w-[30px] text-brand-lime" strokeWidth={1.7} /><span className="text-lg leading-none text-brand-lime">→</span></div>
-              <h2 className="mt-2 text-xs font-bold leading-[18px] text-brand-lime">{scenario.label}</h2>
-              <p className="text-xs leading-[18px]">{scenario.cardCopy}</p>
+              <div className="flex items-center justify-between"><img src={SCENARIO_ICONS[index]} alt="" className="shrink-0" /><img src={arrowIcon} alt="" className="shrink-0" /></div>
+              <h2 className="mt-3 text-lg font-[700] leading-6 tracking-normal text-brand-lime">{scenario.label}</h2>
+              <p className="mt-2 break-words text-lg font-[400] leading-6 tracking-normal text-brand-periwinkle">{scenario.cardCopy}</p>
             </Link>
             );
           })}

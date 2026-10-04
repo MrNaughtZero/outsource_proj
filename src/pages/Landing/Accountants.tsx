@@ -10,7 +10,7 @@ export default function Accountants() {
     title="Accountants"
     intro="Add skilled accountants to your team, giving you the capacity to take on more and keep work moving as your needs grow."
     qualification="UK-syllabus trained and assessed"
-    heroPrice="From £15.50 per hour."
+    heroPrice="From £13.50 per hour."
     heroImage={heroArt}
     heroImageAlt="Finance dashboards and reporting tools"
     heroImageFit="cover"
@@ -18,11 +18,12 @@ export default function Accountants() {
     fluidPhoneHero
     mobileHeroImageTop="-3.53%"
     mobileTitleClassName="tracking-[-.54px]"
+    compareCostRole="accountant"
     detailSectionHeight={770}
     detailCardHeight={650}
     category="Accounts and reporting"
     handles={['Accounts preparation', 'Reconciliations', 'Month-end close', 'Management accounts', 'Financial reporting', 'Budgets and forecasts', 'VAT and statutory support']}
-    benefitSubtitle={<>From <span className="text-brand-lime">£15.50</span> per hour*</>}
+    benefitSubtitle={<>From <span className="text-brand-lime">£13.50</span> per hour*</>}
     benefits={['Your accountant in our Dhaka office', 'Direct contact via Workspace & WhatsApp', 'Secure Workspace and UK cloud storage', 'UK-based support and accountability', 'Supervision and quality checks', 'Continuity cover', 'UK professional indemnity cover']}
     footnote="*Rates vary by experience, team size and commitment length."
     steps={[

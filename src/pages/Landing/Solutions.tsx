@@ -1,9 +1,7 @@
+import { TEAM_OPTIONS } from './teamOptionsData';
 import { Link } from 'react-router-dom';
 import SolutionsMobile from './mobile/SolutionsMobile';
 import hero from '../../assets/landing/images/work_together2.png';
-import financeProfessional from '../../assets/landing/images/team_finance_professional_may_2026.png';
-import financePod from '../../assets/landing/images/team_finance_pod_may_2026.png';
-import enterpriseTeam from '../../assets/landing/images/team_enterprise_may_2026.png';
 import workstation from '../../assets/landing/images/team_workstation.png';
 import storage from '../../assets/landing/images/team_storage.png';
 import whatsapp from '../../assets/landing/images/team_whatsapp.png';
@@ -14,44 +12,6 @@ import secureStorage from '../../assets/landing/images/icons/team_secure_storage
 import ukSupport from '../../assets/landing/images/icons/team_supervised.svg';
 import quality from '../../assets/landing/images/icons/team_quality.svg';
 
-const TEAM_OPTIONS = [
-  {
-    title: 'Dedicated Finance Professional',
-    description: 'A dedicated finance professional working as part of your team.',
-    price: 'From £11.50 per hour',
-    image: financeProfessional,
-    points: [
-      'Dedicated exclusively to you',
-      'Works as part of your team',
-      'Full-time finance capacity',
-      'Managed delivery & continuity',
-    ],
-  },
-  {
-    title: 'Dedicated Finance Pod',
-    description: 'A small outsourced finance team with complementary skills.',
-    price: 'Tailored pricing',
-    image: financePod,
-    points: [
-      'Complementary finance skills',
-      'Coordinated team delivery',
-      'Flexible team structure',
-      'Scalable finance capacity',
-    ],
-  },
-  {
-    title: 'Enterprise Finance Team',
-    description: 'A larger outsourced finance team with additional review, management and oversight.',
-    price: 'Tailored pricing',
-    image: enterpriseTeam,
-    points: [
-      'Dedicated account lead',
-      'Senior review & delivery support',
-      'Scalable multi-skill team',
-      'Tailored Workspace dashboards & reporting',
-    ],
-  },
-] as const;
 
 const BUILT_IN = [
   ['Supervision & quality checks', builtQuality],
@@ -75,7 +35,7 @@ const MEMBER_BENEFITS = [
   ],
   [
     'Dedicated WhatsApp line',
-    'Direct communication with your finance team when you need it.',
+    'Speak directly to your finance team throughout their working hours.',
     whatsapp,
     'h-[67px] w-20',
   ],
@@ -85,7 +45,7 @@ export default function Solutions() {
   return (
     <>
       <main className="team-options-desktop hidden bg-brand-purple-dark text-white lg:block">
-        <section className="relative h-[510px] overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,.53)] pb-[60px] pt-[180px]">
+        <section className="relative h-[530px] overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,.53)] pb-[60px] pt-[180px]">
           <div className="team-options-hero-art-stage pointer-events-none absolute overflow-hidden" aria-hidden="true">
             <img
               src={hero}
@@ -114,7 +74,7 @@ export default function Solutions() {
             {TEAM_OPTIONS.map((option) => (
               <article
                 key={option.title}
-                className="team-option-card flex h-[730px] min-w-0 flex-col gap-[26px] rounded-lg border-2 border-[rgba(92,52,161,.8)] bg-gradient-to-b from-[rgba(65,28,128,.8)] to-[rgba(59,24,123,.2)] px-[38px] py-[58px]"
+                className="team-option-card fading-card-border flex h-[730px] min-w-0 flex-col gap-[26px] rounded-lg border-2 border-[rgba(92,52,161,.8)] bg-gradient-to-b from-[rgba(65,28,128,.8)] to-[rgba(59,24,123,.2)] px-[38px] py-[58px]"
               >
                 <div className="flex w-full flex-col items-center gap-[30px]">
                   <div className="flex w-full flex-col items-start gap-[30px]">
@@ -129,12 +89,12 @@ export default function Solutions() {
                       </div>
                     </div>
                   </div>
-                  <div className="h-px w-full bg-white/20" />
+                  <div className="relative h-0 w-full"><span className="absolute inset-x-0 -top-px h-px bg-white/20" /></div>
                 </div>
                 <ul className="flex w-full flex-col gap-4">
                   {option.points.map((point) => (
                     <li key={point} className="flex w-full items-start gap-4 text-lg leading-6">
-                      <img src={check} alt="" className="h-6 w-6 shrink-0" />
+                      <span className="flex shrink-0 py-px"><img src={check} alt="" className="h-6 w-6" /></span>
                       <span className="min-w-0 flex-1">{point}</span>
                     </li>
                   ))}
@@ -176,7 +136,7 @@ export default function Solutions() {
               {MEMBER_BENEFITS.map(([title, body, image, imageClass]) => (
                 <article
                   key={title}
-                  className="team-options-member-card flex h-[325px] flex-col items-center rounded-lg border-2 border-[rgba(92,52,161,.8)] bg-gradient-to-b from-[rgba(65,28,128,.46)] to-[rgba(59,24,123,.2)] px-[22px] py-7"
+                  className="team-options-member-card fading-card-border flex h-[325px] flex-col items-center rounded-lg border-2 border-[rgba(92,52,161,.8)] bg-gradient-to-b from-[rgba(65,28,128,.46)] to-[rgba(59,24,123,.2)] px-[22px] py-7"
                 >
                   <div className="team-options-member-content flex w-full flex-col items-start gap-[30px]">
                     <img src={image} alt="" className={`${imageClass} object-contain`} />
@@ -185,10 +145,8 @@ export default function Solutions() {
                       <p>
                         {title === 'Office-based working' ? (
                           <>
-                            A dedicated,<br />
-                            centrally managed 3-<br />
-                            screen workstation in<br />
-                            our Dhaka office.
+                            A dedicated, centrally managed<br />
+                            3-screen workstation in our Dhaka office.
                           </>
                         ) : body}
                       </p>
@@ -222,7 +180,7 @@ export default function Solutions() {
               </div>
               <Link
                 to="/contact"
-                className="flex h-[55px] min-w-0 flex-1 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime px-8 py-4 text-lg font-medium text-brand-purple-mid"
+                className="flex h-[55px] min-w-0 flex-1 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime px-8 py-4 text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
               >
                 Book a Call
               </Link>

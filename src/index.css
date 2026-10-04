@@ -28,6 +28,22 @@ textarea {
   font: inherit;
 }
 
+/* Match Figma form typography after the shared form-control reset. */
+:is(.contact-page, .career-register-page) :is(input:not([type="checkbox"]):not([type="file"]), select, textarea) {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+:is(.contact-page, .career-register-page) button[type="submit"] {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.career-register-page button[type="submit"] {
+  font-weight: 500;
+}
+
 .fig-page {
   background: #1f0849;
   color: white;
@@ -105,6 +121,22 @@ textarea {
   margin-inline: auto;
 }
 
+/* Desktop carousels can be grabbed anywhere, including their cards and icons. */
+@media (min-width: 1024px) {
+  .desktop-drag-scroll,
+  .desktop-drag-scroll * {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .desktop-drag-scroll.is-dragging,
+  .desktop-drag-scroll.is-dragging * {
+    cursor: grabbing;
+    scroll-behavior: auto;
+  }
+}
+
 .how-tools-carousel {
   scrollbar-width: none;
 }
@@ -133,6 +165,75 @@ textarea {
 
 .scenario-cards-carousel {
   scrollbar-width: none;
+}
+
+/* Figma's Solutions card borders fade toward the bottom. */
+.solutions-mobile-card::before,
+.solutions-scenario-card[aria-pressed="false"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(92, 52, 161, .8) 8.18%, rgba(92, 52, 161, .1) 91.82%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.solutions-scenario-card[aria-pressed="false"]::before {
+  background: linear-gradient(to bottom, #5c34a1 44.12%, rgba(92, 52, 161, .1) 113.64%);
+  transition: opacity 300ms ease-out;
+}
+
+.solutions-scenario-card:hover::before {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .team-member-mobile-section {
+    margin-top: 0;
+    min-height: 0;
+    background: linear-gradient(to bottom, #20094a, #190a36);
+  }
+
+  .team-member-mobile-section :is(h2, h3, p) {
+    letter-spacing: 0;
+  }
+
+  .team-member-mobile-section h2 { font-weight: 500; }
+  .team-member-mobile-section h3 { font-weight: 700; }
+  .team-member-mobile-section p { font-weight: 300; }
+
+  .team-member-mobile-card {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 232px;
+    padding: 22px;
+    border-color: transparent;
+    background: linear-gradient(to bottom, rgba(65, 28, 128, .46), rgba(59, 24, 123, .2));
+  }
+
+  .team-member-mobile-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(to bottom, rgba(92, 52, 161, .8) 37.01%, rgba(92, 52, 161, .1) 113.64%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .team-member-mobile-card > div { width: 100%; }
+  .team-member-mobile-card p { margin-top: 12px; font-weight: 400; }
+  .team-member-mobile-quality p { margin-top: 16px; }
 }
 
 .scenario-cards-carousel::-webkit-scrollbar {
@@ -200,6 +301,22 @@ textarea {
   border: 0;
   border-radius: 8px;
   background: #5c34a1;
+}
+
+.scenario-cards-scrollbar::-webkit-slider-thumb {
+  transition: background-color 300ms ease-out;
+}
+
+.scenario-cards-scrollbar::-moz-range-thumb {
+  transition: background-color 300ms ease-out;
+}
+
+.scenario-cards-scrollbar:hover::-webkit-slider-thumb {
+  background: #cabcf6;
+}
+
+.scenario-cards-scrollbar:hover::-moz-range-thumb {
+  background: #cabcf6;
 }
 
 .scenario-cards-scrollbar:focus-visible {
@@ -446,6 +563,20 @@ textarea {
     min-width: 0;
     height: 730px;
     padding: 58px 38px;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .team-option-card h2 {
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .team-option-card p,
+  .team-option-card li {
+    font-weight: 400;
+    letter-spacing: 0;
   }
 
   .team-options-section-canvas {
@@ -517,8 +648,21 @@ textarea {
     flex-direction: column;
     width: 182px;
     gap: 24px;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
     font-size: 18px;
     line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .team-options-member-copy h3 {
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .team-options-member-copy p {
+    font-weight: 400;
+    letter-spacing: 0;
   }
 
   .team-options-quality-row {
@@ -570,6 +714,124 @@ input::-ms-clear {
   background-image: radial-gradient(circle at 83% 48%, transparent 0 82px, rgba(255,255,255,.12) 83px 145px, transparent 146px);
 }
 
+@font-face {
+  font-family: "DM Sans Figma";
+  src: url('./assets/landing/login/fonts/dm-sans-14pt-300.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans Figma";
+  src: url('./assets/landing/login/fonts/dm-sans-14pt-400.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans Figma";
+  src: url('./assets/landing/login/fonts/dm-sans-14pt-500.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans Figma";
+  src: url('./assets/landing/login/fonts/dm-sans-14pt-700.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+.platform-auth {
+  font-family: "DM Sans Figma", "DM Sans", sans-serif;
+  font-variation-settings: "opsz" 14;
+}
+
+@font-face {
+  font-family: "DM Sans Figma";
+  src: url('./assets/landing/login/fonts/dm-sans-14pt-800.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+}
+
+.marketing-footer {
+  font-family: "DM Sans Figma", "DM Sans", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+}
+.marketing-footer h2 { font-size: 18px; font-weight: 800; line-height: 24px; letter-spacing: 0; }
+.marketing-footer p { font-weight: 300; letter-spacing: 0; }
+.marketing-footer .footer-compare { font-size: 18px; font-weight: 300; line-height: 24px; }
+
+.marketing-header {
+  font-family: "DM Sans Figma", "DM Sans", sans-serif;
+  font-variation-settings: "opsz" 14;
+}
+
+.marketing-header-overlay {
+  background-image: linear-gradient(to top, rgba(32, 12, 73, 0), #200c49 45.122%);
+}
+
+.marketing-header-auth {
+  background-image: linear-gradient(to top, rgba(32, 12, 73, 0), rgba(32, 12, 73, 0.45));
+}
+
+@media (min-width: 1024px) {
+  .marketing-header-overlay {
+    background-image: linear-gradient(to top, rgba(37, 16, 80, 0), #180a34);
+  }
+}
+
+/* Keep authentication typography independent of the site's editorial weight overrides. */
+.platform-auth .platform-login-intro :is(h1, p) { font-weight: 400; letter-spacing: 0; }
+.platform-auth .platform-login-intro h1 b { font-weight: 700; }
+.platform-auth form :is(h2, p) { letter-spacing: 0; }
+.platform-reset-vector { left: 67.24px; top: -29.78px; }
+
+/* Figma crops this same pattern sideways: fading up on mobile, down on desktop. */
+.platform-auth .platform-login-panel > img {
+  width: 71.2%;
+  height: auto;
+  max-width: none;
+  top: 100%;
+  bottom: auto;
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+  opacity: 1;
+}
+
+.platform-auth form :is(input, button, label, p, a) {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.platform-auth form :is(input, label, p) { font-weight: 300; }
+.platform-auth form h2 { font-size: 24px; line-height: 24px; font-weight: 500; }
+.platform-auth form button { font-weight: 500; }
+.platform-auth form a { font-weight: 400; }
+.platform-auth form a[href="/reset-password"] { font-size: 12px; }
+
+/* Payroll's three-line desktop composition uses the design's text metrics. */
+@media (min-width: 1024px) {
+  .payroll-hero h1 { font-weight: 500; letter-spacing: -.64px; }
+  .payroll-hero p { font-weight: 300; letter-spacing: 0; }
+  .payroll-hero p.font-bold { font-weight: 700; }
+  .payroll-hero p + p { margin-top: 31px; }
+  .payroll-hero a[href="/contact"] { height: 55px; }
+}
+
+@media (min-width: 1024px) {
+  .platform-reset { min-height: 780px; }
+  .platform-reset-vector { left: calc(47.96875% - 37px); top: calc(-13.4674% - 9px); }
+  .platform-auth .platform-login-panel-content { top: 17.99775%; }
+  .platform-reset .platform-login-panel-logo { width: 240px; max-width: 100%; }
+  .platform-auth .platform-login-form-wrap { margin-top: clamp(120px, 19.5652vh, 180px); }
+  .platform-auth .platform-login-panel > img {
+    top: 0;
+    left: 100%;
+    height: auto;
+    transform: rotate(90deg);
+  }
+}
+
 @media (min-width: 1024px) {
   .platform-login-stage {
     height: 100%;
@@ -600,11 +862,11 @@ input::-ms-clear {
   }
 
   .platform-login-intro h1 {
-    font-size: clamp(30px, 2.96875vw, 52px);
+    font-size: 38px;
   }
 
   .platform-login-intro p {
-    font-size: clamp(15px, 1.40625vw, 24px);
+    font-size: 18px;
   }
 
   .platform-login-workspace {
@@ -684,6 +946,24 @@ input::-ms-clear {
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
+
+.about-hero-title {
+  font-family: "DM Sans Figma", "DM Sans", sans-serif;
+  font-weight: 500;
+}
+
+.about-hero-gradient {
+  /* Figma's normalized gradient transform starts outside the text box.
+     The first stop is negative; +36% incorrectly leaves the first third dark. */
+  background-image: linear-gradient(var(--about-gradient-angle), #8565ba -36.003%, #fff 61.415%, #8565ba 140.843%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-hero-gradient-first { --about-gradient-angle: 99.75872692332885deg; }
+.about-hero-gradient-second { --about-gradient-angle: 101.14482119787377deg; }
+.about-hero-gradient-visibility { --about-gradient-angle: 102.60317760093419deg; }
 
 .home-product-sections {
   background: radial-gradient(ellipse at 50% 42%, #381871 0%, #1f0849 70%);
@@ -776,7 +1056,7 @@ input::-ms-clear {
   .home-step-tell { left: 137.22px; top: 142px; }
   .home-step-match { left: 393.72px; top: 36.5px; }
   .home-step-add { left: 683.72px; top: 35px; }
-  .home-step-add p { width: 185px; }
+  .home-step-add p { width: 201px; }
   .home-step-deliver { left: 940.22px; top: 142px; }
   .home-step-deliver p { width: 176px; }
 }
@@ -787,13 +1067,18 @@ input::-ms-clear {
   }
 
   .role-detail-hero { height: var(--role-mobile-hero-height); }
+  .role-detail-hero-background { opacity: 0.8; }
   .role-detail-hero-pattern {
-    top: auto;
-    bottom: -1.5%;
-    width: auto;
+    top: 21.28%;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: 78.6%;
+    object-fit: cover;
+    object-position: center top;
   }
   .role-detail-capabilities {
-    height: var(--role-mobile-detail-height);
+    min-height: var(--role-mobile-detail-height);
     background: #1f0849;
   }
   .role-detail-process {
@@ -801,19 +1086,19 @@ input::-ms-clear {
   }
 
   .careers-mobile > section:nth-child(2) { height: 506px; }
-  .careers-mobile > section:nth-child(3) { height: 1194px; }
+  .careers-mobile > section:nth-child(3) { min-height: 1194px; }
   .careers-mobile > section:nth-child(4) { height: 540px; }
   .careers-mobile > section:nth-child(5) { height: 243px; }
-  .contact-page > section:nth-child(1) { height: 327px; }
-  .contact-page > section:nth-child(2) { height: 1123px; }
+  .contact-page > section:nth-child(1) { min-height: 327px; }
+  .contact-page > section:nth-child(2) { min-height: 1123px; }
   .succession-page > section:nth-child(1) { height: 722px; }
   .succession-page > section:nth-child(2) { height: 602px; }
-  .succession-page > section:nth-child(3) { height: 262px; }
+  .succession-page > section:nth-child(3) { min-height: 262px; }
   .career-register-page > section:nth-child(1) { height: 505px; }
-  .career-register-page > section:nth-child(2) { height: 1069px; }
+  .career-register-page > section:nth-child(2) { min-height: 1069px; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .role-detail-hero.role-detail-hero--fluid-phone {
     height: auto;
     min-height: var(--role-mobile-hero-height);
@@ -821,24 +1106,19 @@ input::-ms-clear {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (max-width: 1023px) {
   .role-detail-hero--fluid-phone .role-detail-hero-artwork {
-    height: 300px;
-  }
-
-  .role-detail-hero--fluid-phone .role-detail-hero-art {
-    position: static;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
+    height: auto;
+    max-width: 480px;
+    aspect-ratio: 313 / 210;
+    margin-inline: auto;
   }
 }
 
 @media (max-width: 1023px) {
   .support-mobile > section:nth-child(1) { height: 433px; padding-top: 177px; }
   .team-mobile > section:nth-child(1) { padding-top: 237px; }
-  .team-mobile > section:nth-child(5) { height: 168px; }
+  .team-mobile > section:nth-child(5) { min-height: 168px; }
 }
 
 @media (min-width: 1024px) {
@@ -846,13 +1126,13 @@ input::-ms-clear {
   .careers-page > section:nth-child(2) { height: 218px; }
   .careers-page > section:nth-child(3) { height: 704px; }
   .careers-page > section:nth-child(4) { height: 512px; }
-  .contact-page > section:nth-child(1) { height: 454px; }
-  .contact-page > section:nth-child(2) { height: 837px; }
+  .contact-page > section:nth-child(1) { min-height: 454px; }
+  .contact-page > section:nth-child(2) { min-height: 837px; }
   .succession-page > section:nth-child(1) { height: 681px; }
   .succession-page > section:nth-child(2) { height: 394px; }
   .succession-page > section:nth-child(3) { height: 407px; }
   .career-register-page > section:nth-child(1) { height: 406px; }
-  .career-register-page > section:nth-child(2) { height: 994px; }
+  .career-register-page > section:nth-child(2) { min-height: 994px; }
 }
 
 /* Mobile Figma canvases are 393px wide. Keep their exact vertical rhythm at
@@ -860,25 +1140,25 @@ input::-ms-clear {
    Every rule in this block is below the desktop breakpoint. */
 @media (max-width: 767px) {
   .home-hero { height: 696px; }
-  .home-assurances { height: 606px; }
-  .home-roles { height: 812px; }
+  .home-assurances { min-height: 606px; }
+  .home-roles { min-height: 1028.5px; }
   .home-onboarding { height: 860px; }
-  .home-platform { height: 570px; }
+  .home-platform { min-height: 570px; }
   .home-performance { height: 873px; }
-  .home-relief { height: 676px; overflow: hidden; }
+  .home-relief { min-height: 676px; overflow: hidden; }
 
-  .how-page > section:nth-child(4) { height: 880px; }
+  .how-page > section:nth-child(4) { min-height: 880px; }
 
-  .contact-page > section:nth-child(1) { height: 327px; }
-  .contact-page > section:nth-child(2) { height: 1087px; }
+  .contact-page > section:nth-child(1) { min-height: 327px; }
+  .contact-page > section:nth-child(2) { min-height: 1087px; }
   .career-register-page > section:nth-child(1) { height: 485px; }
-  .career-register-page > section:nth-child(2) { height: 870px; }
+  .career-register-page > section:nth-child(2) { min-height: 870px; }
 
   .support-mobile > section:nth-child(1) { height: 365px; padding-top: 0; }
   .team-mobile > section:nth-child(1) { height: 479px; padding-top: 180px; }
-  .team-mobile > section:nth-child(5) { height: 271px; }
+  .team-mobile > section:nth-child(5) { min-height: 271px; }
   .careers-mobile > section:nth-child(2) { height: 380px; }
-  .careers-mobile > section:nth-child(3) { height: 628px; }
+  .careers-mobile > section:nth-child(3) { min-height: 628px; }
   .careers-mobile > section:nth-child(4) { height: 540px; }
   .careers-mobile > section:nth-child(5) { height: 225px; }
 
@@ -935,7 +1215,7 @@ input::-ms-clear {
 
   .how-page > section:nth-child(1) h1,
   .how-page > section:nth-child(1) p { text-align: center; }
-  .how-page > section:nth-child(4) { height: 900px; }
+  .how-page > section:nth-child(4) { min-height: 900px; }
   .how-page > section:nth-child(3) > div { max-width: 720px; }
   .how-page > section:nth-child(4) > div { max-width: 720px; }
 
@@ -949,16 +1229,16 @@ input::-ms-clear {
     right: 40px;
   }
 
-  .contact-page > section:nth-child(1) { height: 384px; }
-  .contact-page > section:nth-child(2) { height: 1087px; }
+  .contact-page > section:nth-child(1) { min-height: 384px; }
+  .contact-page > section:nth-child(2) { min-height: 1087px; }
   .career-register-page > section:nth-child(1) { height: 485px; }
-  .career-register-page > section:nth-child(2) { height: 870px; }
+  .career-register-page > section:nth-child(2) { min-height: 870px; }
 
   .support-mobile > section:nth-child(1) { height: 365px; padding-top: 0; }
   .team-mobile > section:nth-child(1) { height: 479px; padding-top: 180px; }
-  .team-mobile > section:nth-child(5) { height: 271px; }
+  .team-mobile > section:nth-child(5) { min-height: 271px; }
   .careers-mobile > section:nth-child(2) { height: 380px; }
-  .careers-mobile > section:nth-child(3) { height: 628px; }
+  .careers-mobile > section:nth-child(3) { min-height: 628px; }
   .careers-mobile > section:nth-child(4) { height: 540px; }
   .careers-mobile > section:nth-child(5) { height: 225px; }
 }
@@ -985,4 +1265,578 @@ input::-ms-clear {
   .careers-mobile > section.careers-mobile-register {
     height: auto;
   }
+}
+
+/* Larger body copy must be able to wrap without clipping on phones and tablets. */
+@media (max-width: 1023px) {
+  .home-relief,
+  .how-page > section:nth-child(4),
+  .careers-mobile > section:nth-child(3),
+  .succession-page > section:nth-child(3) {
+    height: auto;
+  }
+}
+
+/* Match the Home assurance captions to Figma's desktop text metrics. */
+@media (min-width: 1024px) {
+  .home-assurances article {
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .home-assurances article h3 {
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .home-assurances article p {
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-quality-trust {
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .about-quality-trust h2 { font-weight: 500; letter-spacing: 0; }
+  .about-quality-trust h3 { font-weight: 700; letter-spacing: 0; }
+  .about-quality-trust p { font-weight: 400; letter-spacing: 0; }
+  .about-trust-divider { container-type: inline-size; }
+  .about-trust-divider img {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(calc((100cqw + 1px) / 314px));
+  }
+}
+
+/* Figma's mobile CTA cards keep each icon in the heading's layout row. */
+@media (max-width: 767px) {
+  .home-relief {
+    height: auto;
+    min-height: 0;
+    padding-bottom: 60px;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .home-relief h2 { font-weight: 500; letter-spacing: 0; }
+  .home-relief > div > p { font-weight: 300; letter-spacing: 0; }
+  .relief-card {
+    min-height: 0;
+    padding: 19px;
+  }
+  .relief-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 32px;
+  }
+  .relief-card-heading h3 {
+    min-width: 0;
+    align-self: center;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0;
+  }
+  .relief-card-heading img { position: static; }
+  .relief-card-arrow .relief-card-heading,
+  .relief-card-arrow .relief-card-mobile-copy {
+    width: calc(100% - 1px);
+    margin-left: auto;
+  }
+  .relief-card-call .relief-card-heading {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .relief-card-call .relief-card-heading img { order: -1; }
+  .relief-card-mobile-copy {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0;
+  }
+}
+
+/* Mobile About locations: stacked cards and a proportionally cropped globe. */
+@media (max-width: 767px) {
+  .about-locations {
+    min-height: 0;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .about-locations h2 { font-weight: 500; letter-spacing: 0; }
+  .about-locations > div:first-child > p { font-weight: 300; letter-spacing: 0; }
+  .about-locations-cards { position: relative; width: 100%; flex-direction: column; }
+  .about-locations-cards > article {
+    width: 100%;
+    min-height: 0;
+    padding: 19px 15px;
+    border-color: rgb(92 52 161 / 67%);
+    background-image: linear-gradient(to bottom, #270c56, rgb(39 12 86 / 26%));
+  }
+  .about-location-heading { display: flex; align-items: center; gap: 16px; }
+  .about-location-heading h3 { margin-top: 0; font-weight: 700; letter-spacing: 0; }
+  .about-location-heading h3 span { font-weight: 400; }
+  .about-location-tablet-icon { display: none; }
+  .about-location-mobile-icon { display: block; position: relative; width: 30px; height: 30px; flex-shrink: 0; }
+  .about-location-mobile-icon img { position: absolute; max-width: none; }
+  .about-location-manchester-icon { left: -2.2px; top: 1.7px; }
+  .about-location-dhaka-icon { left: -1.8px; top: 0; }
+  .about-locations-cards p { margin-top: 12px; font-weight: 400; color: #cabcf6; letter-spacing: 0; }
+}
+
+/* Tablet location cards retain the desktop card dimensions and content layout. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-locations-cards {
+    position: relative;
+    width: min(455px, 100%);
+    flex-direction: column;
+    gap: 24px;
+  }
+  .about-locations-cards > article {
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    column-gap: 24px;
+    width: 100%;
+    min-height: 0;
+    padding: 32px;
+  }
+  .about-location-tablet-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 50px;
+    height: 50px;
+  }
+  .about-location-heading h3 {
+    grid-column: 2;
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+  .about-location-heading h3 span { font-weight: 200; }
+  .about-locations-cards p { grid-column: 2; margin-top: 16px; }
+}
+
+/* Mobile and tablet Home role cards match the Figma accordion variants. */
+@media (max-width: 1023px) {
+  .home-roles {
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .home-roles h2 { font-weight: 500; letter-spacing: 0; }
+  .home-roles > div > div:first-child > p { font-weight: 300; letter-spacing: 0; }
+  .home-mobile-role { align-self: start; letter-spacing: 0; }
+  .home-mobile-role-reveal {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease-out;
+  }
+  .home-mobile-role[data-expanded="true"] .home-mobile-role-reveal {
+    grid-template-rows: 1fr;
+    transition-duration: 400ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-mobile-role-reveal { transition: none !important; }
+}
+
+/* Home platform features use two rows on mobile and tablet. */
+@media (max-width: 1023px) {
+  .home-platform {
+    min-height: 0;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+  }
+  .home-platform h2 { font-weight: 500; letter-spacing: 0; }
+  .home-platform > div > p { font-weight: 300; letter-spacing: 0; }
+  .home-platform-art {
+    width: min(339px, calc(100vw - 40px));
+    aspect-ratio: 339 / 154;
+  }
+  .home-platform-art > img { top: 2.31%; height: 95.38%; }
+  .home-platform-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 312px;
+  }
+  .home-platform-features h3 {
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #cabcf6;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-platform-art {
+    width: min(640px, 100%);
+  }
+}
+
+/* Mobile and tablet How It Works workspace section. */
+@media (max-width: 1023px) {
+  .how-page .how-workspace-section {
+    min-height: 0;
+    height: auto;
+    font-family: "DM Sans Figma", "DM Sans", sans-serif;
+    font-variation-settings: "opsz" 14;
+    -webkit-font-smoothing: antialiased;
+    background-image: linear-gradient(to bottom, #37176e 19.101%, rgba(25, 10, 54, .23));
+  }
+  .how-workspace-title { font-weight: 500; letter-spacing: 0; }
+  .how-workspace-title > span { display: block; }
+  .how-workspace-art {
+    width: min(355px, calc(100vw - 38px));
+    max-width: none;
+    height: auto;
+    aspect-ratio: 355 / 242;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .how-workspace-card {
+    width: 250px;
+    padding: 18px;
+  }
+  .how-workspace-card-heading { min-height: 32px; }
+  .how-workspace-card-heading img { flex-shrink: 0; }
+  .how-workspace-card h3 {
+    min-width: 0;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .how-workspace-card:first-child h3 { white-space: nowrap; }
+  .how-workspace-card:nth-child(2) h3 { width: 165px; }
+  .how-workspace-card p {
+    margin-top: 16px;
+    font-weight: 400;
+    color: #cabcf6;
+    letter-spacing: 0;
+  }
+  .how-workspace-section .how-tools-scrollbar { display: block; }
+  .how-workspace-growth h3 { font-weight: 500; letter-spacing: 0; }
+  .how-workspace-growth > p {
+    font-weight: 300;
+    color: #cabcf6;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .how-workspace-art {
+    width: min(640px, 100%);
+  }
+}
+
+.roles-hero-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  pointer-events: none;
+}
+
+/* Keep artwork proportions below desktop; content width limits must not
+   constrain full-bleed background layers. */
+@media (max-width: 1023px) {
+  .home-hero > .home-hero-glow,
+  .home-hero > .home-hero-shade,
+  .about-mobile > section > .about-hero-artwork {
+    max-width: none;
+    margin-inline: 0;
+  }
+  .about-hero-section {
+    height: calc(57px + max(444px, 100vw * 444 / 673));
+  }
+  .about-hero-artwork { height: calc(100% - 57px); }
+
+  .home-hero-art {
+    inset: auto;
+    left: -10.98%;
+    top: calc(57px + (100% - 57px) * .0549);
+    width: 121.96%;
+    height: auto;
+  }
+
+  .home-workflow {
+    left: 50%;
+    width: 313.997px;
+    max-width: none;
+    margin-inline: 0;
+    transform: translateX(-50%);
+  }
+  .home-workflow-ring-mobile { margin-top: 14px; }
+
+  .about-locations-globe {
+    position: relative;
+    width: min(660px, calc(100vw * 539 / 393));
+    height: auto;
+    aspect-ratio: 539 / 214;
+    flex-shrink: 0;
+  }
+  .about-locations-globe > img {
+    position: absolute;
+    top: 0;
+    left: -15%;
+    width: 122.41%;
+    height: 122.43%;
+    max-width: none;
+  }
+
+  .roles-hero-mobile-art {
+    width: max(788px, calc(100% + 58px));
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .how-hero-artwork {
+    max-width: 480px;
+    height: auto;
+    aspect-ratio: 313 / 267.627;
+  }
+
+  .team-hero-pattern {
+    left: 5.85%;
+    top: calc(57px + (100% - 57px) * .1598);
+    width: 170.2%;
+    height: auto;
+  }
+
+  .platform-login-ellipse { max-width: none; }
+}
+
+.roles-hero-people {
+  -webkit-mask-image: radial-gradient(circle 230px at var(--reveal-x, -1000px) var(--reveal-y, -1000px), #000 0%, #000 40%, rgba(0, 0, 0, .45) 66%, transparent 100%);
+  mask-image: radial-gradient(circle 230px at var(--reveal-x, -1000px) var(--reveal-y, -1000px), #000 0%, #000 40%, rgba(0, 0, 0, .45) 66%, transparent 100%);
+}
+
+.roles-hero-hint { display: none; }
+
+@media (min-width: 1024px) {
+  .roles-hero {
+    background: radial-gradient(135% 105% at 50% -8%, #46228f 0%, #331372 30%, #230c53 58%, #170838 82%, #0e0428 100%);
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .roles-hero { cursor: none; }
+  .roles-hero-hint {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .05);
+    color: #bca9e6;
+    font-size: 13.5px;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity .5s ease;
+  }
+  .roles-hero-hint > span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c9f24d;
+  }
+  .roles-hero[data-reveal-used="true"] .roles-hero-hint { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roles-hero-hint { transition: none; }
+}
+
+/* Scoped Figma follow-up: retain solid borders only on variants that use them. */
+.fading-card-border {
+  position: relative;
+  border-color: transparent;
+  --card-outline: linear-gradient(to bottom, rgba(92, 52, 161, .8) 37.01%, rgba(92, 52, 161, .1) 113.64%);
+}
+.fading-card-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  border-radius: inherit;
+  background: var(--card-outline);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.fading-card-border-horizontal {
+  --card-outline: linear-gradient(to right, rgba(92, 52, 161, .8) 13.675%, rgba(92, 52, 161, .1) 86.325%);
+}
+.how-workspace-card {
+  --card-outline: linear-gradient(to bottom, #5c34a1 44.12%, rgba(92, 52, 161, .1) 113.64%);
+}
+.home-direct-art {
+  position: relative;
+  width: min(540px, calc(100vw - 26px));
+  max-width: none;
+  aspect-ratio: 367 / 285;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.home-direct-art > img {
+  position: absolute;
+  left: 2.63%;
+  top: -.1%;
+  width: 90.38%;
+  height: 99.75%;
+  max-width: none;
+}
+.support-finishing-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+.support-finishing-list > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+.support-finishing-list > li:not(:last-child)::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ccf043;
+}
+.support-detail-page .support-scenario-tabs-scrollbar { scrollbar-width: none; }
+.support-detail-page .support-scenario-tabs-scrollbar::-webkit-scrollbar { display: none; }
+.support-tabs-scrollbar { display: block; width: 100%; margin-top: 16px; }
+@media (max-width: 1023px) {
+  .fading-card-border-responsive {
+    --card-outline: linear-gradient(to right, rgba(92, 52, 161, .8) 13.675%, rgba(92, 52, 161, .1) 86.325%);
+  }
+  .relief-card-arrow .relief-card-heading { align-items: center; }
+  .role-detail-hero--fluid-phone .role-detail-hero-art { object-fit: fill; }
+  .how-hero > .fig-shell { padding-bottom: 74px; }
+  .how-managed-step:nth-of-type(1) { min-height: 83px; }
+  .how-managed-step:nth-of-type(2),
+  .how-managed-step:nth-of-type(3) { min-height: 90px; }
+  .how-page > section:nth-child(3) > p { margin-top: 60px; }
+  .how-page > section:nth-child(2),
+  .role-detail-process {
+    background: radial-gradient(ellipse 106.827% 97.73% at 50% -29.03%, #492786, #341768 50%, #1f0849);
+  }
+  .contact-page > section:nth-child(1) { min-height: 345.5px; }
+  .contact-page {
+    background-image: radial-gradient(ellipse 89.101% 810px at 50% 9.36px, #411c80, #1f0849);
+  }
+  .succession-page > section:nth-child(2) {
+    background: linear-gradient(to bottom, #411c80, rgba(46, 18, 97, .36));
+  }
+}
+@media (max-width: 379px) {
+  .home-direct-art { width: calc(100vw - 40px); }
+}
+@media (min-width: 1024px) {
+  .home-direct-art { width: 540px; height: 616px; max-width: none; aspect-ratio: auto; }
+  .home-direct-art > img { position: static; width: 100%; height: 100%; object-fit: contain; }
+  .contact-page { background-image: none; }
+  .contact-page > section:nth-child(1) {
+    background: linear-gradient(to bottom, #1f0849, rgba(57, 24, 116, .53));
+  }
+  .contact-page > section:nth-child(2) {
+    background: linear-gradient(to bottom, #2d1160, rgba(25, 10, 54, 0));
+  }
+}
+
+/* Exact rotated radial fill from Roles mobile frame 8552:4950. */
+.roles-mobile-overlay { background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 393 450' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-19.75 -23.55 18.039 -15.128 294.5 410.5)'><stop stop-color='rgba(57,24,116,0.24)' offset='0'/><stop stop-color='rgba(31,8,73,1)' offset='1'/></radialGradient></defs></svg>"); }
+
+/* Match Figma's colour/alpha interpolation; see audit gradient measurements. */
+:root {
+  --figma-hero-stops: rgba(31, 8, 73, 1) 0%, rgba(33.6, 9.6, 77.3, 0.953) 10%, rgba(36.2, 11.2, 81.6, 0.906) 20%, rgba(38.8, 12.8, 85.9, 0.859) 30%, rgba(41.4, 14.4, 90.2, 0.812) 40%, rgba(44, 16, 94.5, 0.765) 50%, rgba(46.6, 17.6, 98.8, 0.718) 60%, rgba(49.2, 19.2, 103.1, 0.671) 70%, rgba(51.8, 20.8, 107.4, 0.624) 80%, rgba(54.4, 22.4, 111.7, 0.577) 90%, rgba(57, 24, 116, 0.53) 100%;
+  --figma-workspace-stops: rgba(55, 23, 110, 1) 0%, rgba(52, 21.7, 104.4, 0.923) 10%, rgba(49, 20.4, 98.8, 0.846) 20%, rgba(46, 19.1, 93.2, 0.769) 30%, rgba(43, 17.8, 87.6, 0.692) 40%, rgba(40, 16.5, 82, 0.615) 50%, rgba(37, 15.2, 76.4, 0.538) 60%, rgba(34, 13.9, 70.8, 0.461) 70%, rgba(31, 12.6, 65.2, 0.384) 80%, rgba(28, 11.3, 59.6, 0.307) 90%, rgba(25, 10, 54, 0.23) 100%;
+  --figma-workspace-mobile-stops: rgba(55, 23, 110, 1) -19.101%, rgba(52, 21.7, 104.4, 0.923) -7.191%, rgba(49, 20.4, 98.8, 0.846) 4.719%, rgba(46, 19.1, 93.2, 0.769) 16.629%, rgba(43, 17.8, 87.6, 0.692) 28.539%, rgba(40, 16.5, 82, 0.615) 40.450%, rgba(37, 15.2, 76.4, 0.538) 52.360%, rgba(34, 13.9, 70.8, 0.461) 64.270%, rgba(31, 12.6, 65.2, 0.384) 76.180%, rgba(28, 11.3, 59.6, 0.307) 88.090%, rgba(25, 10, 54, 0.23) 100%;
+  --figma-pricing-stops: rgba(45, 17, 96, 1) 0%, rgba(43, 16.3, 91.8, 0.923) 10%, rgba(41, 15.6, 87.6, 0.846) 20%, rgba(39, 14.9, 83.4, 0.769) 30%, rgba(37, 14.2, 79.2, 0.692) 40%, rgba(35, 13.5, 75, 0.615) 50%, rgba(33, 12.8, 70.8, 0.538) 60%, rgba(31, 12.1, 66.6, 0.461) 70%, rgba(29, 11.4, 62.4, 0.384) 80%, rgba(27, 10.7, 58.2, 0.307) 90%, rgba(25, 10, 54, 0.23) 100%;
+  --figma-section-stops: rgba(45, 17, 96, 1) 0%, rgba(43, 16.3, 91.8, 0.9) 10%, rgba(41, 15.6, 87.6, 0.8) 20%, rgba(39, 14.9, 83.4, 0.7) 30%, rgba(37, 14.2, 79.2, 0.6) 40%, rgba(35, 13.5, 75, 0.5) 50%, rgba(33, 12.8, 70.8, 0.4) 60%, rgba(31, 12.1, 66.6, 0.3) 70%, rgba(29, 11.4, 62.4, 0.2) 80%, rgba(27, 10.7, 58.2, 0.1) 90%, rgba(25, 10, 54, 0) 100%;
+  --figma-card-stops: rgba(65, 28, 128, 0.8) 0%, rgba(64.4, 27.6, 127.5, 0.74) 10%, rgba(63.8, 27.2, 127, 0.68) 20%, rgba(63.2, 26.8, 126.5, 0.62) 30%, rgba(62.6, 26.4, 126, 0.56) 40%, rgba(62, 26, 125.5, 0.5) 50%, rgba(61.4, 25.6, 125, 0.44) 60%, rgba(60.8, 25.2, 124.5, 0.38) 70%, rgba(60.2, 24.8, 124, 0.32) 80%, rgba(59.6, 24.4, 123.5, 0.26) 90%, rgba(59, 24, 123, 0.2) 100%;
+  --figma-member-stops: rgba(65, 28, 128, 0.46) 0%, rgba(64.4, 27.6, 127.5, 0.434) 10%, rgba(63.8, 27.2, 127, 0.408) 20%, rgba(63.2, 26.8, 126.5, 0.382) 30%, rgba(62.6, 26.4, 126, 0.356) 40%, rgba(62, 26, 125.5, 0.33) 50%, rgba(61.4, 25.6, 125, 0.304) 60%, rgba(60.8, 25.2, 124.5, 0.278) 70%, rgba(60.2, 24.8, 124, 0.252) 80%, rgba(59.6, 24.4, 123.5, 0.226) 90%, rgba(59, 24, 123, 0.2) 100%;
+  --figma-succession-stops: rgba(65, 28, 128, 1) 0%, rgba(63.1, 27, 124.9, 0.936) 10%, rgba(61.2, 26, 121.8, 0.872) 20%, rgba(59.3, 25, 118.7, 0.808) 30%, rgba(57.4, 24, 115.6, 0.744) 40%, rgba(55.5, 23, 112.5, 0.68) 50%, rgba(53.6, 22, 109.4, 0.616) 60%, rgba(51.7, 21, 106.3, 0.552) 70%, rgba(49.8, 20, 103.2, 0.488) 80%, rgba(47.9, 19, 100.1, 0.424) 90%, rgba(46, 18, 97, 0.36) 100%;
+}
+.fading-card-border {
+  background-image: linear-gradient(to bottom, var(--figma-card-stops));
+}
+.team-options-member-card,
+.team-member-mobile-card {
+  background-image: linear-gradient(to bottom, var(--figma-member-stops));
+}
+.fading-card-border-horizontal {
+  background-image: linear-gradient(to right, var(--figma-card-stops));
+}
+.role-detail-hero,
+.careers-mobile-hero,
+.careers-page > section:first-child,
+.team-options-desktop > section:first-child,
+.succession-page > section:first-child {
+  background-image: linear-gradient(to bottom, var(--figma-hero-stops));
+}
+.team-options-desktop > section:nth-child(2) {
+  background-image: linear-gradient(to bottom, var(--figma-pricing-stops));
+}
+.careers-page > section:nth-child(3) {
+  background-image: linear-gradient(to bottom, var(--figma-section-stops));
+}
+@media (min-width: 1024px) {
+  .how-hero,
+  .contact-page > section:first-child {
+    background-image: linear-gradient(to bottom, var(--figma-hero-stops));
+  }
+  .how-workspace-section {
+    background-image: linear-gradient(to bottom, var(--figma-workspace-stops));
+  }
+  .contact-page > section:nth-child(2) {
+    background-image: linear-gradient(to bottom, var(--figma-section-stops));
+  }
+  .home-relief { background-color: transparent; }
+}
+@media (max-width: 1023px) {
+  .how-page .how-workspace-section,
+  .careers-mobile > section:nth-child(3) {
+    background-image: linear-gradient(to bottom, var(--figma-workspace-mobile-stops));
+  }
+  .fading-card-border-responsive {
+    background-image: linear-gradient(to right, var(--figma-card-stops));
+  }
+  .succession-page > section:nth-child(2) {
+    background-image: linear-gradient(to bottom, var(--figma-succession-stops));
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-page > section:nth-child(2) { background-image: linear-gradient(to bottom, rgba(55, 23, 110, 0) 0%, rgba(52, 21.7, 104.4, 0.1) 10%, rgba(49, 20.4, 98.8, 0.2) 20%, rgba(46, 19.1, 93.2, 0.3) 30%, rgba(43, 17.8, 87.6, 0.4) 40%, rgba(40, 16.5, 82, 0.5) 50%, rgba(37, 15.2, 76.4, 0.6) 60%, rgba(34, 13.9, 70.8, 0.7) 70%, rgba(31, 12.6, 65.2, 0.8) 80%, rgba(28, 11.3, 59.6, 0.9) 90%, rgba(25, 10, 54, 1) 100%); }
+  .home-hero-glow { background-image: radial-gradient(ellipse 50% 50% at center, rgba(65, 28, 128, 0.69) 0%, rgba(60.9, 26.2, 120.4, 0.721) 10%, rgba(56.8, 24.4, 112.8, 0.752) 20%, rgba(52.7, 22.6, 105.2, 0.783) 30%, rgba(48.6, 20.8, 97.6, 0.814) 40%, rgba(44.5, 19, 90, 0.845) 50%, rgba(40.4, 17.2, 82.4, 0.876) 60%, rgba(36.3, 15.4, 74.8, 0.907) 70%, rgba(32.2, 13.6, 67.2, 0.938) 80%, rgba(28.1, 11.8, 59.6, 0.969) 90%, rgba(24, 10, 52, 1) 100%); }
+}
+
+@media (max-width: 1023px) {
+  /* The mobile Home artwork supplies its own fade; no extra shade is present. */
+  .home-hero-glow, .home-hero-shade { background: none; }
+  /* These three role frames include Rectangle 245 behind the hero. */
+  .role-detail-page--mobile-glow {
+    background-image: radial-gradient(ellipse 89.101% 810px at 50% 9.36px, #411c80, #1f0849);
+    background-size: 100% 909px;
+    background-repeat: no-repeat;
+  }
+}
+@media (max-width: 1023px) {
+  .role-detail-page--mobile-glow .role-detail-capabilities { background: transparent; }
 }

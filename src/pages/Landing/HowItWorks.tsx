@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import useDesktopDragScroll from './hooks/useDesktopDragScroll';
 import hero from '../../assets/landing/images/support.png';
 import platform from '../../assets/landing/images/how_workspace.png';
 import recruit from '../../assets/landing/images/icons/how_recruit.svg';
@@ -6,10 +7,17 @@ import payroll from '../../assets/landing/images/icons/how_payroll.svg';
 import training from '../../assets/landing/images/icons/how_training.svg';
 import support from '../../assets/landing/images/icons/how_support.svg';
 import tasks from '../../assets/landing/images/icons/how_tasks.svg';
+import tasksMobile from '../../assets/landing/images/icons/how_tasks_mobile.svg';
 import upload from '../../assets/landing/images/icons/how_upload.svg';
+import uploadMobile from '../../assets/landing/images/icons/how_upload_mobile.svg';
 import messages from '../../assets/landing/images/icons/how_messages.svg';
+import messagesMobile from '../../assets/landing/images/icons/how_messages_mobile.svg';
 import time from '../../assets/landing/images/icons/how_time.svg';
+import timeMobile from '../../assets/landing/images/icons/how_time_mobile.svg';
+import reports from '../../assets/landing/images/icons/how_reports.svg';
+import reportsMobile from '../../assets/landing/images/icons/how_reports_mobile.svg';
 import growth from '../../assets/landing/images/icons/how_growth.svg';
+import growthMobile from '../../assets/landing/images/icons/how_growth_mobile.svg';
 import ReliefSection from './components/ReliefSection';
 
 const STEPS = [
@@ -27,14 +35,17 @@ const HANDLED = [
 ] as const;
 
 const TOOLS = [
-  ['Tasks & progress', "See what's in progress, what's done and what's next.", tasks],
-  ['Files from uploads, email & WhatsApp', 'Files you upload or send to your dedicated people are automatically saved in one secure workplace.', upload],
-  ['Messages & calls', 'Call or message your dedicated people through our platform, or via WhatsApp from your mobile.', messages],
-  ['Timesheets & activity', 'Track time logged and activity across your tasks.', time],
+  { title: 'Tasks & progress', body: "See what's in progress, what's done and what's next.", icon: tasks, mobileIcon: tasksMobile },
+  { title: 'Files from uploads, email & WhatsApp', body: 'Files you upload or send to your dedicated people are automatically saved in one secure workplace.', icon: upload, mobileIcon: uploadMobile },
+  { title: 'Messages & calls', body: 'Call or message your dedicated people throughout working hours, via our platform or WhatsApp', icon: messages, mobileIcon: messagesMobile },
+  { title: 'WhatsApp from your mobile', body: 'Message or call your dedicated people on WhatsApp. They respond through our platform.', icon: messages, mobileIcon: messagesMobile, mobileOnly: true },
+  { title: 'Timesheets & activity', body: 'Track time logged and activity across your tasks.', icon: time, mobileIcon: timeMobile },
+  { title: 'Dashboards & reporting', body: 'Monitor workloads, progress and key metrics in one place.', icon: reports, mobileIcon: reportsMobile },
 ] as const;
 
 export default function HowItWorks() {
   const toolsScrollerRef = useRef<HTMLDivElement>(null);
+  useDesktopDragScroll(toolsScrollerRef);
   const [toolsScrollProgress, setToolsScrollProgress] = useState(0);
 
   const updateToolsScrollProgress = () => {
@@ -57,7 +68,7 @@ export default function HowItWorks() {
     <div className="how-page overflow-hidden bg-brand-purple-dark text-white">
       <section className="how-hero lg:h-[681px] lg:bg-gradient-to-b lg:from-brand-purple-dark lg:to-[rgba(57,24,116,0.53)] lg:px-0 lg:pb-20 lg:pt-[156px]">
         <div className="fig-shell flex flex-col items-center justify-center px-5 pb-[60px] pt-[151px] max-[379px]:px-0 md:px-0 md:pt-[122px] lg:grid lg:h-full lg:grid-cols-[484px_480px] lg:gap-6 lg:px-0 lg:py-0">
-          <div className="h-[268px] w-full lg:order-2 lg:h-[445px] lg:w-[480px]">
+          <div className="how-hero-artwork h-[268px] w-full lg:order-2 lg:h-[445px] lg:w-[480px]">
             <img src={hero} alt="Your Outsource team" className="h-full w-full object-contain" />
           </div>
           <div className="mt-4 text-center lg:order-1 lg:mt-0 lg:w-[484px] lg:text-left">
@@ -82,7 +93,7 @@ export default function HowItWorks() {
             <ol className="relative flex flex-col gap-5 lg:hidden">
               <span aria-hidden className="absolute bottom-5 left-5 top-5 w-px bg-white/20" />
               {STEPS.map((step, index) => (
-                <li key={step} className="relative flex min-h-[70px] gap-4">
+                <li key={step} className="relative flex min-h-[70px] gap-4 how-managed-step">
                   <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-lime text-lg font-bold text-brand-purple-mid">
                     {index + 1}
                   </span>
@@ -128,34 +139,37 @@ export default function HowItWorks() {
             </div>
           ))}
         </div>
-        <p className="mt-6 w-full max-w-[992px] text-xs font-normal leading-[18px] text-brand-periwinkle lg:mt-0 lg:text-lg lg:font-light lg:leading-6">
+        <p className="mt-6 w-full max-w-[992px] text-lg font-normal leading-6 text-brand-periwinkle lg:mt-0 lg:text-lg lg:font-light lg:leading-6">
           Your dedicated people work from our managed office in Dhaka, with UK-based support and accountability.
         </p>
       </section>
 
-      <section className="h-[1107px] bg-gradient-to-b from-[#37176e] to-[rgba(25,10,54,.23)] px-10 py-[60px] lg:h-[1435px] lg:px-6 lg:pb-[60px] lg:pt-[120px] xl:px-[144px]">
+      <section className="how-workspace-section min-h-[1107px] bg-gradient-to-b from-[#37176e] to-[rgba(25,10,54,.23)] px-10 py-[60px] lg:h-[1435px] lg:px-6 lg:pb-[60px] lg:pt-[120px] xl:px-[144px]">
         <div className="mx-auto lg:w-full lg:max-w-[992px]">
-          <h2 className="text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+          <h2 className="how-workspace-title text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
             <span className="text-brand-lime">One workspace. </span>Total clarity.
           </h2>
-          <div className="relative mx-auto mt-10 h-[242px] w-[355px] max-w-full overflow-hidden max-[379px]:w-full lg:mt-[60px] lg:h-[675px] lg:w-full">
+          <div className="how-workspace-art relative mx-auto mt-10 h-[242px] w-[355px] max-w-full overflow-hidden max-[379px]:w-full lg:mt-[60px] lg:h-[675px] lg:w-full">
             <img src={platform} alt="Outsource.com workspace" className="h-full w-full max-w-none object-contain lg:absolute lg:left-[2.32%] lg:top-0 lg:h-[675px] lg:w-full" />
           </div>
           <div
             ref={toolsScrollerRef}
             onScroll={updateToolsScrollProgress}
-            className="how-tools-carousel how-tools-carousel-mobile mt-10 flex max-w-none gap-5 overflow-x-auto lg:mt-8 lg:gap-4"
+            className="desktop-drag-scroll how-tools-carousel how-tools-carousel-mobile mt-10 flex max-w-none gap-5 overflow-x-auto lg:mt-8 lg:gap-4"
           >
-            {TOOLS.map(([title, body, icon]) => (
-              <article key={title} className="w-[180px] shrink-0 rounded-lg border-2 border-brand-purple bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 p-5 lg:h-[276px] lg:w-[290px] lg:p-6">
-                <div className="flex items-start gap-2 lg:block">
-                  <img src={icon} alt="" className="h-8 w-8 lg:h-[60px] lg:w-[60px]" />
-                  <h3 className="text-xs font-bold leading-[18px] text-brand-lime lg:mt-4 lg:text-lg lg:leading-6">{title}</h3>
+            {TOOLS.map((tool) => (
+              <article key={tool.title} className={`how-workspace-card fading-card-border w-[180px] shrink-0 rounded-lg border-2 border-brand-purple bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 p-5 lg:h-[276px] lg:w-[290px] lg:p-6 ${'mobileOnly' in tool && tool.mobileOnly ? 'lg:hidden' : ''}`}>
+                <div className="how-workspace-card-heading flex items-start gap-2 lg:block">
+                  <picture className="contents">
+                    <source className="hidden" media="(max-width: 1023px)" srcSet={tool.mobileIcon} />
+                    <img src={tool.icon} alt="" className="h-8 w-8 lg:h-[60px] lg:w-[60px]" />
+                  </picture>
+                  <h3 className="text-lg font-bold leading-6 text-brand-lime lg:mt-4 lg:text-lg lg:leading-6">{tool.title}</h3>
                 </div>
-                <p className="mt-2 text-xs leading-[18px] lg:text-lg lg:leading-6">{body}</p>
+                <p className="mt-2 text-lg leading-6 lg:text-lg lg:leading-6">{tool.body}</p>
               </article>
             ))}
-            <div aria-hidden className="w-5 shrink-0 max-[379px]:w-0 lg:hidden" />
+            <div aria-hidden className="w-5 shrink-0 lg:hidden" />
           </div>
           <input
             aria-label="Scroll workspace features"
@@ -167,22 +181,25 @@ export default function HowItWorks() {
             value={toolsScrollProgress}
             onChange={(event) => scrollToolsTo(Number(event.target.value))}
           />
-          <div className="mt-10 lg:hidden">
+          <div className="how-workspace-growth mt-10 lg:hidden">
             <div className="flex items-start gap-2">
-              <img src={growth} alt="" className="h-8 w-8 shrink-0" />
-              <h3 className="text-xs font-medium leading-[18px]">
+              <picture className="contents">
+                <source className="hidden" media="(max-width: 1023px)" srcSet={growthMobile} />
+                <img src={growth} alt="" className="h-8 w-8 shrink-0" />
+              </picture>
+              <h3 className="text-lg font-medium leading-6">
                 A workspace that <span className="text-brand-lime">scales with your finance team.</span>
               </h3>
             </div>
-            <p className="mt-2 text-xs font-light leading-[18px]">
+            <p className="mt-2 text-lg font-light leading-6">
               For larger organisations, we can tailor the platform around your operation – including workflows, team structure, dashboards and the key metrics you want to monitor.
             </p>
           </div>
-          <div className="mt-8 hidden h-[88px] items-center gap-4 lg:flex">
+          <div className="how-workspace-desktop-growth mt-8 hidden h-[88px] items-start gap-4 lg:flex">
             <img src={growth} alt="" className="h-[50px] w-[50px] shrink-0" />
             <div className="min-w-0 flex-1">
               <h3 className="text-2xl font-medium leading-8">A workspace that <span className="text-brand-lime">scales with your finance team.</span></h3>
-              <p className="mt-2 text-lg font-light leading-6">For larger organisations, we can tailor the platform around your operation – including workflows, team<br />structure, dashboards and the key metrics you want to monitor.</p>
+              <p className="mt-2 text-lg font-light leading-6 text-brand-periwinkle">For larger organisations, we can tailor the platform around your operation – including workflows, team<br />structure, dashboards and the key metrics you want to monitor.</p>
             </div>
           </div>
         </div>
@@ -190,7 +207,7 @@ export default function HowItWorks() {
 
       <ReliefSection
         firstCard={{
-          to: '/careers',
+          to: '/roles',
           title: 'Explore',
           highlight: 'finance roles',
           copy: 'Find the finance professionals available for your team.',

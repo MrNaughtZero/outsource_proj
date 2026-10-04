@@ -6,7 +6,7 @@ export const MODELS = [
   {
     title: 'Dedicated Hire',
     desc: 'A full-time finance professional in your team.',
-    price: 'From £11.50 per hour',
+    price: 'From £9.50 per hour',
     icon: IconHire,
     points: ['Dedicated exclusively to you', 'Integrated into your team', 'Full-time dedicated capacity', 'Client-aligned support'],
   },
