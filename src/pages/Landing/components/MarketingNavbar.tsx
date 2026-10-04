@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useCalculator } from '../calculator/CalculatorContext';
 import { Link, NavLink } from 'react-router-dom';
 import logoPurple from '../../../assets/landing/logo/02_logo_com_purple.svg';
 import menuIcon from '../../../assets/landing/home/menu.svg';
@@ -78,6 +79,8 @@ interface MarketingNavbarProps {
 }
 
 export default function MarketingNavbar({ overlay = true, variant = 'marketing' }: MarketingNavbarProps) {
+  const { openCalculator } = useCalculator();
+  const menuTrigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [rolesMenuOpen, setRolesMenuOpen] = useState(false);
@@ -177,7 +180,7 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
 
             <button
               type="button"
-              disabled
+              onClick={event => openCalculator(undefined, event.currentTarget)}
               aria-label="Compare costs"
               className="group/calculator relative flex h-[37px] w-[65px] shrink-0 items-center justify-center"
             >
@@ -199,6 +202,7 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
           {variant !== 'auth' && <MobileCallButton />}
 
           <button
+            ref={menuTrigger}
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="marketing-expanded-menu"
@@ -279,7 +283,12 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
                   </li>
                 ))}
                 <li>
-                  <button type="button" disabled aria-label="Compare costs" className="group/menu-costs inline-flex items-center gap-[14px] rounded-lg px-4 py-2 text-lg font-medium leading-6 text-brand-lime transition-colors duration-300 ease-out hover:bg-white hover:text-brand-purple-mid">
+                  <button type="button" onClick={() => {
+                    setClosing(false);
+                    setOpen(false);
+                    // Let the menu release its scroll lock before the dialog acquires it.
+                    window.setTimeout(() => openCalculator(undefined, menuTrigger.current ?? undefined), 0);
+                  }} aria-label="Compare costs" className="group/menu-costs inline-flex items-center gap-[14px] rounded-lg px-4 py-2 text-lg font-medium leading-6 text-brand-lime transition-colors duration-300 ease-out hover:bg-white hover:text-brand-purple-mid">
                     <span className="relative h-[24.5px] w-[18.682px]">
                       <img src={menuCalculator} alt="" className="absolute inset-0 max-w-none group-hover/menu-costs:invisible" />
                       <img src={menuCalculatorHover} alt="" className="invisible absolute inset-0 max-w-none group-hover/menu-costs:visible" />

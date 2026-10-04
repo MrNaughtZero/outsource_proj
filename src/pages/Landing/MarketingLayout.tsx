@@ -54,7 +54,7 @@ export default function MarketingLayout() {
   return (
     <div className="fig-page flex min-h-screen flex-col">
       <MarketingNavbar overlay />
-      <main ref={mainRef} className={`marketing-main flex-1 ${roleMobileFooter ? 'role-marketing-main' : ''}`}>
+      <main ref={mainRef} className={`marketing-main flex-1 ${roleMobileFooter ? 'role-marketing-main' : ''} ${pathname === '/compare-calculator' ? 'calculator-marketing-main' : ''}`}>
         <Outlet />
       </main>
       <MarketingFooter />

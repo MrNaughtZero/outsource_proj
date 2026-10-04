@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "test:calculator": "node --test tests/calculator.test.mjs",
     "dev": "vite --port 1600 --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

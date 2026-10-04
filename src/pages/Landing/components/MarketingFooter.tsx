@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useCalculator } from '../calculator/CalculatorContext';
 import compareCostsIcon from '../../../assets/landing/home/menu-calculator.svg';
 import footerContact from '../../../assets/landing/footer/contact.svg';
 import footerContactHover from '../../../assets/landing/footer/contact-hover.svg';
@@ -35,12 +36,13 @@ const MOBILE_ROLE_LINKS = [ROLE_LINKS[0], ROLE_LINKS[2], ROLE_LINKS[1], ROLE_LIN
 const NAV_LINK = 'block text-lg font-light leading-6 text-white transition-colors duration-200 ease-out hover:text-brand-lime min-[381px]:whitespace-nowrap';
 
 function FooterNavigation({ mobile = false }: { mobile?: boolean }) {
+  const { openCalculator } = useCalculator();
   return <nav aria-label="Footer" className={mobile ? 'grid w-full grid-cols-2 gap-x-6' : 'contents'}>
     <div className="flex flex-col items-start gap-[18px]">
       <h2>Explore</h2>
       <ul className="space-y-[18px]">
         {EXPLORE_LINKS.map(link => <li key={link.to}><Link to={link.to} className={NAV_LINK}>{link.label}</Link></li>)}
-        <li><button type="button" disabled className="footer-compare flex h-[24.5px] items-center gap-2.5 whitespace-nowrap text-white transition-colors duration-200 ease-out hover:text-brand-lime">
+        <li><button type="button" onClick={event => openCalculator(undefined, event.currentTarget)} className="footer-compare flex h-[24.5px] items-center gap-2.5 whitespace-nowrap text-white transition-colors duration-200 ease-out hover:text-brand-lime">
           <img src={compareCostsIcon} alt="" className="shrink-0 max-w-none" />Compare costs
         </button></li>
       </ul>

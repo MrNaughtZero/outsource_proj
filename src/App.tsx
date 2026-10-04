@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { lazy, Suspense } from 'react';
 
 import ScrollToTop from './components/ScrollToTop';
+import CalculatorProvider from './pages/Landing/calculator/CalculatorProvider';
 
 // Marketing / Landing Pages (public website)
 const MarketingLayout = lazy(() => import('./pages/Landing/MarketingLayout'));
@@ -25,6 +26,7 @@ const Insights = lazy(() => import('./pages/Landing/Insights'));
 const ComingSoon = lazy(() => import('./pages/Landing/ComingSoon'));
 const PlatformLogin = lazy(() => import('./pages/Landing/PlatformLogin'));
 const ResetPassword = lazy(() => import('./pages/Landing/ResetPassword'));
+const CompareCalculator = lazy(() => import('./pages/Landing/CompareCalculator'));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -41,6 +43,7 @@ function App() {
 
   return (
     <BrowserRouter basename={basePath}>
+      <CalculatorProvider>
       <ScrollToTop />
       <Toaster position="top-right" />
 
@@ -61,6 +64,7 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/compare-calculator" element={<CompareCalculator />} />
             <Route path="/roles" element={<Roles />} />
             <Route path="/roles/accountants" element={<Accountants />} />
             <Route path="/roles/bookkeepers" element={<Bookkeepers />} />
@@ -74,6 +78,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
+      </CalculatorProvider>
     </BrowserRouter>
   );
 }
