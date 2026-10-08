@@ -3,36 +3,39 @@ import assert from 'node:assert/strict';
 import { calculateEstimate, validateEstimate } from '../src/pages/Landing/calculator/calculateEstimate.ts';
 import { calculatorConfig } from '../src/pages/Landing/calculator/calculatorConfig.ts';
 
-const defaults = { role: 'bookkeeper', ...calculatorConfig.defaults, annualSalary: 30000 };
+const defaults = { role: 'bookkeeper', ...calculatorConfig.defaults, annualSalary: calculatorConfig.roles.bookkeeper.annualSalary };
 const closeTo = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} != ${expected}`);
 
 test('default comparison uses the agreed new rate and unrounded UK contributions', () => {
   const result = calculateEstimate(defaults);
-  closeTo(result.salary, 2500);
-  closeTo(result.nationalInsurance, 312.5);
-  closeTo(result.employerPension, 59.4);
-  closeTo(result.ukMonthly, 2943.9);
+  closeTo(result.salary, 25000 / 12);
+  closeTo(result.nationalInsurance, 250);
+  closeTo(result.employerPension, 46.9);
+  closeTo(result.ukMonthly, 2472.233333333333);
   closeTo(result.outsourcedMonthly, 1543.75);
-  closeTo(result.monthlySaving, 1400.15);
-  closeTo(result.periodSaving, 16801.8);
+  closeTo(result.monthlySaving, 928.483333333333);
+  closeTo(result.periodSaving, 11141.8);
 });
 
 test('role rates are separate and headcount multiplies both totals and extras', () => {
   for (const [role, expected] of [['bookkeeper', 1543.75], ['payroll specialist', 1543.75], ['accountant', 2193.75]]) {
     const result = calculateEstimate({ ...defaults, role, people: 3 });
     closeTo(result.outsourcedMonthly, expected * 3);
-    closeTo(result.ukMonthly, 2943.9 * 3);
+    closeTo(result.ukMonthly, 2472.233333333333 * 3);
     closeTo(result.equipment, 126);
     closeTo(result.software, 90);
+    closeTo(result.office, 60);
   }
 });
 
 test('part-time salary is prorated before NI and pension, while extras stay monthly', () => {
-  const result = calculateEstimate({ ...defaults, hours: 3.5 });
-  closeTo(result.adjustedSalary, 14000);
-  closeTo(result.nationalInsurance, 112.5);
-  closeTo(result.employerPension, 19.4);
+  const result = calculateEstimate({ ...defaults, days: 2 });
+  closeTo(result.adjustedSalary, 10000);
+  closeTo(result.nationalInsurance, 62.5);
+  closeTo(result.employerPension, 9.4);
   closeTo(result.equipment, 42);
+  closeTo(result.office, 20);
+  closeTo(result.weeklyHours, 15);
 });
 
 test('NI and pension are floored at zero and pension is capped at qualifying earnings', () => {
@@ -48,20 +51,35 @@ test('NI and pension are floored at zero and pension is capped at qualifying ear
 
 test('duration changes only period savings, calculated before display rounding', () => {
   const short = calculateEstimate({ ...defaults, months: 3 });
-  closeTo(short.monthlySaving, 1400.15);
-  closeTo(short.periodSaving, 4200.45);
+  closeTo(short.monthlySaving, 928.483333333333);
+  closeTo(short.periodSaving, 2785.45);
 });
 
 test('zero UK costs and negative savings remain honest and finite', () => {
-  const result = calculateEstimate({ ...defaults, annualSalary: 0, equipment: 0, software: 0 });
+  const result = calculateEstimate({ ...defaults, annualSalary: 0, equipment: 0, software: 0, office: 0 });
   assert.equal(result.ukMonthly, 0);
   assert.equal(result.savingPercent, null);
   assert.equal(result.monthlySaving, -1543.75);
 });
 
 test('invalid, blank, fractional headcount and out-of-range entries cannot produce estimates', () => {
-  for (const change of [{ people: 0 }, { people: 1.5 }, { people: 101 }, { annualSalary: NaN }, { annualSalary: -1 }, { fullTimeHours: 0 }, { software: Infinity }, { days: 8 }, { hours: 0 }, { months: 2 }, { role: 'virtual cfo' }]) {
+  for (const change of [{ people: 0 }, { people: 1.5 }, { people: 101 }, { annualSalary: NaN }, { annualSalary: -1 }, { office: -1 }, { software: Infinity }, { days: 8 }, { months: 2 }, { role: 'virtual cfo' }]) {
     assert.equal(calculateEstimate({ ...defaults, ...change }), null);
     assert.ok(Object.keys(validateEstimate({ ...defaults, ...change })).length);
   }
+});
+
+
+test('working hours come from configuration, never customer inputs', () => {
+  const result = calculateEstimate({ ...defaults, hours: 1, fullTimeHours: 1 });
+  closeTo(result.weeklyHours, 37.5);
+  closeTo(result.adjustedSalary, 25000);
+});
+
+test('office costs add to UK costs per person without changing service costs', () => {
+  const without = calculateEstimate({ ...defaults, people: 2, office: 0 });
+  const withOffice = calculateEstimate({ ...defaults, people: 2, office: 100 });
+  closeTo(withOffice.ukMonthly - without.ukMonthly, 200);
+  closeTo(withOffice.monthlySaving - without.monthlySaving, 200);
+  closeTo(withOffice.outsourcedMonthly, without.outsourcedMonthly);
 });

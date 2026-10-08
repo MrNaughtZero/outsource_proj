@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useLayoutEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -15,12 +15,17 @@ export default function CostCalculatorModal({ initialRole, returnFocus, onDismis
   const titleId = useId();
   const [closing, setClosing] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = dialog.current!;
+    const root = document.documentElement;
     const originalOverflow = document.body.style.overflow;
-    const originalPadding = document.body.style.paddingRight;
-    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
-    if (scrollbar > 0) document.body.style.paddingRight = `${parseFloat(getComputedStyle(document.body).paddingRight) + scrollbar}px`;
+    const originalRootOverflow = root.style.overflow;
+    const originalGutter = root.style.scrollbarGutter;
+    const scrollPosition = { left: window.scrollX, top: window.scrollY };
+    // Reserve the existing scrollbar at the viewport, so fixed headers and page
+    // content keep the same width throughout both dialog animations.
+    if (window.innerWidth > root.clientWidth) root.style.scrollbarGutter = 'stable';
+    root.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     element.showModal();
     closeButton.current?.focus({ preventScroll: true });
@@ -28,8 +33,10 @@ export default function CostCalculatorModal({ initialRole, returnFocus, onDismis
       window.clearTimeout(closeTimer.current);
       element.close();
       document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPadding;
+      root.style.overflow = originalRootOverflow;
+      root.style.scrollbarGutter = originalGutter;
       if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+      window.scrollTo({ ...scrollPosition, behavior: 'instant' });
     };
   }, [returnFocus]);
 
