@@ -6,6 +6,7 @@ import MarketingFooter from './components/MarketingFooter';
 export default function MarketingLayout() {
   const mainRef = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
+  const policyPage = ['/legal', '/privacy', '/cookie-policy'].includes(pathname.replace(/\/+$/, ''));
   const roleMobileFooter = pathname === '/roles' || pathname.startsWith('/roles/');
 
   // Reveal each section as it scrolls into view. Pure CSS class toggling via
@@ -54,7 +55,7 @@ export default function MarketingLayout() {
   return (
     <div className="fig-page flex min-h-screen flex-col">
       <MarketingNavbar overlay />
-      <main ref={mainRef} className={`marketing-main flex-1 ${roleMobileFooter ? 'role-marketing-main' : ''} ${pathname === '/compare-calculator' ? 'calculator-marketing-main' : ''}`}>
+      <main ref={mainRef} className={`marketing-main flex-1 ${roleMobileFooter ? 'role-marketing-main' : ''} ${pathname === '/compare-calculator' ? 'calculator-marketing-main' : ''} ${policyPage ? 'policy-marketing-main' : ''}`}>
         <Outlet />
       </main>
       <MarketingFooter />

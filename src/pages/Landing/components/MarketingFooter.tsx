@@ -1,3 +1,4 @@
+import { useCookiePreferences } from '../../../components/cookies/CookieContext';
 import { Link } from 'react-router-dom';
 import { useCalculator } from '../calculator/CalculatorContext';
 import compareCostsIcon from '../../../assets/landing/home/menu-calculator.svg';
@@ -81,14 +82,18 @@ function FooterContact({ mobile = false }: { mobile?: boolean }) {
 function FooterSocials({ mobile = false }: { mobile?: boolean }) {
   return <div className="flex items-start gap-8">
     <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><img src={mobile ? footerInstagramMobile : footerInstagram} alt="" className="max-w-none" /></a>
-    <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src={mobile ? footerLinkedinMobile : footerLinkedin} alt="" className="max-w-none" /></a>
+    <a href="https://www.linkedin.com/company/outsource-com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src={mobile ? footerLinkedinMobile : footerLinkedin} alt="" className="max-w-none" /></a>
   </div>;
 }
 
 function FooterLegal({ mobile = false }: { mobile?: boolean }) {
+  const { openCookieSettings } = useCookiePreferences();
   return <div className={`flex text-xs leading-6 ${mobile ? 'flex-col-reverse gap-2' : 'flex-col gap-1'}`}>
     <div className="flex flex-wrap items-center gap-x-4 text-[#a19caa]">
-      <Link to="/privacy" className="underline">Privacy Policy</Link><span>•</span><Link to="/terms" className="underline">Terms and Conditions</Link>
+      <Link to="/legal" className="underline hover:text-brand-lime">Legal</Link>
+      <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><Link to="/privacy" className="underline hover:text-brand-lime">Privacy Policy</Link></span>
+      <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><Link to="/cookie-policy" className="underline hover:text-brand-lime">Cookie Policy</Link></span>
+      <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><button type="button" className="underline hover:text-brand-lime" onClick={event => openCookieSettings(event.currentTarget)}>Manage Cookies</button></span>
     </div>
     <p className={mobile ? 'text-white/60' : 'text-white/30'}>© Copyright 2026 Outsource.com</p>
   </div>;

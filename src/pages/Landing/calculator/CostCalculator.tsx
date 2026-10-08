@@ -6,6 +6,12 @@ import './calculator.css';
 
 const currency = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
 const money = (value: number | undefined) => value === undefined ? '—' : currency.format(value);
+// Group the integer part without rounding customer-entered decimal places.
+const formatInput = (value: string) => {
+  if (!/^-?\d+(?:\.\d*)?$/.test(value)) return value;
+  const [integer, decimals] = value.split('.');
+  return integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (decimals === undefined ? '' : `.${decimals}`);
+};
 type EditableField = keyof typeof config.limits;
 type Values = Record<EditableField, string>;
 
@@ -13,13 +19,12 @@ function NumberField({ label, description, field, values, update, error, prefix 
   label: string; description: string; field: EditableField; values: Values; update: (field: EditableField, value: string) => void; error?: string; prefix?: string;
 }) {
   const id = useId();
-  const [min, max] = config.limits[field];
   return <div className="calculator-number-row">
     <div><label htmlFor={id}>{label}</label><p id={`${id}-description`} className="calculator-field-description">{description}</p></div>
     <div>
       <div className="calculator-number-wrap" data-invalid={!!error}>
         {prefix && <span aria-hidden="true">{prefix}</span>}
-        <input id={id} type="number" inputMode="decimal" min={min} max={max} step="any" value={values[field]} onChange={e => update(field, e.target.value)} aria-invalid={!!error} placeholder={field === 'annualSalary' ? undefined : '0'} aria-describedby={`${id}-description${error ? ` ${id}-error` : ''}`} />
+        <input id={id} type="text" inputMode="decimal" value={values[field]} onBlur={e => update(field, formatInput(e.target.value.replace(/,/g, '')))} onChange={e => update(field, e.target.value)} aria-invalid={!!error} placeholder={field === 'annualSalary' ? undefined : '0'} aria-describedby={`${id}-description${error ? ` ${id}-error` : ''}`} />
       </div>
       {error && <p id={`${id}-error`} className="calculator-error">{error}</p>}
     </div>
@@ -41,12 +46,12 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
   const [days, setDays] = useState<number>(config.defaults.days);
   const [months, setMonths] = useState<number>(config.defaults.months);
   const [values, setValues] = useState<Values>({
-    people: String(config.defaults.people), annualSalary: String(config.roles[initialRole].annualSalary),
-    equipment: String(config.defaults.equipment), software: String(config.defaults.software), office: String(config.defaults.office),
+    people: String(config.defaults.people), annualSalary: formatInput(String(config.roles[initialRole].annualSalary)),
+    equipment: formatInput(String(config.defaults.equipment)), software: formatInput(String(config.defaults.software)), office: formatInput(String(config.defaults.office)),
   });
   const input: CalculatorInput = {
     role, days, months,
-    ...Object.fromEntries(Object.entries(values).map(([key, value]) => [key, value.trim() === '' ? (['equipment', 'software', 'office'].includes(key) ? 0 : NaN) : Number(value)])) as Record<EditableField, number>,
+    ...Object.fromEntries(Object.entries(values).map(([key, value]) => [key, value.trim() === '' ? (['equipment', 'software', 'office'].includes(key) ? 0 : NaN) : (value.replace(/,/g, '').trim() === '' ? NaN : Number(value.replace(/,/g, '')))])) as Record<EditableField, number>,
   };
   const errors = validateEstimate(input);
   const estimate = calculateEstimate(input);
@@ -72,7 +77,7 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
             <h3 id={`${titleId}-requirements`}>Your requirements</h3>
             <div className="calculator-requirements-grid">
               <label className="calculator-field">Role
-                <span className="calculator-select-wrap"><select aria-label="Role" value={role} onChange={e => { const next = e.target.value as CalculatorRole; setRole(next); update('annualSalary', String(config.roles[next].annualSalary)); }}>
+                <span className="calculator-select-wrap"><select aria-label="Role" value={role} onChange={e => { const next = e.target.value as CalculatorRole; setRole(next); update('annualSalary', formatInput(String(config.roles[next].annualSalary))); }}>
                   {(Object.keys(config.roles) as CalculatorRole[]).map(key => <option key={key} value={key}>{config.roles[key].label}</option>)}
                 </select><ChevronDown size={18} aria-hidden="true" /></span>
               </label>
@@ -112,21 +117,21 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
             <p className="calculator-period">Estimated {isHigher ? 'additional cost' : 'saving'} over {months} {months === 1 ? 'month' : 'months'}: <strong data-testid="period-saving">{money(estimate ? Math.abs(estimate.periodSaving) : undefined)}</strong></p>
           </div>
           {!estimate && <p className="calculator-error" role="status">Check the highlighted inputs to see your estimate.</p>}
-          <div className="calculator-breakdown">
-            <table><caption className="sr-only">Monthly cost breakdown for your whole team</caption><thead><tr><th scope="col">Cost breakdown <span>(monthly)</span></th><th scope="col">UK<span className="sr-only md:not-sr-only"> employment</span></th><th scope="col">Outsource<wbr />.com</th></tr></thead><tbody>
+          <div className="calculator-breakdown" role="region" aria-label="Monthly cost breakdown" tabIndex={0}>
+            <table><caption className="sr-only">Monthly cost breakdown for your whole team</caption><thead><tr><th scope="col">Cost breakdown <span>(monthly)</span></th><th scope="col" className="calculator-uk-heading">UK employment</th><th scope="col">Outsource<wbr />.com</th></tr></thead><tbody>
               <tr><th scope="row">Salary / service</th><td>{money(estimate?.salary)}</td><td>{money(estimate?.outsourcedMonthly)}</td></tr>
-              <tr><th scope="row">Employer NI</th><td>{money(estimate?.nationalInsurance)}</td><td>Included</td></tr>
-              <tr><th scope="row">Employer pension</th><td>{money(estimate?.employerPension)}</td><td>Included</td></tr>
-              <tr><th scope="row">IT &amp; equipment</th><td>{money(estimate?.equipment)}</td><td>Included</td></tr>
-              <tr><th scope="row">Software &amp; communication</th><td>{money(estimate?.software)}</td><td>Included</td></tr>
-              <tr><th scope="row">Office &amp; desk costs</th><td>{money(estimate?.office)}</td><td>Included</td></tr>
+              <tr><th scope="row">Employer NI</th><td>{money(estimate?.nationalInsurance)}</td><td>Covered</td></tr>
+              <tr><th scope="row">Employer pension</th><td>{money(estimate?.employerPension)}</td><td>Covered</td></tr>
+              <tr><th scope="row">IT &amp; equipment</th><td>{money(estimate?.equipment)}</td><td>Covered</td></tr>
+              <tr><th scope="row">Software &amp; communication</th><td>{money(estimate?.software)}</td><td>Covered</td></tr>
+              <tr><th scope="row">Office &amp; desk costs</th><td>{money(estimate?.office)}</td><td>Covered</td></tr>
             </tbody></table>
           </div>
           <p className="calculator-note">Monthly figures rounded. Totals calculated before rounding.</p>
           <div className="calculator-actions"><button type="button" className="calculator-book" onClick={onBookCall}>Book a call<ArrowRight size={20} aria-hidden="true" /></button></div>
-          <details className="calculator-assumptions"><summary>View assumptions<ChevronDown size={18} aria-hidden="true" /></summary><div>
+          <details className="calculator-assumptions"><summary>View Assumptions<ChevronDown size={18} aria-hidden="true" /></summary><div>
             <p>UK estimates use {config.taxYear} standard assumptions, before Employment Allowance. Salary is adjusted to the selected weekly hours against a {config.fullTimeHoursPerWeek}-hour full-time week. Employer NI is calculated at {config.nationalInsurance.rate * 100}% of each person’s adjusted salary above {money(config.nationalInsurance.threshold)}, minimum £0. Employer pension is calculated at {config.pension.rate * 100}% of earnings between {money(config.pension.lowerThreshold)} and {money(config.pension.upperThreshold)}, assuming an eligible enrolled employee.</p>
-            <p>Any optional UK employment costs entered are included in the UK employer total. Outsource.com costs are calculated using the selected role and {config.billedWeeks} billed weeks per year. Rates may vary by experience, team size and commitment length. Outsource.com prices shown exclude VAT.</p>
+            <p>Any optional UK employment costs entered are included in the UK employer total. Outsource.com costs are calculated using the selected role and {config.billedWeeks} billed weeks per year. “Covered” means included, subject to any applicable usage limits. UK employer NI and pension are shown for comparison only. Rates may vary by experience, team size and commitment length. Outsource.com prices shown exclude VAT.</p>
             <p><a href="https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027" target="_blank" rel="noreferrer">HMRC rates</a> · <a href="https://www.thepensionsregulator.gov.uk/employers/new-employers/im-an-employer-who-has-to-provide-a-pension/choose-a-pension-scheme/understanding-your-costs/making-contributions-to-your-pension-scheme" target="_blank" rel="noreferrer">Pension contributions</a></p>
           </div></details>
         </section>

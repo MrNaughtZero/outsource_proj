@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { openBooking } from '../../components/booking/calBooking';
 import heroRings from '../../assets/landing/images/about_02.png';
 import phoneTalkIcon from '../../assets/landing/contact/phone-talk.svg';
 import emailIcon from '../../assets/landing/contact/email.svg';
@@ -53,14 +54,13 @@ export default function Contact() {
         <div className="grid -translate-y-[66px] gap-0 lg:mx-auto lg:min-h-[717px] lg:w-[992px] lg:translate-y-0 lg:grid-cols-[401px_566px] lg:grid-rows-[255px_minmax(438px,auto)] lg:gap-6">
           {/* Mobile-only: Book a call + "or send a message" divider */}
           <div className="lg:hidden">
-            <a
-              href="https://cal.com"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
+              onClick={openBooking}
               className="flex h-[48px] w-full items-center justify-center rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-linear hover:bg-white hover:text-brand-purple-mid"
             >
               Book a call
-            </a>
+            </button>
             <div className="my-8 flex items-center gap-2 text-lg font-extralight leading-6 text-white">
               <span className="h-px flex-1 bg-white/15" />
               or send a message
@@ -160,14 +160,13 @@ export default function Contact() {
                 Book a 15-minuite call to discuss your needs.
               </p></div>
             </div>
-            <a
-              href="https://cal.com"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              type="button"
+              onClick={openBooking}
               className="flex h-[55px] w-full items-center justify-center rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
             >
               Book a Call
-            </a>
+            </button>
           </div>
 
           {/* Contact details — left column, bottom row */}

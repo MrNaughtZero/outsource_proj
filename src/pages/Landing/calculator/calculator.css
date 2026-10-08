@@ -77,11 +77,13 @@
 .calculator-percentage { @apply max-w-full rounded-full bg-brand-purple-dark px-4 py-2 text-[36px] font-bold leading-[42px] text-brand-lime; overflow-wrap: anywhere; }
 .calculator-period { @apply w-full border-t border-brand-purple-dark/20 pt-3; overflow-wrap: anywhere; }
 .calculator-period strong { @apply text-2xl leading-8; }
-.calculator-breakdown { @apply mt-4 overflow-hidden rounded-lg border border-brand-purple; }
+.calculator-breakdown { @apply mt-4 overflow-x-auto rounded-lg border border-brand-purple; }
+.calculator-breakdown:focus-visible { @apply outline outline-2 outline-offset-2 outline-brand-lime; }
 .calculator-breakdown table { @apply w-full table-fixed border-collapse text-sm leading-5; }
 .calculator-breakdown th, .calculator-breakdown td { @apply border-b border-brand-purple/60 px-3 py-3 text-right align-top; overflow-wrap: anywhere; }
 .calculator-breakdown th:first-child { @apply w-[40%] text-left font-normal; overflow-wrap: normal; }
 .calculator-breakdown thead th { @apply font-medium; }
+.calculator-breakdown .calculator-uk-heading { white-space: nowrap; }
 .calculator-breakdown thead span { @apply block font-normal text-brand-periwinkle; }
 .calculator-breakdown tbody { @apply text-brand-periwinkle; }
 .calculator-breakdown tr:last-child > * { @apply border-b-0; }
@@ -115,10 +117,13 @@
   .calculator-percentage { @apply mt-3 inline-block; }
 
   .calculator-period { @apply mt-3; }
-  .calculator-breakdown table { @apply text-xs leading-4; }
+  .calculator-breakdown table { @apply min-w-[280px] text-xs leading-4; }
   .calculator-breakdown th, .calculator-breakdown td { @apply px-1.5 py-3; }
   .calculator-breakdown thead th { overflow-wrap: normal; }
-  .calculator-breakdown th:first-child { @apply w-[44%]; }
+  .calculator-breakdown th:first-child { width: calc(100% - 176px); }
+  .calculator-breakdown .calculator-uk-heading { width: 104px; }
+  .calculator-breakdown thead th:last-child { width: 72px; }
+  .calculator-breakdown tbody th { overflow-wrap: anywhere; }
 
 }
 @media (max-width: 379px) {

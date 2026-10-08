@@ -5,12 +5,22 @@ import ellipse from '../../../assets/landing/images/login_ellipse.png';
 import vector from '../../../assets/landing/images/login_vector.svg';
 import pattern from '../../../assets/landing/images/login_pattern.png';
 import resetWorkspace from '../../../assets/landing/login/reset-workspace.png';
-import resetLogo from '../../../assets/landing/login/reset-logo.svg';
+import logoMainDesktop from '../../../assets/landing/login/auth-logo-main-desktop.svg';
+import logoComDesktop from '../../../assets/landing/login/auth-logo-com-desktop.svg';
+import logoMainMobile from '../../../assets/landing/login/auth-logo-main-mobile.svg';
+import logoComMobile from '../../../assets/landing/login/auth-logo-com-mobile.svg';
 import resetVector from '../../../assets/landing/login/reset-vector.svg';
 import resetVectorMobile from '../../../assets/landing/login/reset-vector-mobile.svg';
 
+function AuthPanelLogo({ mobile = false }: { mobile?: boolean }) {
+  return <span className={`platform-auth-logo relative block shrink-0 ${mobile ? 'h-[26.999px] w-[241.042px]' : 'h-[33px] w-[294.61px]'}`} aria-hidden="true">
+    <img src={mobile ? logoMainMobile : logoMainDesktop} alt="" className="absolute left-0 top-0 max-w-none" />
+    <img src={mobile ? logoComMobile : logoComDesktop} alt="" className={`absolute max-w-none ${mobile ? 'left-[196.463px] top-[15.729px]' : 'left-[240.12px] top-[19.22px]'}`} />
+  </span>;
+}
+
 export default function PlatformAuthLayout({ children, reset = false }: { children: ReactNode; reset?: boolean }) {
-  return <main className={`platform-auth ${reset ? 'platform-reset ' : ''}relative h-[100dvh] min-h-[920px] overflow-hidden bg-[linear-gradient(-28.264deg,#eee8fc_49.355%,#c4b7e7_81.886%)] font-dmsans text-brand-purple-mid lg:h-screen lg:min-h-0 lg:bg-[linear-gradient(121.915deg,#eee8fc_29.574%,#c4b7e7_78.821%)]`}>
+  return <main className={`platform-auth ${reset ? 'platform-reset ' : ''}relative h-[100dvh] min-h-[920px] overflow-hidden bg-[linear-gradient(-28.264deg,#eee8fc_49.355%,#c4b7e7_81.886%)] font-dmsans text-brand-purple-mid lg:h-screen lg:min-h-[780px] lg:bg-[linear-gradient(121.915deg,#eee8fc_29.574%,#c4b7e7_78.821%)]`}>
     <div className="lg:hidden"><MarketingNavbar overlay variant="auth" /></div>
     <div className="platform-login-stage absolute inset-y-0 left-1/2 w-full -translate-x-1/2">
       {reset ? <picture><source media="(min-width: 1024px)" srcSet={resetVector} /><img src={resetVectorMobile} alt="" className="platform-reset-vector absolute max-w-none opacity-30 lg:opacity-40" /></picture> : <img src={vector} alt="" className="platform-login-vector absolute left-[104px] top-[-21px] h-[481px] w-[517px] max-w-none opacity-30 lg:opacity-40" />}
@@ -21,8 +31,8 @@ export default function PlatformAuthLayout({ children, reset = false }: { childr
       <div className="absolute right-0 top-0 hidden h-full w-[33.594%] bg-gradient-to-r from-[rgba(204,192,235,0)] to-[#ccc0eb] opacity-50 lg:block" />
       <div className="platform-login-panel absolute inset-x-0 bottom-0 top-[365px] overflow-hidden rounded-t-xl bg-brand-purple-mid lg:rounded-xl">
         <img src={pattern} alt="" className="absolute bottom-0 left-0 h-[220px] w-full object-cover object-top opacity-40 lg:bottom-auto lg:top-0 lg:h-[390px]" />
-        <div className="platform-login-panel-content absolute left-10 right-10 top-[68px]"><Link to="/" className="hidden lg:block"><img src={resetLogo} alt="Outsource" className="platform-login-panel-logo mx-auto w-[240px]" /></Link><div className="platform-login-form-wrap">{children}</div></div>
-        <Link to="/" className="absolute bottom-[60px] left-1/2 -translate-x-1/2 lg:hidden"><img src={resetLogo} alt="Outsource" className="w-[192px]" /></Link>
+        <div className="platform-login-panel-content absolute left-10 right-10 top-[68px]"><Link to="/" aria-label="Outsource.com home" className="hidden justify-center lg:flex"><AuthPanelLogo /></Link><div className="platform-login-form-wrap">{children}</div></div>
+        <Link to="/" aria-label="Outsource.com home" className="absolute bottom-[60px] left-1/2 -translate-x-1/2 lg:hidden"><AuthPanelLogo mobile /></Link>
       </div>
     </div>
   </main>;

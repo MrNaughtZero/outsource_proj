@@ -1,0 +1,46 @@
+.marketing-main.policy-marketing-main { margin-top: 0; }
+.policy-page {
+  background-color: #1f0849;
+  color: white;
+  font-family: "DM Sans Figma", "DM Sans", sans-serif;
+  font-variation-settings: "opsz" 14;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  line-height: 24px;
+}
+.policy-container { width: min(991px, calc(100% - 80px)); margin-inline: auto; }
+.policy-hero {
+  padding-top: 124px;
+  padding-bottom: 80px;
+  background-image: linear-gradient(to bottom, #1f0849, rgba(57, 24, 116, .53));
+}
+.policy-page h1 { font-size: 36px; line-height: 42px; font-weight: 500; letter-spacing: 0; }
+.policy-page .policy-updated { margin-top: 16px; color: white; font-weight: 400; letter-spacing: 0; }
+.policy-page .policy-mobile-intro { margin-top: 12px; font-weight: 400; letter-spacing: 0; color: #cabcf6; }
+.policy-divider { display: none; }
+.policy-body { padding-bottom: 60px; background-image: linear-gradient(to bottom, #2d1160, rgba(45, 17, 96, 0)); }
+.policy-sections { display: flex; flex-direction: column; gap: 56px; }
+.policy-page h2 { margin-bottom: 24px; font-size: 30px; line-height: 36px; font-weight: 400; letter-spacing: 0; }
+.policy-copy { color: #cabcf6; overflow-wrap: break-word; }
+.policy-copy p, .policy-copy li { font-weight: 400; letter-spacing: 0; line-height: 24px; }
+.policy-copy .policy-emphasis, .policy-copy strong { font-weight: 700; }
+.policy-copy ul { list-style: disc; padding-left: 27px; }
+.policy-copy ol { list-style: decimal; padding-left: 27px; }
+.policy-paragraph-gap { height: 24px; }
+.policy-copy a { text-decoration: underline; text-underline-offset: 2px; }
+.policy-copy a:hover { color: #ccf043; }
+.policy-copy a:focus-visible { outline: 2px solid #ccf043; outline-offset: 3px; }
+@media (max-width: 379px) {
+  .policy-container { width: calc(100% - 40px); }
+}
+@media (min-width: 1024px) {
+  .policy-hero { padding-top: 180px; padding-bottom: 60px; }
+  .policy-page h1 { font-size: 64px; line-height: 72px; letter-spacing: -.64px; }
+  .policy-page .policy-updated { margin-top: 32px; }
+  .policy-mobile-intro { display: none; }
+  .policy-divider { display: block; height: 0; margin-top: 60px; position: relative; }
+  .policy-divider img { position: absolute; top: -.5px; }
+  .policy-body { padding-bottom: 120px; }
+  .policy-sections { gap: 72px; }
+}

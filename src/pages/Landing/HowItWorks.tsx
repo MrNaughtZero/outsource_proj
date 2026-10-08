@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import useDesktopDragScroll from './hooks/useDesktopDragScroll';
+import useDesktopCarouselLayout from './hooks/useDesktopCarouselLayout';
 import hero from '../../assets/landing/images/support.png';
 import platform from '../../assets/landing/images/how_workspace.png';
 import recruit from '../../assets/landing/images/icons/how_recruit.svg';
@@ -46,6 +47,7 @@ const TOOLS = [
 export default function HowItWorks() {
   const toolsScrollerRef = useRef<HTMLDivElement>(null);
   useDesktopDragScroll(toolsScrollerRef);
+  useDesktopCarouselLayout(toolsScrollerRef);
   const [toolsScrollProgress, setToolsScrollProgress] = useState(0);
 
   const updateToolsScrollProgress = () => {
@@ -155,7 +157,7 @@ export default function HowItWorks() {
           <div
             ref={toolsScrollerRef}
             onScroll={updateToolsScrollProgress}
-            className="desktop-drag-scroll how-tools-carousel how-tools-carousel-mobile mt-10 flex max-w-none gap-5 overflow-x-auto lg:mt-8 lg:gap-4"
+            className="desktop-drag-scroll desktop-viewport-carousel how-tools-carousel how-tools-carousel-mobile mt-10 flex max-w-none gap-5 overflow-x-auto lg:mt-8 lg:gap-4"
           >
             {TOOLS.map((tool) => (
               <article key={tool.title} className={`how-workspace-card fading-card-border w-[180px] shrink-0 rounded-lg border-2 border-brand-purple bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 p-5 lg:h-[276px] lg:w-[290px] lg:p-6 ${'mobileOnly' in tool && tool.mobileOnly ? 'lg:hidden' : ''}`}>

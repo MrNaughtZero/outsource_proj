@@ -123,6 +123,16 @@ textarea {
 
 /* Desktop carousels can be grabbed anywhere, including their cards and icons. */
 @media (min-width: 1024px) {
+  .desktop-drag-scroll.desktop-viewport-carousel {
+    width: var(--desktop-carousel-width, 100%);
+    max-width: none;
+    padding-right: 20px;
+  }
+
+  .desktop-viewport-carousel[data-overflow="false"] + input[type="range"] {
+    display: none;
+  }
+
   .desktop-drag-scroll,
   .desktop-drag-scroll * {
     cursor: grab;
@@ -369,10 +379,6 @@ textarea {
 }
 
 @media (min-width: 1024px) {
-  .how-tools-carousel-mobile {
-    width: min(1136px, calc(100vw - max(24px, (100vw - 992px) / 2)));
-  }
-
   .how-hero-heading {
     background-image: linear-gradient(96.29762786118162deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%);
     -webkit-background-clip: text;
@@ -819,10 +825,8 @@ input::-ms-clear {
 }
 
 @media (min-width: 1024px) {
-  .platform-reset { min-height: 780px; }
   .platform-reset-vector { left: calc(47.96875% - 37px); top: calc(-13.4674% - 9px); }
   .platform-auth .platform-login-panel-content { top: 17.99775%; }
-  .platform-reset .platform-login-panel-logo { width: 240px; max-width: 100%; }
   .platform-auth .platform-login-form-wrap { margin-top: clamp(120px, 19.5652vh, 180px); }
   .platform-auth .platform-login-panel > img {
     top: 0;
@@ -835,6 +839,7 @@ input::-ms-clear {
 @media (min-width: 1024px) {
   .platform-login-stage {
     height: 100%;
+    min-height: inherit;
     left: 0;
     top: 0;
     transform: none;
@@ -858,7 +863,7 @@ input::-ms-clear {
   .platform-login-intro {
     left: 44.296875%;
     top: 14.8913%;
-    width: 38.75%;
+    width: max(496px, 38.75%);
   }
 
   .platform-login-intro h1 {
@@ -895,10 +900,6 @@ input::-ms-clear {
     left: 16.3265%;
     right: 16.3265%;
     top: 20.13498%;
-  }
-
-  .platform-login-panel-logo {
-    width: 73.3333%;
   }
 
   .platform-login-form-wrap {

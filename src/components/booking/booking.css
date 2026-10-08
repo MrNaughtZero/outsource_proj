@@ -1,0 +1,10 @@
+html[data-cal-contact] #outsource-cal-floating-button {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  cal-modal-box iframe {
+    width: calc(100% - 32px) !important;
+    margin-inline: auto;
+  }
+}

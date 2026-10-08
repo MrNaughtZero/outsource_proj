@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCalculator } from '../calculator/CalculatorContext';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { isContactPage, openBooking } from '../../../components/booking/calBooking';
 import logoPurple from '../../../assets/landing/logo/02_logo_com_purple.svg';
 import menuIcon from '../../../assets/landing/home/menu.svg';
 import authMenuIcon from '../../../assets/landing/login/auth-menu.svg';
@@ -80,6 +81,7 @@ interface MarketingNavbarProps {
 
 export default function MarketingNavbar({ overlay = true, variant = 'marketing' }: MarketingNavbarProps) {
   const { openCalculator } = useCalculator();
+  const onContact = isContactPage(useLocation().pathname);
   const menuTrigger = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -193,6 +195,7 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
 
             <Link
               to="/contact"
+              onClick={event => { if (onContact) { event.preventDefault(); openBooking(); } }}
               className="inline-flex items-center rounded-lg bg-brand-lime px-4 py-2 text-base font-medium leading-[normal] text-brand-purple-mid transition-colors duration-200 ease-linear hover:bg-white min-[1024px]:max-[1259px]:px-2"
             >
               Book a call
@@ -229,7 +232,14 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
               <div className="flex shrink-0 items-center gap-4 lg:gap-6">
                 <Link
                   to="/contact"
-                  onClick={closeMenu}
+                  onClick={event => {
+                    if (!onContact) { closeMenu(); return; }
+                    event.preventDefault();
+                    setClosing(false);
+                    setOpen(false);
+                    // Release the navigation scroll lock before Cal opens its popup.
+                    window.setTimeout(openBooking, 0);
+                  }}
                   className="hidden whitespace-nowrap rounded-lg bg-brand-lime px-4 py-2 text-base font-medium leading-[normal] text-brand-purple-mid transition-colors duration-200 ease-linear hover:bg-white lg:inline-flex"
                 >
                   Book a call

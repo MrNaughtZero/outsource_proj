@@ -3,6 +3,8 @@ import { Toaster } from 'react-hot-toast';
 import { lazy, Suspense } from 'react';
 
 import ScrollToTop from './components/ScrollToTop';
+import BookingWidget from './components/booking/BookingWidget';
+import CookieProvider from './components/cookies/CookieProvider';
 import CalculatorProvider from './pages/Landing/calculator/CalculatorProvider';
 
 // Marketing / Landing Pages (public website)
@@ -23,7 +25,7 @@ const SupportScenarioDetail = lazy(() => import('./pages/Landing/SupportScenario
 const SuccessionExit = lazy(() => import('./pages/Landing/SuccessionExit'));
 const CareerRegister = lazy(() => import('./pages/Landing/CareerRegister'));
 const Insights = lazy(() => import('./pages/Landing/Insights'));
-const ComingSoon = lazy(() => import('./pages/Landing/ComingSoon'));
+const PolicyPage = lazy(() => import('./pages/Landing/legal/PolicyPage'));
 const PlatformLogin = lazy(() => import('./pages/Landing/PlatformLogin'));
 const ResetPassword = lazy(() => import('./pages/Landing/ResetPassword'));
 const CompareCalculator = lazy(() => import('./pages/Landing/CompareCalculator'));
@@ -43,8 +45,10 @@ function App() {
 
   return (
     <BrowserRouter basename={basePath}>
+      <CookieProvider>
       <CalculatorProvider>
       <ScrollToTop />
+      <BookingWidget />
       <Toaster position="top-right" />
 
       <Suspense fallback={<LoadingFallback />}>
@@ -70,8 +74,10 @@ function App() {
             <Route path="/roles/bookkeepers" element={<Bookkeepers />} />
             <Route path="/roles/payroll-specialists" element={<PayrollSpecialists />} />
             <Route path="/roles/virtual-cfos" element={<VirtualCfos />} />
-            <Route path="/privacy" element={<ComingSoon title="Privacy Policy" />} />
-            <Route path="/terms" element={<ComingSoon title="Terms and Conditions" />} />
+            <Route path="/legal" element={<PolicyPage type="legal" />} />
+            <Route path="/privacy" element={<PolicyPage type="privacy" />} />
+            <Route path="/cookie-policy" element={<PolicyPage type="cookies" />} />
+            <Route path="/terms" element={<Navigate to="/legal" replace />} />
           </Route>
 
           {/* Anything else -> home */}
@@ -79,6 +85,7 @@ function App() {
         </Routes>
       </Suspense>
       </CalculatorProvider>
+      </CookieProvider>
     </BrowserRouter>
   );
 }
