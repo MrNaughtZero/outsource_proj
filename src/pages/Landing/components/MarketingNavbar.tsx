@@ -19,18 +19,16 @@ import menuClose from '../../../assets/landing/home/menu-close.svg';
 import menuCalculator from '../../../assets/landing/home/menu-calculator.svg';
 import menuCalculatorHover from '../../../assets/landing/home/menu-calculator-hover.svg';
 import menuRolesUp from '../../../assets/landing/home/menu-roles-up.svg';
-import joinTeam from '../../../assets/landing/footer/join-team.svg';
-import joinTeamHover from '../../../assets/landing/footer/join-team-hover.svg';
 import clientLogin from '../../../assets/landing/footer/client-login.svg';
 import headerLogoMainMobile from '../../../assets/landing/home/header-logo-main-mobile.svg';
 import headerLogoComMobile from '../../../assets/landing/home/header-logo-com-mobile.svg';
 import menuDividerDesktop from '../../../assets/landing/home/menu-divider-desktop.svg';
 import menuDividerMobile from '../../../assets/landing/home/menu-divider-mobile.svg';
 
-function MobileCallButton() {
-  return <a href="tel:01618705253" aria-label="Call us" className="mobile-call-button block h-[34px] w-[34px] shrink-0 lg:hidden">
+function MobileCallButton({ onClick }: { onClick?: () => void }) {
+  return <Link to="/contact" onClick={onClick} aria-label="Contact Us" className="mobile-call-button block h-[34px] w-[34px] shrink-0 lg:hidden">
     <img src={callButton} alt="" className="block max-w-none" />
-  </a>;
+  </Link>;
 }
 
 function NavigationLogo({ expanded = false }: { expanded?: boolean }) {
@@ -244,7 +242,7 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
                 >
                   Book a call
                 </Link>
-                <MobileCallButton />
+                <MobileCallButton onClick={closeMenu} />
                 <button type="button" aria-label="Close menu" onClick={closeMenu} className="flex items-center justify-center lg:p-2">
                   <span className="relative block h-[18px] w-6"><img src={menuClose} alt="" className="absolute left-0 top-[-2px] max-w-none" /></span>
                 </button>
@@ -312,10 +310,6 @@ export default function MarketingNavbar({ overlay = true, variant = 'marketing' 
                 <img src={menuDividerDesktop} alt="" className="absolute top-0 hidden max-w-none lg:block" />
               </div>
               <div className="flex flex-col items-start gap-3">
-                <Link to="/careers" onClick={closeMenu} className="group/menu-team inline-flex items-center gap-2 rounded-lg px-4 py-2 text-lg font-medium leading-[normal] text-white transition-colors duration-200 ease-linear hover:text-brand-lime">
-                  <span className="relative h-6 w-6"><img src={joinTeam} alt="" className="absolute inset-0 hidden max-w-none group-hover/menu-team:invisible lg:block" /><img src={joinTeamHover} alt="" className="absolute inset-0 max-w-none group-hover/menu-team:visible lg:invisible" /></span>
-                  <span className="group-hover/menu-team:underline [text-underline-position:from-font]">Join our team</span>
-                </Link>
                 <Link to="/login" onClick={closeMenu} className="group/menu-login inline-flex items-center gap-[14px] rounded-lg px-4 py-2 text-lg font-medium leading-6 text-brand-lime transition-colors duration-300 ease-out hover:bg-white hover:text-brand-purple-mid">
                   <span className="relative flex h-[22.154px] w-6 items-center"><img src={clientLogin} alt="" className="max-w-none group-hover/menu-login:invisible" /><img src={clientLoginHover} alt="" className="invisible absolute left-0 top-0 max-w-none group-hover/menu-login:visible" /></span>
                   Client login

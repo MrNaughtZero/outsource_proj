@@ -41,7 +41,7 @@ import liveUpdatesIcon from '../../assets/landing/home/live-updates.svg';
 import liveUpdatesMobileIcon from '../../assets/landing/home/live-updates-mobile.svg';
 import phoneIcon from '../../assets/landing/home/phone.svg';
 import whatsappIcon from '../../assets/landing/home/whatsapp.svg';
-import saveIcon from '../../assets/landing/home/save.svg';
+import videoIcon from '../../assets/landing/home/video.svg';
 import ReliefSection from './components/ReliefSection';
 
 const assurances = [
@@ -75,7 +75,7 @@ const platformFeatures = [
 const performanceFeatures = [
   { icon: phoneIcon, label: 'Call your people on a UK number' },
   { icon: whatsappIcon, label: 'WhatsApp messages and calls from your mobile' },
-  { icon: saveIcon, label: 'Shared files kept in one secure workspace' },
+  { icon: videoIcon, label: 'Connect face-to-face over video' },
 ] as const;
 
 function Heading({ children, className = '' }: { children: React.ReactNode; className?: string }) {

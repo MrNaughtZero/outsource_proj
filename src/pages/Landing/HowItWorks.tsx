@@ -37,7 +37,7 @@ const HANDLED = [
 
 const TOOLS = [
   { title: 'Tasks & progress', body: "See what's in progress, what's done and what's next.", icon: tasks, mobileIcon: tasksMobile },
-  { title: 'Files from uploads, email & WhatsApp', body: 'Files you upload or send to your dedicated people are automatically saved in one secure workplace.', icon: upload, mobileIcon: uploadMobile },
+  { title: 'Files in one place', body: 'Upload and share files securely with your dedicated people, all in one place.', icon: upload, mobileIcon: uploadMobile },
   { title: 'Messages & calls', body: 'Call or message your dedicated people throughout working hours, via our platform or WhatsApp', icon: messages, mobileIcon: messagesMobile },
   { title: 'WhatsApp from your mobile', body: 'Message or call your dedicated people on WhatsApp. They respond through our platform.', icon: messages, mobileIcon: messagesMobile, mobileOnly: true },
   { title: 'Timesheets & activity', body: 'Track time logged and activity across your tasks.', icon: time, mobileIcon: timeMobile },

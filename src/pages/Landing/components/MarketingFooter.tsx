@@ -4,7 +4,6 @@ import { useCalculator } from '../calculator/CalculatorContext';
 import compareCostsIcon from '../../../assets/landing/home/menu-calculator.svg';
 import footerContact from '../../../assets/landing/footer/contact.svg';
 import footerContactHover from '../../../assets/landing/footer/contact-hover.svg';
-import footerJoinTeamHover from '../../../assets/landing/footer/join-team-hover.svg';
 import footerClientLoginHover from '../../../assets/landing/footer/client-login-hover.svg';
 import footerLogoMain from '../../../assets/landing/footer/logo-main.svg';
 import footerLogoCom from '../../../assets/landing/footer/logo-com.svg';
@@ -12,7 +11,6 @@ import footerPhone from '../../../assets/landing/footer/phone.svg';
 import footerInstagram from '../../../assets/landing/footer/instagram.svg';
 import footerLinkedin from '../../../assets/landing/footer/linkedin.svg';
 import footerClientLogin from '../../../assets/landing/footer/client-login.svg';
-import footerJoinTeam from '../../../assets/landing/footer/join-team.svg';
 import footerLogoMainMobile from '../../../assets/landing/footer/logo-main-mobile.svg';
 import footerLogoComMobile from '../../../assets/landing/footer/logo-com-mobile.svg';
 import footerPhoneMobile from '../../../assets/landing/footer/phone-mobile.svg';
@@ -81,29 +79,28 @@ function FooterContact({ mobile = false }: { mobile?: boolean }) {
 
 function FooterSocials({ mobile = false }: { mobile?: boolean }) {
   return <div className="flex items-start gap-8">
-    <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><img src={mobile ? footerInstagramMobile : footerInstagram} alt="" className="max-w-none" /></a>
+    <span><img src={mobile ? footerInstagramMobile : footerInstagram} alt="Instagram" className="max-w-none" /></span>
     <a href="https://www.linkedin.com/company/outsource-com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src={mobile ? footerLinkedinMobile : footerLinkedin} alt="" className="max-w-none" /></a>
   </div>;
 }
 
 function FooterLegal({ mobile = false }: { mobile?: boolean }) {
   const { openCookieSettings } = useCookiePreferences();
-  return <div className={`flex text-xs leading-6 ${mobile ? 'flex-col-reverse gap-2' : 'flex-col gap-1'}`}>
-    <div className="flex flex-wrap items-center gap-x-4 text-[#a19caa]">
+  return <div className={`flex w-full text-xs leading-6 ${mobile ? 'flex-col gap-2' : 'items-start justify-between gap-6'}`}>
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-brand-muted">
+      {!mobile && <><Link to="/careers" className="underline hover:text-brand-lime">Join our team</Link><span aria-hidden="true">•</span></>}
       <Link to="/legal" className="underline hover:text-brand-lime">Legal</Link>
       <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><Link to="/privacy" className="underline hover:text-brand-lime">Privacy Policy</Link></span>
       <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><Link to="/cookie-policy" className="underline hover:text-brand-lime">Cookie Policy</Link></span>
       <span className="inline-flex items-center gap-4"><span aria-hidden="true">•</span><button type="button" className="underline hover:text-brand-lime" onClick={event => openCookieSettings(event.currentTarget)}>Manage Cookies</button></span>
+      {mobile && <Link to="/careers" className="w-full underline hover:text-brand-lime">Join our team</Link>}
     </div>
-    <p className={mobile ? 'text-white/60' : 'text-white/30'}>© Copyright 2026 Outsource.com</p>
+    <p className="shrink-0 text-white/30">© Copyright 2026 Outsource.com</p>
   </div>;
 }
 
-function FooterActions({ mobile = false }: { mobile?: boolean }) {
-  return <div className={`flex text-lg font-medium leading-6 ${mobile ? 'flex-col items-start gap-3' : 'items-center justify-end gap-6'}`}>
-    <Link to="/careers" className="group/join-team flex h-10 items-center gap-2 rounded-lg px-4 py-2 text-white transition-colors duration-200 ease-linear hover:text-brand-lime hover:underline">
-      <span className="relative h-6 w-6 shrink-0"><img src={footerJoinTeam} alt="" className="absolute inset-0 max-w-none group-hover/join-team:invisible" /><img src={footerJoinTeamHover} alt="" className="invisible absolute inset-0 max-w-none group-hover/join-team:visible" /></span>Join our team
-    </Link>
+function FooterActions() {
+  return <div className="flex shrink-0 items-start text-lg font-medium leading-6">
     <Link to="/login" className="group/client-login flex h-10 items-center gap-[14px] rounded-lg px-4 py-2 text-brand-lime transition-colors duration-300 ease-out hover:bg-white hover:text-brand-purple-mid">
       <span className="relative h-[22px] w-6 shrink-0"><img src={footerClientLogin} alt="" className="absolute inset-0 max-w-none group-hover/client-login:invisible" /><img src={footerClientLoginHover} alt="" className="invisible absolute inset-0 max-w-none group-hover/client-login:visible" /></span>Client login
     </Link>
@@ -127,15 +124,15 @@ export default function MarketingFooter() {
             <FooterLegal mobile />
           </div>
           <FooterDivider />
-          <FooterActions mobile />
+          <FooterActions />
         </div>
       </div>
       <div className="hidden flex-col gap-[57px] lg:flex">
         <div className="flex items-stretch justify-between">
-          <div className="flex w-[235px] flex-col items-start justify-between"><FooterLogo /><FooterContact /></div>
-          <div className="flex w-[489px] items-start justify-between"><FooterNavigation /><FooterSocials /></div>
+          <div className="flex w-[235px] flex-col items-start justify-between"><FooterLogo /><FooterContact /><FooterSocials /></div>
+          <div className="flex w-[572px] items-start justify-between"><FooterNavigation /><FooterActions /></div>
         </div>
-        <div className="flex items-start justify-between"><FooterLegal /><FooterActions /></div>
+        <FooterLegal />
       </div>
     </div>
   </footer>;

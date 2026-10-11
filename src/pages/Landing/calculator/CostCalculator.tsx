@@ -75,6 +75,7 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
         <div className="calculator-input-panels">
           <section className="calculator-panel calculator-requirements" aria-labelledby={`${titleId}-requirements`}>
             <h3 id={`${titleId}-requirements`}>Your requirements</h3>
+            <p className="calculator-muted">Adjust the figures to match your needs.</p>
             <div className="calculator-requirements-grid">
               <label className="calculator-field">Role
                 <span className="calculator-select-wrap"><select aria-label="Role" value={role} onChange={e => { const next = e.target.value as CalculatorRole; setRole(next); update('annualSalary', formatInput(String(config.roles[next].annualSalary))); }}>
@@ -106,7 +107,7 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
         </div>
         <section className="calculator-panel calculator-results" aria-labelledby={`${titleId}-results`}>
           <h3 id={`${titleId}-results`}>Your comparison</h3>
-          <p className="calculator-muted">Monthly costs • {errors.people ? 'your team' : `${input.people} ${input.people === 1 ? roleInfo.label.toLowerCase() : roleInfo.plural}`} • {days} {days === 1 ? 'day' : 'days'}/week</p>
+          <p className="calculator-muted">Monthly costs • {errors.people ? 'your team' : <><span className="text-brand-lime">{input.people}</span> {input.people === 1 ? roleInfo.label.toLowerCase() : roleInfo.plural}</>} • <span className="text-brand-lime">{days}</span> {days === 1 ? 'day' : 'days'}/week</p>
           <div className="calculator-totals">
             <div className="calculator-total"><h4>UK employment</h4><strong data-testid="uk-total">{money(estimate?.ukMonthly)}</strong><span>/ month</span></div>
             <div className="calculator-total calculator-outsourced"><h4>Outsource.com</h4><strong data-testid="outsourced-total">{money(estimate?.outsourcedMonthly)}</strong><span>/ month</span></div>
@@ -127,7 +128,7 @@ export default function CostCalculator({ initialRole = 'bookkeeper', headingId, 
               <tr><th scope="row">Office &amp; desk costs</th><td>{money(estimate?.office)}</td><td>Covered</td></tr>
             </tbody></table>
           </div>
-          <p className="calculator-note">Monthly figures rounded. Totals calculated before rounding.</p>
+          <p className="calculator-note">Figures are rounded; totals use exact amounts.</p>
           <div className="calculator-actions"><button type="button" className="calculator-book" onClick={onBookCall}>Book a call<ArrowRight size={20} aria-hidden="true" /></button></div>
           <details className="calculator-assumptions"><summary>View Assumptions<ChevronDown size={18} aria-hidden="true" /></summary><div>
             <p>UK estimates use {config.taxYear} standard assumptions, before Employment Allowance. Salary is adjusted to the selected weekly hours against a {config.fullTimeHoursPerWeek}-hour full-time week. Employer NI is calculated at {config.nationalInsurance.rate * 100}% of each person’s adjusted salary above {money(config.nationalInsurance.threshold)}, minimum £0. Employer pension is calculated at {config.pension.rate * 100}% of earnings between {money(config.pension.lowerThreshold)} and {money(config.pension.upperThreshold)}, assuming an eligible enrolled employee.</p>

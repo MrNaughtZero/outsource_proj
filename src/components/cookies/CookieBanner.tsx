@@ -11,7 +11,7 @@ export default function CookieBanner({ onChoose, onManage }: {
   return <section className={`cookie-surface cookie-banner ${closing ? 'is-closing' : ''}`} aria-labelledby="cookie-banner-title">
     <div className="cookie-heading">
       <h2 id="cookie-banner-title">Your cookie choices</h2>
-      <p>We use cookies for essential website functions. With your permission, we also use optional cookies to understand how you use our website and measure the effectiveness of our advertising.</p>
+      <p>We use essential technologies to support website functions and remember your cookie choices. You can review your choices at any time through Manage cookies.</p>
     </div>
     <div className="cookie-actions">
       <div className="cookie-links">
