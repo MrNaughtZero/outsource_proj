@@ -1,6 +1,9 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import './home-motion.css';
 
+// Run the entire entrance sequence, including staggered delays, 25% slower.
+const HOME_MOTION_SPEED = 0.75;
+
 /** Homepage-only entrances from the October Loom. Layout and hover transforms
  * remain independent; content is visible unless this enhancement is running. */
 export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
@@ -61,8 +64,8 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
         animations.set(target, running);
         parts.forEach((part, index) => {
           running.push(part.animate([from, to], {
-            duration: type === 'scale' ? 900 : type === 'words' ? 800 : 720,
-            delay: delay + index * 50,
+            duration: (type === 'scale' ? 900 : type === 'words' ? 800 : 720) / HOME_MOTION_SPEED,
+            delay: (delay + index * 50) / HOME_MOTION_SPEED,
             easing: type === 'words' ? 'cubic-bezier(0.22, 1.28, 0.36, 1)' : 'cubic-bezier(0.22, 1, 0.36, 1)',
             fill: 'both',
           }));
