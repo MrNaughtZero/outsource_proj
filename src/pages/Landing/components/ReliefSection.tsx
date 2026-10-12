@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import arrowLight from '../../../assets/landing/home/arrow-light.svg';
 import arrowPurple from '../../../assets/landing/home/arrow-purple.svg';
+import MotionWords from './MotionWords';
 
 function ReliefCard({
   to,
@@ -10,6 +11,7 @@ function ReliefCard({
   mobileCopy,
   lime = false,
   className = '',
+  motionDelay,
 }: {
   to: string;
   title: string;
@@ -18,10 +20,13 @@ function ReliefCard({
   mobileCopy?: string;
   lime?: boolean;
   className?: string;
+  motionDelay?: number;
 }) {
   return (
     <Link
       to={to}
+      data-home-motion={motionDelay === undefined ? undefined : 'up'}
+      data-home-motion-delay={motionDelay}
       className={`relief-card ${lime ? 'relief-card-call' : 'relief-card-arrow'} group relative flex min-h-[124px] flex-col rounded-lg border p-5 transition-[background-color,border-color,box-shadow] duration-200 ease-out lg:h-[226px] lg:border-0 lg:p-8 lg:ring-1 lg:ring-inset ${lime ? 'border-brand-purple/70 bg-brand-lime text-brand-purple-mid lg:ring-[rgba(92,52,161,0.67)] hover:bg-white hover:border-brand-lime hover:ring-1 hover:ring-inset hover:ring-brand-lime lg:hover:ring-2' : 'border-brand-purple/50 bg-gradient-to-r from-brand-purple to-brand-purple/15 text-white lg:bg-gradient-to-b lg:ring-brand-purple/50 hover:bg-brand-purple hover:border-brand-periwinkle hover:ring-brand-periwinkle'} ${className}`}
     >
       <div className="relief-card-heading contents">
@@ -63,25 +68,28 @@ export default function ReliefSection({
   },
   mobileClassName = '',
   fluidMobile = true,
+  animate = false,
 }: {
   firstCard?: ReliefCardDetails;
   secondCard?: ReliefCardDetails;
   mobileClassName?: string;
   fluidMobile?: boolean;
+  animate?: boolean;
 }) {
   return (
     <section className={`home-relief bg-[#3c1979] px-10 pb-[67px] pt-[60px] lg:h-[586px] lg:bg-gradient-to-b lg:from-brand-purple-mid lg:to-brand-purple-mid/60 lg:px-0 lg:pb-[120px] lg:pt-24 ${mobileClassName}`}>
       <div className={`mx-auto w-full ${fluidMobile ? '' : 'max-w-[313px] md:max-w-[720px]'} lg:max-w-[992px]`}>
-        <h2 className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
-          The <span className="text-brand-lime">relief</span> you've been looking for.
+        <h2 data-home-motion={animate ? 'words' : undefined} className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+          {animate ? <MotionWords>The <span className="text-brand-lime">relief</span> you've been looking for.</MotionWords>
+            : <>The <span className="text-brand-lime">relief</span> you've been looking for.</>}
         </h2>
-        <p className="mt-3 text-lg font-light leading-6 lg:mt-4">
+        <p data-home-motion={animate ? 'up' : undefined} data-home-motion-delay={animate ? 180 : undefined} className="mt-3 text-lg font-light leading-6 lg:mt-4">
           Where would you like to go <span className="text-brand-lime">next?</span>
         </p>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-[351px_351px_242px] lg:gap-6">
-          <ReliefCard {...firstCard} />
-          <ReliefCard {...secondCard} />
-          <ReliefCard className="md:col-span-2 lg:col-span-1" to="/contact" title="Ready to talk?" copy="Book a 15-minute call and let's discuss your needs." lime />
+          <ReliefCard {...firstCard} motionDelay={animate ? 0 : undefined} />
+          <ReliefCard {...secondCard} motionDelay={animate ? 150 : undefined} />
+          <ReliefCard motionDelay={animate ? 300 : undefined} className="md:col-span-2 lg:col-span-1" to="/contact" title="Ready to talk?" copy="Book a 15-minute call and let's discuss your needs." lime />
         </div>
       </div>
     </section>

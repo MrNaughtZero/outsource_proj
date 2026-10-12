@@ -17,6 +17,9 @@ export default function MarketingLayout() {
   useLayoutEffect(() => {
     const main = mainRef.current;
     if (!main) return;
+    // Home has its own element-by-element sequence, rather than moving whole
+    // section backgrounds or revealing off-screen content on the timer below.
+    if (pathname === '/') return;
 
     const sections = Array.from(main.querySelectorAll('section'));
     const reveal = (el: Element) => el.classList.add('is-visible');

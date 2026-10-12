@@ -14,12 +14,12 @@ type Role = {
   details: readonly string[];
 };
 
-export default function MobileHomeRoleCard({ role }: { role: Role }) {
+export default function MobileHomeRoleCard({ role, motionDelay }: { role: Role; motionDelay?: number }) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
 
   return (
-    <article className="home-mobile-role rounded-lg bg-[#f9f7fd] p-2 lg:hidden" data-expanded={expanded}>
+    <article data-home-motion={motionDelay === undefined ? undefined : 'up'} data-home-motion-delay={motionDelay} className="home-mobile-role rounded-lg bg-[#f9f7fd] p-2 lg:hidden" data-expanded={expanded}>
       <button
         type="button"
         id={`${id}-toggle`}

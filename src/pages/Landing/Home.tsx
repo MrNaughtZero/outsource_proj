@@ -4,7 +4,9 @@ import mobileAccountants from '../../assets/landing/roles/mobile/accountants.png
 import mobileBookkeepers from '../../assets/landing/roles/mobile/bookkeepers.png';
 import mobilePayroll from '../../assets/landing/roles/mobile/payroll-specialist.png';
 import mobileCfo from '../../assets/landing/home/role-mobile-cfo.png';
-import { Fragment } from 'react';
+import { Fragment, useRef } from 'react';
+import MotionWords from './components/MotionWords';
+import useHomeMotion from './useHomeMotion';
 import { Link } from 'react-router-dom';
 import homeHero from '../../assets/landing/images/home_hero_may_2026.png';
 import mobileHomeHero from '../../assets/landing/images/mobile_home_hero.png';
@@ -79,7 +81,7 @@ const performanceFeatures = [
 ] as const;
 
 function Heading({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <h2 className={`text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px] ${className}`}>{children}</h2>;
+  return <h2 data-home-motion="words" className={`text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px] ${className}`}><MotionWords>{children}</MotionWords></h2>;
 }
 
 function AssuranceSection() {
@@ -90,7 +92,7 @@ function AssuranceSection() {
           <Heading>
             Outsourcing{' '}<span className="block text-brand-lime lg:inline">Made Simple<span className="hidden lg:inline">.</span></span>
           </Heading>
-          <p className="text-lg font-light leading-6">
+          <p data-home-motion="down" data-home-motion-delay="160" className="text-lg font-light leading-6">
             Choose how many people you need and for how long. Work directly with them during UK working hours.{' '}<br className="hidden lg:block" />
             Our straightforward pricing includes management and our online platform.
           </p>
@@ -98,7 +100,7 @@ function AssuranceSection() {
         <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[repeat(4,230px)] lg:gap-6">
           {assurances.map((item, index) => (
             <Fragment key={item.title}>
-              <article className="relative flex gap-5 py-0 lg:flex-col lg:items-center lg:gap-6 lg:text-center">
+              <article data-home-motion="up" data-home-motion-delay={index * 150} className="relative flex gap-5 py-0 lg:flex-col lg:items-center lg:gap-6 lg:text-center">
                 <div className="flex h-[50px] w-[50px] shrink-0 items-center justify-center">
                   <img src={item.icon} alt="" className={index === 0 ? 'h-9 w-11' : 'h-[50px] w-[50px]'} />
                 </div>
@@ -123,13 +125,13 @@ function RolesSection() {
       <div className="mx-auto max-w-[992px]">
         <div className="space-y-4">
           <Heading><span className="text-brand-lime">Extend</span> Your Finance Team</Heading>
-          <p className="text-lg font-light leading-6">You get the person. We provide the standards, secure environment and managed delivery behind them.</p>
+          <p data-home-motion="down" data-home-motion-delay="160" className="text-lg font-light leading-6">You get the person. We provide the standards, secure environment and managed delivery behind them.</p>
         </div>
         <div className="mt-[60px] grid grid-cols-1 gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-6">
-          {roles.map((role) => (
+          {roles.map((role, index) => (
             <Fragment key={role.title}>
-            <MobileHomeRoleCard role={role} />
-            <article className="home-role-card group/home-role transition-[background-color,box-shadow] duration-300 ease-out relative hidden lg:flex h-[103px] min-w-0 items-center gap-5 overflow-hidden rounded-lg bg-[#f9f7fd] p-2 pr-5 lg:h-[290px] lg:flex-col lg:items-stretch lg:gap-0 lg:border-0 lg:p-0 lg:ring-2 lg:ring-inset lg:ring-brand-lavender lg:hover:bg-brand-purple-dark lg:hover:ring-transparent lg:focus-within:bg-brand-purple-dark lg:focus-within:ring-transparent">
+            <MobileHomeRoleCard role={role} motionDelay={index * 150} />
+            <article data-home-motion="up" data-home-motion-delay={index * 150} className="home-role-card group/home-role transition-[background-color,box-shadow] duration-300 ease-out relative hidden lg:flex h-[103px] min-w-0 items-center gap-5 overflow-hidden rounded-lg bg-[#f9f7fd] p-2 pr-5 lg:h-[290px] lg:flex-col lg:items-stretch lg:gap-0 lg:border-0 lg:p-0 lg:ring-2 lg:ring-inset lg:ring-brand-lavender lg:hover:bg-brand-purple-dark lg:hover:ring-transparent lg:focus-within:bg-brand-purple-dark lg:focus-within:ring-transparent">
               <Link to={role.to} aria-label={role.title} className="absolute inset-0 z-10 lg:hidden" />
               <div className="h-[87px] w-[85px] shrink-0 lg:h-[246px] lg:w-full lg:flex-none lg:px-3">
                 <img src={role.image} alt={role.title} className="h-full w-full object-contain object-bottom lg:object-center" />
@@ -160,7 +162,7 @@ function RolesSection() {
             </Fragment>
           ))}
         </div>
-        <CompareCostsSection className="mt-[60px] lg:mt-14" />
+        <CompareCostsSection className="home-motion-fade mt-[60px] lg:mt-14" />
       </div>
     </section>
   );
@@ -173,19 +175,19 @@ function OnboardingSection() {
         <Heading>
           Seamless <span className="text-brand-lime">Onboarding</span>
         </Heading>
-        <p className="mt-3 text-lg font-light leading-6">
+        <p data-home-motion="down" data-home-motion-delay="160" className="mt-3 text-lg font-light leading-6">
           <span className="lg:hidden">Onboarding in simple terms</span>
           <span className="hidden lg:inline">How your team gets started</span>
         </p>
         <div className="home-workflow relative mx-auto mt-12 h-[496px] w-full max-w-[992px] lg:left-1/2 lg:mt-[60px] lg:h-[291px] lg:w-[1218px] lg:max-w-none lg:-translate-x-1/2">
-          <div aria-hidden className="home-workflow-rings pointer-events-none absolute inset-0">
+          <div data-home-motion="fade" aria-hidden className="home-workflow-rings pointer-events-none absolute inset-0">
             <img src={workflowMobile} alt="" className="home-workflow-ring-mobile h-[478px] w-full lg:hidden" />
             <img src={workflowEllipseWide} alt="" className="home-workflow-ring-wide hidden max-w-none lg:block" />
             <img src={workflowEllipseMiddle} alt="" className="home-workflow-ring-middle hidden max-w-none lg:block" />
             <img src={workflowEllipseOuter} alt="" className="home-workflow-ring-outer hidden max-w-none lg:block" />
           </div>
-          {onboardingSteps.map((step) => (
-            <div key={step.label} className={`home-workflow-step absolute flex w-[193px] flex-col items-center gap-3 lg:w-[150px] ${step.className}`}>
+          {onboardingSteps.map((step, index) => (
+            <div data-home-motion="scale" data-home-motion-delay={index * 140} key={step.label} className={`home-workflow-step absolute flex w-[193px] flex-col items-center gap-3 lg:w-[150px] ${step.className}`}>
               <img src={step.image} alt="" className={`h-[60px] w-auto max-w-[120px] object-contain lg:max-w-none ${step.imageClassName}`} />
               <p className={`text-center text-lg leading-6 ${step.className === 'home-step-match' ? 'w-[219px] lg:w-auto' : ''}`}>{'mobileLabel' in step ? <><span className="whitespace-pre-line lg:hidden">{step.mobileLabel}</span><span className="hidden lg:inline">{step.label}</span></> : step.label}</p>
             </div>
@@ -201,14 +203,14 @@ function PlatformSection() {
     <section className="home-platform bg-brand-purple-dark px-10 py-[60px] lg:bg-transparent lg:px-0 lg:pb-0 lg:pt-[60px]">
       <div className="mx-auto max-w-[992px] text-center">
         <Heading>One <span className="text-brand-lime">Platform,</span> Total Visibility</Heading>
-        <p className="mt-3 text-lg font-light leading-6">Your people, tasks, files and updates in one place.</p>
+        <p data-home-motion="up" data-home-motion-delay="160" className="mt-3 text-lg font-light leading-6">Your people, tasks, files and updates in one place.</p>
         <div className="home-platform-art relative left-1/2 mt-10 aspect-[992/503] w-[367px] max-w-none -translate-x-1/2 max-[379px]:w-[calc(100vw-40px)] lg:left-auto lg:mt-[60px] lg:w-full lg:translate-x-0">
-          <img src={platform} alt="Outsource workspace dashboard" className="absolute left-0 top-[7.43%] h-[85.08%] w-full object-contain" />
+          <img data-home-motion="up" src={platform} alt="Outsource workspace dashboard" className="absolute left-0 top-[7.43%] h-[85.08%] w-full object-contain" />
         </div>
         <div className="home-platform-features mx-auto mt-10 grid max-w-[520px] grid-cols-4 gap-x-3 gap-y-5 max-[380px]:grid-cols-2 lg:mt-[60px] lg:max-w-none lg:flex lg:flex-nowrap lg:items-stretch lg:gap-3">
           {platformFeatures.map((feature, index) => (
             <Fragment key={feature.title}>
-              <article className="relative flex min-w-0 flex-col items-center gap-2 lg:flex-[1_0_0] lg:gap-3 lg:px-[30px]">
+              <article data-home-motion="up" data-home-motion-delay={index * 150} className="relative flex min-w-0 flex-col items-center gap-2 lg:flex-[1_0_0] lg:gap-3 lg:px-[30px]">
                 <picture className="contents">
                   <source className="hidden" media="(max-width: 1023px)" srcSet={feature.mobileIcon} />
                   <img src={feature.icon} alt="" className="h-10 w-10 object-contain lg:h-[50px] lg:w-[50px]" />
@@ -238,25 +240,28 @@ function PerformanceSection() {
             <span className="block whitespace-nowrap"><span className="text-brand-lime">Direct access</span> to your</span>
             <span className="block">people</span>
           </Heading>
-          <p className="mt-6 text-lg font-light leading-6 lg:mt-0">Call or message the people doing your work through our secure workspace, or use WhatsApp directly from your mobile.</p>
+          <p data-home-motion="up" data-home-motion-delay="180" className="mt-6 text-lg font-light leading-6 lg:mt-0">Call or message the people doing your work through our secure workspace, or use WhatsApp directly from your mobile.</p>
           <div className="mt-6 space-y-4 lg:mt-0">
             {performanceFeatures.map((feature, index) => (
-              <div key={feature.label} className="flex items-center gap-3 rounded-lg border-2 border-brand-purple/50 bg-gradient-to-r from-brand-purple-mid/50 to-[rgba(45,18,92,0.5)] p-4 lg:gap-5 lg:px-6 lg:py-4">
+              <div data-home-motion="up" data-home-motion-delay={index * 150} key={feature.label} className="flex items-center gap-3 rounded-lg border-2 border-brand-purple/50 bg-gradient-to-r from-brand-purple-mid/50 to-[rgba(45,18,92,0.5)] p-4 lg:gap-5 lg:px-6 lg:py-4">
                 <img src={feature.icon} alt="" className="h-8 w-8 shrink-0" />
                 <p className={`text-lg font-medium leading-6 lg:leading-[30px] ${index === 0 ? 'lg:whitespace-nowrap' : 'lg:w-[298px]'}`}>{feature.label}</p>
               </div>
             ))}
           </div>
         </div>
-        <div className="home-direct-art"><img src={platformMessages} alt="Outsource workspace conversation and video call" /></div>
+        <div data-home-motion="fade" data-home-motion-delay="180" className="home-direct-art"><img src={platformMessages} alt="Outsource workspace conversation and video call" /></div>
       </div>
     </section>
   );
 }
 
 export default function Home() {
+  const homeRef = useRef<HTMLDivElement>(null);
+  useHomeMotion(homeRef);
+
   return (
-    <div className="home-page bg-brand-purple-dark text-white">
+    <div ref={homeRef} className="home-page bg-brand-purple-dark text-white">
       <section className="home-hero relative flex h-[650px] overflow-hidden px-10 pb-[60px] pt-[157px] lg:h-[819px] lg:px-0 lg:pb-0 lg:pt-0">
         <div className="home-hero-glow absolute inset-0" />
         <picture className="home-hero-picture absolute inset-y-0 block overflow-hidden">
@@ -267,17 +272,17 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex w-full max-w-[992px] items-start lg:pt-[196px]">
           <div className="w-full lg:w-[677px]">
             <div className="flex flex-col gap-[18px]">
-              <h1 className="home-hero-title text-[36px] font-medium leading-[42px] tracking-[-0.54px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
-                <span className="block text-brand-lime">Outsourced</span>
-                <span className="home-hero-finance block">Finance Professionals</span>
+              <h1 data-home-motion="words" data-home-motion-delay="60" className="home-hero-title text-[36px] font-medium leading-[42px] tracking-[-0.54px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
+                <MotionWords><span className="block text-brand-lime">Outsourced</span>
+                <span className="home-hero-finance block">Finance Professionals</span></MotionWords>
               </h1>
-              <p className="text-lg font-bold leading-6 text-brand-periwinkle lg:text-[30px] lg:leading-9">for UK Accountancy Firms &amp; Businesses</p>
+              <p data-home-motion="words" data-home-motion-delay="420" className="text-lg font-bold leading-6 text-brand-periwinkle lg:text-[30px] lg:leading-9"><MotionWords>for UK Accountancy Firms &amp; Businesses</MotionWords></p>
             </div>
             <div className="mt-8 text-lg font-light leading-6 lg:text-2xl lg:leading-normal">
-              <p>Dedicated accountants, bookkeepers and payroll specialists who work as part of your team - with <span className="text-brand-lime">direct access, managed delivery</span> and <span className="text-brand-lime">complete visibility.</span></p>
-              <p className="mt-6 font-extralight italic">From £9.50 per hour.</p>
+              <p data-home-motion="up" data-home-motion-delay="740">Dedicated accountants, bookkeepers and payroll specialists who work as part of your team - with <span className="text-brand-lime">direct access, managed delivery</span> and <span className="text-brand-lime">complete visibility.</span></p>
+              <p data-home-motion="up" data-home-motion-delay="880" className="mt-6 font-extralight italic">From £9.50 per hour.</p>
             </div>
-            <Link to="/contact" className="mt-8 inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-auto lg:w-auto lg:px-8 lg:py-4 text-lg transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid lg:mt-[50px]">Book a call</Link>
+            <Link data-home-motion="up" data-home-motion-delay="1040" to="/contact" className="mt-8 inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-auto lg:w-auto lg:px-8 lg:py-4 text-lg transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid lg:mt-[50px]">Book a call</Link>
           </div>
         </div>
       </section>
@@ -288,7 +293,7 @@ export default function Home() {
         <PlatformSection />
         <PerformanceSection />
       </div>
-      <ReliefSection fluidMobile />
+      <ReliefSection fluidMobile animate />
     </div>
   );
 }
