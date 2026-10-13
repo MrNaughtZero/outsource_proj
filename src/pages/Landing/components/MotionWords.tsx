@@ -7,7 +7,7 @@ export default function MotionWords({ children }: { children: ReactNode }) {
     return Children.map(nodes, node => {
       if (typeof node === 'string') {
         return node.split(/(\s+)/).map((word, index) =>
-          /\S/.test(word) ? <span className="home-motion-word" key={index}>{word}</span> : word,
+          /\S/.test(word) ? <span className="page-motion-word" key={index}>{word}</span> : word,
         );
       }
       if (isValidElement<{ children?: ReactNode }>(node) && node.props.children) {

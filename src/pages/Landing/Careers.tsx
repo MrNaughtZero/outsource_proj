@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useNavigate } from 'react-router-dom';
 import CareersMobile from './mobile/CareersMobile';
 import heroMosaic from '../../assets/landing/images/about_01.png';
@@ -63,16 +64,16 @@ export default function Careers() {
             {/* Copy + register */}
             <div className="flex flex-col items-start gap-[50px]">
               <div className="w-full">
-                <h1 className="figma-heading-gradient figma-heading-careers text-[64px] font-medium leading-[72px] tracking-[-2px]">
+                <MotionHeading as="h1" className="figma-heading-gradient figma-heading-careers text-[64px] font-medium leading-[72px] tracking-[-2px]">
                   <span className="block">Build your</span>
                   <span className="block">career with</span>
                   <span className="block text-brand-lime">Outsource.com</span>
-                </h1>
+                </MotionHeading>
                 <p className="mt-8 text-2xl font-light leading-[normal] text-white">
                   Explore career opportunities in Dhaka and Manchester. Register your interest and we’ll contact you when a suitable role becomes available.
                 </p>
               </div>
-              <button onClick={handleRegister} className="flex h-[55px] items-center justify-center rounded-lg border border-brand-periwinkle px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">
+              <button data-motion-cta onClick={handleRegister} className="flex h-[55px] items-center justify-center rounded-lg border border-brand-periwinkle px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">
                 Register your interest
               </button>
             </div>
@@ -85,7 +86,7 @@ export default function Careers() {
             {DESKTOP_HIGHLIGHTS.map((highlight, index) => (
               <div key={highlight.title} className="contents">
                 {index > 0 && <span aria-hidden className="h-[98px] w-0 shrink-0 border-l border-white/20" />}
-                <div className="flex h-[98px] w-[230px] shrink-0 flex-col items-center gap-6 text-center">
+                <div data-motion-item className="flex h-[98px] w-[230px] shrink-0 flex-col items-center gap-6 text-center">
                   <img src={highlight.icon} alt="" className="h-[50px] w-[50px]" />
                   <p className="w-full text-lg leading-6 text-white">{highlight.title}</p>
                 </div>
@@ -145,16 +146,16 @@ export default function Careers() {
         <section className="h-[512px] bg-gradient-to-b from-brand-purple-dark to-[#180a34] pb-20 pt-[60px]">
           <div className="fig-shell flex flex-col gap-[103px]">
             <div className="flex h-[214px] flex-col gap-[60px]">
-              <h2 className="text-center text-[32px] font-medium leading-8">
+              <MotionHeading as="h2" className="text-center text-[32px] font-medium leading-8">
                 <span className="text-brand-lime">How to join</span> our talent network
-              </h2>
+              </MotionHeading>
               <ol className="relative grid h-[122px] grid-cols-4 gap-6">
                 <span
                   aria-hidden
                   className="absolute left-[121px] right-[121px] top-[25px] h-px bg-white/15"
                 />
                 {DESKTOP_AFTER.map((step, index) => (
-                  <li key={step.n} className="relative flex flex-col items-center text-center">
+                  <li data-motion="scale" data-motion-delay={index * 140} key={step.n} className="relative flex flex-col items-center text-center">
                     <span
                       className={`flex h-[50px] w-[50px] items-center justify-center rounded-full bg-brand-lime text-2xl font-bold leading-[30px] text-brand-purple-mid ${
                         index === 0 ? 'translate-x-[6px]' : index === DESKTOP_AFTER.length - 1 ? '-translate-x-[6px]' : ''
@@ -174,7 +175,7 @@ export default function Careers() {
               <p className="w-[669px] text-2xl font-light leading-[normal] text-white">
                 <span className="font-bold text-brand-lime">Interested in joining us?</span> Register for future opportunities.
               </p>
-              <button
+              <button data-motion-cta
                 onClick={handleRegister}
                 className="inline-flex h-[55px] w-[246px] shrink-0 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
               >

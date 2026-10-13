@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useRef, useState } from 'react';
 import compassIcon from '../../assets/landing/solutions/compass.svg';
 import messageIcon from '../../assets/landing/solutions/message-chat.svg';
@@ -38,17 +39,17 @@ export default function SupportScenarioDetail() {
       <section className="px-10 pb-[60px] pt-[189px] lg:pt-[141px] max-[379px]:px-5">
         <div className="mx-auto w-full max-w-[720px]">
           <div className="flex items-center gap-2 text-lg leading-6"><Link to="/support-scenarios">Solutions</Link><span>›</span><span className="font-bold text-brand-lime">{scenario.label}</span></div>
-          <article className="mt-5 overflow-hidden rounded-lg border-2 border-brand-purple/80 bg-[linear-gradient(0deg,rgba(65,28,128,.8),rgba(59,24,123,.2)_139.98%)]">
+          <article data-motion-layout className="mt-5 overflow-hidden rounded-lg border-2 border-brand-purple/80 bg-[linear-gradient(0deg,rgba(65,28,128,.8),rgba(59,24,123,.2)_139.98%)]">
             <div className="relative aspect-[267/132] w-full overflow-hidden"><img src={scenario.image} alt={scenario.imageAlt} className="h-full w-full object-cover" /><div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#2b1b48]/0 to-[#2b1b48]/70" /></div>
             <div className="space-y-4 px-6 pb-[30px] pt-5">
               <div>
-                <h1 className="text-lg font-medium leading-6">
+                <MotionHeading as="h1" className="text-lg font-medium leading-6">
                   {scenario.titleStart}<span className="text-brand-lime">{scenario.titleHighlight}</span>{scenario.titleEnd}
-                </h1>
+                </MotionHeading>
                 <p className="mt-1 text-lg leading-6 text-brand-periwinkle">{scenario.intro}</p>
               </div>
               <div className="h-px bg-white/20" />
-              <ol>{scenario.steps.map(([title, body], index) => <li key={title} className="flex gap-4"><div className="flex flex-col items-center"><span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-brand-lime text-xs font-bold text-brand-purple-mid">{index + 1}</span>{index < 2 && <span className="w-px flex-1 bg-white/20" />}</div><div className={index < 2 ? 'pb-6' : ''}><h2 className="text-lg font-bold leading-6">{title}</h2><p className="mt-[10px] text-lg leading-6 text-brand-periwinkle">{body}</p></div></li>)}</ol>
+              <ol>{scenario.steps.map(([title, body], index) => <li data-motion="up" data-motion-delay={index * 150} key={title} className="flex gap-4"><div className="flex flex-col items-center"><span className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-brand-lime text-xs font-bold text-brand-purple-mid">{index + 1}</span>{index < 2 && <span className="w-px flex-1 bg-white/20" />}</div><div className={index < 2 ? 'pb-6' : ''}><MotionHeading as="h2" className="text-lg font-bold leading-6">{title}</MotionHeading><p className="mt-[10px] text-lg leading-6 text-brand-periwinkle">{body}</p></div></li>)}</ol>
               <div className="h-px bg-white/20" />
               <div>
                 <p className="text-lg font-light leading-6 text-brand-lime">{scenario.supportTitle}</p>

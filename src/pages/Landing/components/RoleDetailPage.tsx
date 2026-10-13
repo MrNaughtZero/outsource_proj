@@ -1,3 +1,4 @@
+import MotionHeading from './MotionHeading';
 import CompareCostsSection from './CompareCostsSection';
 import type { CSSProperties, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
@@ -71,7 +72,7 @@ function DetailCard({ title, highlight, subtitle, items, footnote }: {
   return (
     <article className="role-detail-card fading-card-border fading-card-border-responsive flex w-full flex-col gap-4 rounded-lg border-2 border-[rgba(92,52,161,0.8)] bg-gradient-to-r from-[rgba(65,28,128,0.8)] to-[rgba(59,24,123,0.2)] px-6 py-[30px] lg:flex-1 lg:gap-6 lg:bg-gradient-to-b lg:px-[38px] lg:py-[58px]">
       <div className="flex w-full flex-col gap-2 lg:gap-3 lg:px-1.5">
-        <h2 className="text-lg font-bold leading-6 lg:text-[30px] lg:leading-9">{title} <span className="text-brand-lime">{highlight}</span></h2>
+        <MotionHeading as="h2" className="text-lg font-bold leading-6 lg:text-[30px] lg:leading-9">{title} <span className="text-brand-lime">{highlight}</span></MotionHeading>
         <p className="text-lg font-light leading-6 lg:text-lg lg:leading-6">{subtitle}</p>
       </div>
       <div className="h-0 w-full shrink-0 border-t border-[rgba(92,52,161,0.8)]" />
@@ -109,19 +110,19 @@ export default function RoleDetailPage({
         </div>
         <div className="role-detail-hero-row relative mx-auto flex w-full flex-col items-start gap-4 py-6 lg:max-w-[991px] lg:flex-row lg:items-center lg:gap-6 lg:p-0">
           <div className="order-2 flex w-full flex-col items-start gap-4 lg:order-1 lg:w-[484px] lg:shrink-0 lg:gap-8">
-            <h1 className={`role-detail-mobile-title w-full text-[36px] font-medium leading-[42px] lg:hidden ${mobileTitleClassName || 'tracking-[-.93px]'}`}>
+            <MotionHeading as="h1" className={`role-detail-mobile-title w-full text-[36px] font-medium leading-[42px] lg:hidden ${mobileTitleClassName || 'tracking-[-.93px]'}`}>
               <span>Outsourced </span><span className="text-brand-lime">{title}</span>
-            </h1>
-            <h1 className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
+            </MotionHeading>
+            <MotionHeading as="h1" className="figma-heading-gradient figma-heading-accountants hidden w-full font-medium lg:block lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
               <span className="lg:block">Outsourced</span>{' '}
               <span className={`text-brand-lime lg:block ${titleClassName}`}>{title}</span>
-            </h1>
+            </MotionHeading>
             <div className="w-full text-lg font-light leading-6 lg:text-2xl lg:leading-[normal]">
               <p>{intro}</p>
               <p className="mt-6 font-bold lg:mt-[28px]"><span className="lg:hidden">{mobileQualification ?? qualification}</span><span className="hidden lg:inline">{qualification}</span></p>
               <p className="mt-6 italic text-brand-lime lg:mt-[28px]"><span className="lg:hidden">{mobileHeroPrice ?? heroPrice}</span><span className="hidden lg:inline">{heroPrice}</span></p>
             </div>
-            <Link to="/contact" className="inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-14 lg:w-auto lg:px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">Book a call</Link>
+            <Link data-motion-cta to="/contact" className="inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-14 lg:w-auto lg:px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">Book a call</Link>
           </div>
           <div className={`role-detail-hero-artwork relative order-1 w-full overflow-hidden md:h-[210px] lg:order-2 lg:h-full lg:min-w-0 lg:flex-1 ${fluidPhoneHero ? 'aspect-[313/210] h-auto md:aspect-auto' : 'h-[210px]'}`}>
             <img src={heroImage} alt={heroImageAlt} style={{ top: mobileHeroImageTop }} className={`role-detail-hero-art absolute left-[.08%] h-[144.76%] w-[99.92%] max-w-none lg:static lg:h-full lg:w-full ${heroImageFit === 'cover' ? 'object-cover' : 'object-contain'}`} />
@@ -140,11 +141,11 @@ export default function RoleDetailPage({
 
       <section className="role-detail-process h-[620px] overflow-hidden rounded-t-[24px] px-5 pb-20 pt-[60px] min-[380px]:px-10 lg:h-[374px] lg:rounded-none lg:px-[144px] lg:py-[60px]">
         <div className="mx-auto flex w-full flex-col gap-12 lg:max-w-[992px] lg:gap-[60px]">
-          <h2 className="text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">A simple way to <span className="text-brand-lime">extend your team</span></h2>
+          <MotionHeading as="h2" className="text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">A simple way to <span className="text-brand-lime">extend your team</span></MotionHeading>
           <div className="relative flex h-[360px] flex-col gap-5 lg:hidden">
             <div className="absolute bottom-3 left-[19.5px] top-5 w-px bg-[#5c34a1]" />
             {steps.map((step, index) => (
-              <div key={step.copy} className={`relative flex gap-6 ${index === steps.length - 1 ? 'h-12' : 'h-[84px]'}`}>
+              <div data-motion="scale" data-motion-delay={index * 140} key={step.copy} className={`relative flex gap-6 ${index === steps.length - 1 ? 'h-12' : 'h-[84px]'}`}>
                 <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-lime text-lg font-bold leading-6 text-brand-purple-mid">{index + 1}</span>
                 <p className="text-lg leading-6">{step.copy}</p>
               </div>
@@ -152,7 +153,7 @@ export default function RoleDetailPage({
           </div>
           <div className="hidden lg:grid lg:grid-cols-[242px_254px_254px_242px] lg:gap-0">
             {steps.map((step, index) => (
-              <div key={step.copy} className="flex flex-col items-center gap-6">
+              <div data-motion="scale" data-motion-delay={index * 140} key={step.copy} className="flex flex-col items-center gap-6">
                 <div className="flex h-[50px] w-full items-center">
                   <TimelineConnector src={index === 0 ? undefined : index === steps.length - 1 ? timelineLast : timelineMiddle} />
                   <img src={step.icon} alt="" aria-hidden className="h-[50px] w-[50px] shrink-0" />

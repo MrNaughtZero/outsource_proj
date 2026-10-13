@@ -1,3 +1,4 @@
+import MotionHeading from '../components/MotionHeading';
 import { Link } from 'react-router-dom';
 import ReliefSection from '../components/ReliefSection';
 import { SUPPORT_SCENARIOS } from '../supportScenariosData';
@@ -16,7 +17,7 @@ export default function SupportScenariosMobile() {
     <div className="support-mobile bg-brand-purple-dark text-white">
       <section className="flex h-[365px] items-end px-10 pb-[60px] max-[379px]:px-5">
         <div className="w-full">
-          <h1 className="text-[36px] font-medium leading-[42px]">Real problems.<br />Real <span className="text-brand-lime">Solutions.</span></h1>
+          <MotionHeading as="h1" className="text-[36px] font-medium leading-[42px]">Real problems.<br />Real <span className="text-brand-lime">Solutions.</span></MotionHeading>
           <p className="mt-4 text-lg leading-6">Choose where you need help.</p>
         </div>
       </section>
@@ -31,7 +32,7 @@ export default function SupportScenariosMobile() {
               className="solutions-mobile-card relative flex min-h-[154px] min-w-0 flex-col rounded-lg bg-[linear-gradient(to_top,rgba(65,28,128,0.8)_0%,rgba(59,24,123,0.2)_223.82%)] p-4"
             >
               <div className="flex items-center justify-between"><img src={SCENARIO_ICONS[index]} alt="" className="shrink-0" /><img src={arrowIcon} alt="" className="shrink-0" /></div>
-              <h2 className="mt-3 text-lg font-[700] leading-6 tracking-normal text-brand-lime">{scenario.label}</h2>
+              <MotionHeading as="h2" className="mt-3 text-lg font-[700] leading-6 tracking-normal text-brand-lime">{scenario.label}</MotionHeading>
               <p className="mt-2 break-words text-lg font-[400] leading-6 tracking-normal text-brand-periwinkle">{scenario.cardCopy}</p>
             </Link>
             );

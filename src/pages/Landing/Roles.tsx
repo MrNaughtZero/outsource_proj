@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import arrowRightHover from '../../assets/landing/roles/arrow-right-hover.svg';
 import virtualCfosHover from '../../assets/landing/roles/virtual-cfos-hover.png';
 import payrollSpecialistsHover from '../../assets/landing/roles/payroll-specialists-hover.png';
@@ -146,11 +147,11 @@ export default function Roles() {
         <div aria-hidden="true" className="roles-hero-layer hidden lg:block" style={{ backgroundImage: `url(${heroRings})` }} />
         <div aria-hidden="true" className="roles-hero-layer roles-hero-people hidden lg:block" style={{ backgroundImage: `url(${heroPeople})` }} />
         <div className="relative flex w-full flex-col items-start gap-4 py-6 pt-11 md:items-center md:py-0 md:pt-0 lg:max-w-[714px] lg:gap-8 lg:p-0">
-          <h1 className="figma-heading-gradient figma-heading-roles w-full text-left text-[30px] font-medium leading-9 md:text-center lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
+          <MotionHeading as="h1" className="figma-heading-gradient figma-heading-roles w-full text-left text-[30px] font-medium leading-9 md:text-center lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
             <span className="lg:whitespace-nowrap">The right <span className="text-brand-lime">finance expertise</span></span>{' '}
             <br className="hidden lg:block" />
             <span>for your team.</span>
-          </h1>
+          </MotionHeading>
           <p className="w-full text-left text-lg font-normal leading-6 md:text-center lg:text-2xl lg:font-light lg:leading-[normal]">
             Dedicated people to match your needs.
           </p>
@@ -163,9 +164,9 @@ export default function Roles() {
       <section className="h-[760px] px-5 py-[60px] min-[380px]:px-10 md:h-[904px] lg:h-[618px] lg:px-[144px] lg:py-[100px]">
         <div className="mx-auto flex w-full flex-col items-start gap-[60px] lg:max-w-[992px] lg:gap-14">
           <div className="flex w-full flex-col gap-3">
-            <h2 className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+            <MotionHeading as="h2" className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
               What <span className="text-brand-lime">expertise</span> do you need?
-            </h2>
+            </MotionHeading>
             <p className="text-lg font-light leading-6 lg:hidden">Select a role to learn more.</p>
           </div>
           <div className="grid w-full grid-cols-1 justify-items-center gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:justify-items-start">

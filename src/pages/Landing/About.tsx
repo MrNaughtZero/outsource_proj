@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import AboutMobile from './mobile/AboutMobile';
 import ReliefSection from './components/ReliefSection';
 import hero from '../../assets/landing/images/about_hero.png';
@@ -46,7 +47,7 @@ function ValuesSection() {
   return (
     <div className="flex w-full max-w-[1280px] shrink-0 flex-col items-center gap-[42px]">
       <div className="text-center">
-        <h2 className="text-[42px] font-medium leading-[48px]">Clearer. Safer. More <span className="text-brand-lime">Human.</span></h2>
+        <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]">Clearer. Safer. More <span className="text-brand-lime">Human.</span></MotionHeading>
         <p className="mt-4 text-lg font-light leading-6">We combine dedicated finance professionals with secure technology and managed delivery.</p>
       </div>
       <div className="flex w-full max-w-[992px] items-stretch gap-3">
@@ -72,7 +73,7 @@ function LocationsSection() {
     <section className="h-[811px] bg-gradient-to-b from-transparent to-[#190a36] pb-[120px] pt-[80px]">
       <div className="flex flex-col items-center gap-[91px]">
         <div className="text-center">
-          <h2 className="text-[42px] font-medium leading-[48px]"><span className="text-brand-lime">Manchester-led.</span> Dhaka-powered.</h2>
+          <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]"><span className="text-brand-lime">Manchester-led.</span> Dhaka-powered.</MotionHeading>
           <p className="mt-4 text-2xl font-light leading-6">Dedicated finance professionals in Dhaka, with UK leadership and accountability.</p>
         </div>
         <div className="flex flex-col items-center">
@@ -106,7 +107,7 @@ function LocationsSection() {
 function TrustSection() {
   return (
     <section className="h-[446px] bg-[#190a36] px-8 py-[80px] xl:px-[144px]">
-      <h2 className="text-center text-[32px] font-medium leading-10">Built for <span className="text-brand-lime">Quality &amp; Trust</span></h2>
+      <MotionHeading as="h2" className="text-center text-[32px] font-medium leading-10">Built for <span className="text-brand-lime">Quality &amp; Trust</span></MotionHeading>
       <div className="mx-auto mt-[60px] flex w-full max-w-[992px] items-stretch gap-3">
         {TRUST.map(([title, body, icon], index) => (
           <div key={title} className="contents">
@@ -130,7 +131,7 @@ function CommitmentSection() {
     <section className="h-[682.232px] bg-gradient-to-b from-brand-purple-mid/0 to-brand-purple-mid/50 px-8 pb-[120px] pt-[80px] xl:px-[144px]">
       <div className="mx-auto w-full max-w-[992px]">
         <div className="text-center">
-          <h2 className="text-[42px] font-medium leading-[48px]">Our commitment to <span className="text-brand-lime">Quality</span></h2>
+          <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]">Our commitment to <span className="text-brand-lime">Quality</span></MotionHeading>
           <p className="mt-4 text-lg font-light leading-6">Your work matters. We select the right people and support them with clear standards and ongoing oversight.</p>
         </div>
         <div className="mt-[60px] grid h-[334px] grid-cols-[230fr_357fr_357fr] gap-6">

@@ -1,0 +1,37 @@
+[data-motion-root] .page-motion-word {
+  display: inline-block;
+}
+
+[data-motion-root] [data-motion-state="pending"]:not([data-motion="words"]),
+[data-motion-root] [data-motion="words"][data-motion-state="pending"] .page-motion-word {
+  opacity: 0;
+}
+
+[data-motion-root] .home-hero-finance {
+  position: relative;
+}
+
+[data-motion-root] .home-hero-finance[data-motion-gradient] .page-motion-word {
+  background-image: inherit;
+  background-size: var(--motion-gradient-width) var(--motion-gradient-height);
+  background-position: var(--motion-gradient-x) var(--motion-gradient-y);
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion-root] [data-motion-state="pending"],
+  [data-motion-root] [data-motion-state="pending"] .page-motion-word {
+    opacity: 1;
+  }
+}
+
+@media print {
+  [data-motion-root] [data-motion-state],
+  [data-motion-root] .page-motion-word {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+}

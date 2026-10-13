@@ -25,8 +25,8 @@ function ReliefCard({
   return (
     <Link
       to={to}
-      data-home-motion={motionDelay === undefined ? undefined : 'up'}
-      data-home-motion-delay={motionDelay}
+      data-motion={motionDelay === undefined ? undefined : 'up'}
+      data-motion-delay={motionDelay}
       className={`relief-card ${lime ? 'relief-card-call' : 'relief-card-arrow'} group relative flex min-h-[124px] flex-col rounded-lg border p-5 transition-[background-color,border-color,box-shadow] duration-200 ease-out lg:h-[226px] lg:border-0 lg:p-8 lg:ring-1 lg:ring-inset ${lime ? 'border-brand-purple/70 bg-brand-lime text-brand-purple-mid lg:ring-[rgba(92,52,161,0.67)] hover:bg-white hover:border-brand-lime hover:ring-1 hover:ring-inset hover:ring-brand-lime lg:hover:ring-2' : 'border-brand-purple/50 bg-gradient-to-r from-brand-purple to-brand-purple/15 text-white lg:bg-gradient-to-b lg:ring-brand-purple/50 hover:bg-brand-purple hover:border-brand-periwinkle hover:ring-brand-periwinkle'} ${className}`}
     >
       <div className="relief-card-heading contents">
@@ -68,7 +68,7 @@ export default function ReliefSection({
   },
   mobileClassName = '',
   fluidMobile = true,
-  animate = false,
+  animate = true,
 }: {
   firstCard?: ReliefCardDetails;
   secondCard?: ReliefCardDetails;
@@ -79,11 +79,11 @@ export default function ReliefSection({
   return (
     <section className={`home-relief bg-[#3c1979] px-10 pb-[67px] pt-[60px] lg:h-[586px] lg:bg-gradient-to-b lg:from-brand-purple-mid lg:to-brand-purple-mid/60 lg:px-0 lg:pb-[120px] lg:pt-24 ${mobileClassName}`}>
       <div className={`mx-auto w-full ${fluidMobile ? '' : 'max-w-[313px] md:max-w-[720px]'} lg:max-w-[992px]`}>
-        <h2 data-home-motion={animate ? 'words' : undefined} className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+        <h2 data-motion={animate ? 'words' : undefined} className="text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
           {animate ? <MotionWords>The <span className="text-brand-lime">relief</span> you've been looking for.</MotionWords>
             : <>The <span className="text-brand-lime">relief</span> you've been looking for.</>}
         </h2>
-        <p data-home-motion={animate ? 'up' : undefined} data-home-motion-delay={animate ? 180 : undefined} className="mt-3 text-lg font-light leading-6 lg:mt-4">
+        <p data-motion={animate ? 'up' : undefined} data-motion-delay={animate ? 180 : undefined} className="mt-3 text-lg font-light leading-6 lg:mt-4">
           Where would you like to go <span className="text-brand-lime">next?</span>
         </p>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-[351px_351px_242px] lg:gap-6">

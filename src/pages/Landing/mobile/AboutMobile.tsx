@@ -1,3 +1,4 @@
+import MotionHeading from '../components/MotionHeading';
 import { Fragment } from 'react';
 import hero from '../../../assets/landing/images/about_hero.png';
 import eye from '../../../assets/landing/images/about_eye.png';
@@ -55,12 +56,12 @@ export default function AboutMobile() {
       </section>
 
       <section className="rounded-t-3xl bg-gradient-to-b from-[#280e57] to-[#20094a] px-10 py-[60px] max-[379px]:px-5">
-        <h2 className="text-[30px] font-medium leading-9">Clearer. Safer. More <span className="text-brand-lime">Human.</span></h2>
+        <MotionHeading as="h2" className="text-[30px] font-medium leading-9">Clearer. Safer. More <span className="text-brand-lime">Human.</span></MotionHeading>
         <p className="mt-4 text-lg font-light leading-6">We combine dedicated finance professionals with secure technology and managed delivery.</p>
         <div className="mt-[60px] flex flex-col gap-5">
           {VALUES.map(([title, body, icon], index) => (
             <Fragment key={title}>
-              <div className="flex gap-5"><img src={icon} alt="" className="h-[50px] w-[50px] shrink-0" /><div><h3 className="text-lg font-bold leading-6 text-brand-lime">{title}</h3><p className="mt-3 text-lg leading-6 text-brand-periwinkle">{body}</p></div></div>
+              <div data-motion-item className="flex gap-5"><img src={icon} alt="" className="h-[50px] w-[50px] shrink-0" /><div><h3 className="text-lg font-bold leading-6 text-brand-lime">{title}</h3><p className="mt-3 text-lg leading-6 text-brand-periwinkle">{body}</p></div></div>
               {index < VALUES.length - 1 && <span aria-hidden className="relative h-0"><span className="absolute inset-x-0 top-0 border-b border-white/20" /></span>}
             </Fragment>
           ))}
@@ -69,7 +70,7 @@ export default function AboutMobile() {
 
       <section className="about-locations min-h-[672px] px-10 py-[60px] max-[380px]:h-auto max-[379px]:px-5">
         <div className="text-center">
-          <h2 className="text-[30px] font-medium leading-9"><span className="block text-brand-lime">Manchester-led.</span> Dhaka-powered.</h2>
+          <MotionHeading as="h2" className="text-[30px] font-medium leading-9"><span className="block text-brand-lime">Manchester-led.</span> Dhaka-powered.</MotionHeading>
           <p className="mt-4 text-lg font-light leading-6">Dedicated finance professionals in Dhaka, with UK leadership and accountability.</p>
         </div>
         <div className="mt-10 flex flex-col items-center">
@@ -98,11 +99,11 @@ export default function AboutMobile() {
       </section>
 
       <section className="about-quality-trust bg-[#190a36] px-10 py-[60px] max-[379px]:px-5">
-        <h2 className="text-center text-[30px] font-medium leading-9">Built for <span className="text-brand-lime">Quality &amp; Trust</span></h2>
+        <MotionHeading as="h2" className="text-center text-[30px] font-medium leading-9">Built for <span className="text-brand-lime">Quality &amp; Trust</span></MotionHeading>
         <div className="mt-[60px] flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-x-5 md:gap-y-10">
           {TRUST.map(([title, body, icon, mobileIcon], index) => (
             <Fragment key={title}>
-              <div className="about-trust-row flex min-w-0 items-start gap-5 md:flex-col md:items-center md:gap-3 md:text-center">
+              <div data-motion-item className="about-trust-row flex min-w-0 items-start gap-5 md:flex-col md:items-center md:gap-3 md:text-center">
                 <picture className="block h-[50px] w-[50px] shrink-0">
                   <source media="(max-width: 767px)" srcSet={mobileIcon} />
                   <img src={icon} alt="" className="block max-w-none" />
@@ -123,7 +124,7 @@ export default function AboutMobile() {
       </section>
 
       <section className="min-h-[640px] bg-gradient-to-b from-brand-purple-mid/0 to-brand-purple-mid/50 px-10 py-[60px] max-[379px]:px-5">
-        <h2 className="text-[30px] font-medium leading-9">Our commitment to <span className="text-brand-lime">Quality</span></h2>
+        <MotionHeading as="h2" className="text-[30px] font-medium leading-9">Our commitment to <span className="text-brand-lime">Quality</span></MotionHeading>
         <p className="mt-4 text-lg font-light leading-6">Your work matters. We select the right people and support them with clear standards and ongoing oversight.</p>
         <div className="mt-[60px] space-y-6">
           <article className="flex min-h-[90px] items-center gap-3 rounded-lg border border-brand-lime p-4"><img src={student} alt="" className="h-[30px] w-[30px] shrink-0" /><div><h3 className="text-lg font-bold leading-6 text-brand-lime">Selected and assessed</h3><p className="mt-2 text-lg font-light leading-6">Finance professionals assessed for the roles they will perform.</p></div></article>

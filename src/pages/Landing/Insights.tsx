@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { ArrowRight } from 'lucide-react';
 
 const ARTICLES = [
@@ -49,9 +50,9 @@ export default function Insights() {
           <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-lg font-medium text-brand-lime">
             Insights
           </span>
-          <h1 className="mt-6 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
+          <MotionHeading as="h1" className="mt-6 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
             Ideas to help your business <span className="text-brand-lime">grow</span>
-          </h1>
+          </MotionHeading>
           <p className="mx-auto mt-4 max-w-xl text-white/80">
             Practical advice on accounting, payroll, cash flow and scaling — from the Outsource team.
           </p>
@@ -88,9 +89,9 @@ export default function Insights() {
       {/* Newsletter CTA */}
       <section className="bg-brand-lavender/60">
         <div className="mx-auto max-w-container px-6 py-16 text-center lg:px-10">
-          <h2 className="text-2xl font-semibold text-brand-purple-dark md:text-3xl">
+          <MotionHeading as="h2" className="text-2xl font-semibold text-brand-purple-dark md:text-3xl">
             Get insights straight to your inbox
-          </h2>
+          </MotionHeading>
           <p className="mt-3 text-gray-600">No spam — just useful finance tips, now and then.</p>
           <form
             onSubmit={(e) => e.preventDefault()}

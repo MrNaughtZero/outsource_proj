@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useRef, useState } from 'react';
 import useDesktopDragScroll from './hooks/useDesktopDragScroll';
 import useDesktopCarouselLayout from './hooks/useDesktopCarouselLayout';
@@ -74,11 +75,12 @@ export default function HowItWorks() {
             <img src={hero} alt="Your Outsource team" className="h-full w-full object-contain" />
           </div>
           <div className="mt-4 text-center lg:order-1 lg:mt-0 lg:w-[484px] lg:text-left">
-            <h1
+            <MotionHeading as="h1"
+              data-motion-speed="0.8"
               className="how-hero-heading text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]"
             >
               A clearer way to work with your outsourced <span className="text-brand-lime">finance team.</span>
-            </h1>
+            </MotionHeading>
             <p className="mt-4 text-lg leading-6 lg:mt-8 lg:text-2xl lg:font-light lg:leading-[normal] lg:tracking-[-0.005em]">
               Work directly with dedicated finance professionals through our secure workspace, while we manage the people and day-to-day delivery.
             </p>
@@ -88,14 +90,14 @@ export default function HowItWorks() {
 
       <section className="h-auto rounded-t-3xl bg-[radial-gradient(ellipse_at_top,#492786_0%,#341768_50%,#1f0849_100%)] px-10 pb-20 pt-[60px] lg:h-[478px] lg:rounded-none lg:bg-gradient-to-b lg:from-[#2d1160] lg:to-[#190a37] lg:px-6 lg:pb-[60px] lg:pt-0 xl:px-[108px]">
         <div className="mx-auto flex h-full flex-col items-center lg:h-[418px] lg:w-full lg:max-w-[1064px] lg:gap-[60px] lg:rounded-3xl lg:border lg:border-[rgba(92,52,161,0.37)] lg:bg-gradient-to-b lg:from-[#411c80] lg:to-[rgba(65,28,128,0)] lg:pb-20 lg:pt-[60px]">
-          <h2 className="text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+          <MotionHeading as="h2" className="text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
             How our managed <span className="text-brand-lime">outsourcing model</span> works
-          </h2>
+          </MotionHeading>
           <div className="relative mt-12 w-full lg:mt-0 lg:h-[170px] lg:w-[1064px]">
             <ol className="relative flex flex-col gap-5 lg:hidden">
               <span aria-hidden className="absolute bottom-5 left-5 top-5 w-px bg-white/20" />
               {STEPS.map((step, index) => (
-                <li key={step} className="relative flex min-h-[70px] gap-4 how-managed-step">
+                <li data-motion="scale" data-motion-delay={index * 140} key={step} className="relative flex min-h-[70px] gap-4 how-managed-step">
                   <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-lime text-lg font-bold text-brand-purple-mid">
                     {index + 1}
                   </span>
@@ -107,7 +109,7 @@ export default function HowItWorks() {
               <ol className="relative grid h-[50px] w-full max-w-[992px] grid-cols-4">
                 <span aria-hidden className="absolute left-[121px] right-[121px] top-[25px] h-px bg-white/20" />
                 {STEPS.map((step, index) => (
-                  <li key={step} className="relative flex justify-center">
+                  <li data-motion="scale" data-motion-delay={index * 140} key={step} className="relative flex justify-center">
                     <span className="relative z-10 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-brand-lime text-2xl font-bold leading-[30px] text-brand-purple-mid">
                       {index + 1}
                     </span>
@@ -116,7 +118,7 @@ export default function HowItWorks() {
               </ol>
               <div className="grid w-full max-w-[992px] grid-cols-4 gap-6">
                 {STEPS.map((step, index) => (
-                  <p key={step} className={`px-3 text-center text-lg leading-6 ${index === 3 ? 'lg:px-6' : ''}`}>
+                  <p data-motion="up" data-motion-delay={index * 140} key={step} className={`px-3 text-center text-lg leading-6 ${index === 3 ? 'lg:px-6' : ''}`}>
                     {step}
                   </p>
                 ))}
@@ -127,9 +129,9 @@ export default function HowItWorks() {
       </section>
 
       <section className="flex flex-col items-center bg-[#190a36] px-10 py-[60px] lg:h-[424px] lg:gap-[60px] lg:px-6 xl:px-[144px]">
-        <h2 className="text-center text-[30px] font-medium leading-9 lg:text-2xl lg:leading-8">
+        <MotionHeading as="h2" className="text-center text-[30px] font-medium leading-9 lg:text-2xl lg:leading-8">
           <span className="text-brand-lime">We manage</span> the people behind your work.
-        </h2>
+        </MotionHeading>
         <div className="mt-[60px] grid w-full grid-cols-2 gap-x-5 gap-y-10 lg:mt-0 lg:flex lg:h-32 lg:max-w-[992px] lg:gap-3">
           {HANDLED.map(([title, icon], index) => (
             <div key={title} className="contents">
@@ -148,9 +150,9 @@ export default function HowItWorks() {
 
       <section className="how-workspace-section min-h-[1107px] bg-gradient-to-b from-[#37176e] to-[rgba(25,10,54,.23)] px-10 py-[60px] lg:h-[1435px] lg:px-6 lg:pb-[60px] lg:pt-[120px] xl:px-[144px]">
         <div className="mx-auto lg:w-full lg:max-w-[992px]">
-          <h2 className="how-workspace-title text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
+          <MotionHeading as="h2" className="how-workspace-title text-center text-[30px] font-medium leading-9 lg:text-[42px] lg:leading-[48px]">
             <span className="text-brand-lime">One workspace. </span>Total clarity.
-          </h2>
+          </MotionHeading>
           <div className="how-workspace-art relative mx-auto mt-10 h-[242px] w-[355px] max-w-full overflow-hidden max-[379px]:w-full lg:mt-[60px] lg:h-[675px] lg:w-full">
             <img src={platform} alt="Outsource.com workspace" className="h-full w-full max-w-none object-contain lg:absolute lg:left-[2.32%] lg:top-0 lg:h-[675px] lg:w-full" />
           </div>
@@ -183,7 +185,7 @@ export default function HowItWorks() {
             value={toolsScrollProgress}
             onChange={(event) => scrollToolsTo(Number(event.target.value))}
           />
-          <div className="how-workspace-growth mt-10 lg:hidden">
+          <div data-motion-item className="how-workspace-growth mt-10 lg:hidden">
             <div className="flex items-start gap-2">
               <picture className="contents">
                 <source className="hidden" media="(max-width: 1023px)" srcSet={growthMobile} />
@@ -197,7 +199,7 @@ export default function HowItWorks() {
               For larger organisations, we can tailor the platform around your operation – including workflows, team structure, dashboards and the key metrics you want to monitor.
             </p>
           </div>
-          <div className="how-workspace-desktop-growth mt-8 hidden h-[88px] items-start gap-4 lg:flex">
+          <div data-motion-item className="how-workspace-desktop-growth mt-8 hidden h-[88px] items-start gap-4 lg:flex">
             <img src={growth} alt="" className="h-[50px] w-[50px] shrink-0" />
             <div className="min-w-0 flex-1">
               <h3 className="text-2xl font-medium leading-8">A workspace that <span className="text-brand-lime">scales with your finance team.</span></h3>

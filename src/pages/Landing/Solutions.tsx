@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { TEAM_OPTIONS } from './teamOptionsData';
 import { Link } from 'react-router-dom';
 import SolutionsMobile from './mobile/SolutionsMobile';
@@ -55,13 +56,13 @@ export default function Solutions() {
           </div>
           <div className="team-options-hero-canvas relative mx-auto h-[270px] w-full max-w-[1279px] px-[144px] pb-8">
             <div className="team-options-hero-copy relative w-[609px]">
-              <h1
+              <MotionHeading as="h1"
                 className="team-options-hero-title figma-heading-gradient text-[64px] font-medium leading-[72px] tracking-[-2px]"
                 style={{ backgroundImage: 'linear-gradient(105.52113990702776deg, rgb(133, 101, 186) -36.003%, rgb(255, 255, 255) 61.415%, rgb(133, 101, 186) 140.84%)' }}
               >
                 <span className="block whitespace-nowrap">Finance <span className="text-brand-lime">team options</span></span>
                 <span className="block whitespace-nowrap">that fit how you work</span>
-              </h1>
+              </MotionHeading>
               <p className="team-options-hero-subtitle mt-8 text-2xl font-light leading-[normal]">
                 Choose the team structure that matches your goals, budget and the level of finance support you need.
               </p>
@@ -82,7 +83,7 @@ export default function Solutions() {
                       <img src={option.image} alt="" className="h-[114px] w-[137px] object-contain" />
                     </div>
                     <div className="flex w-full flex-col items-start gap-6">
-                      <h2 className="w-full text-2xl font-bold leading-[30px]">{option.title}</h2>
+                      <MotionHeading as="h2" className="w-full text-2xl font-bold leading-[30px]">{option.title}</MotionHeading>
                       <div className="flex w-full flex-col gap-3 text-lg leading-6">
                         <p>{option.description}</p>
                         <p className="text-brand-lime">{option.price}</p>
@@ -106,9 +107,9 @@ export default function Solutions() {
 
         <section className="h-[322px] bg-[#1d0944]">
           <div className="team-options-section-canvas mx-auto flex h-full w-full max-w-[1280px] flex-col gap-12 px-[144px] py-[60px]">
-            <h2 className="w-full text-center text-2xl font-medium leading-8">
+            <MotionHeading as="h2" className="w-full text-center text-2xl font-medium leading-8">
               Built Into <span className="text-brand-lime">Every Team</span>
-            </h2>
+            </MotionHeading>
             <div className="team-options-built-row flex h-[122px] w-[992px] gap-3">
               {BUILT_IN.map(([title, icon], index) => (
                 <div key={title} className="contents">
@@ -127,10 +128,10 @@ export default function Solutions() {
           <div className="team-options-section-canvas team-options-members-canvas mx-auto flex h-full w-full max-w-[1280px] flex-col gap-[60px] px-[144px] py-[60px]">
             <div className="team-options-members-grid grid h-[325px] w-[992px] grid-cols-[230px_repeat(3,230px)] gap-6">
               <div className="team-options-members-intro flex w-[230px] flex-col gap-8 pt-8">
-                <h2 className="team-options-members-heading text-[42px] font-medium leading-[48px]">
+                <MotionHeading as="h2" className="team-options-members-heading text-[42px] font-medium leading-[48px]">
                   Every <span className="text-brand-lime">Team Member</span>{' '}
                   <span className="whitespace-nowrap">Comes With</span>
-                </h2>
+                </MotionHeading>
                 <p className="text-lg font-light leading-6">Fully equipped and ready to contribute.</p>
               </div>
               {MEMBER_BENEFITS.map(([title, body, image, imageClass]) => (
@@ -155,7 +156,7 @@ export default function Solutions() {
                 </article>
               ))}
             </div>
-            <div className="team-options-quality-row flex h-[68px] w-[992px] flex-col gap-3">
+            <div data-motion-item className="team-options-quality-row flex h-[68px] w-[992px] flex-col gap-3">
               <h3 className="flex items-center gap-3 text-2xl font-bold leading-8 text-brand-lime">
                 <img src={quality} alt="" className="h-[30px] w-[30px]" />
                 Quality you can rely on
@@ -171,14 +172,14 @@ export default function Solutions() {
           <div className="team-options-section-canvas mx-auto h-full w-full max-w-[1280px] px-[144px] py-[60px]">
             <div className="team-options-cta-row flex h-[136px] w-[992px] items-center gap-[150px]">
               <div className="team-options-cta-copy flex w-[629px] shrink-0 flex-col gap-4">
-                <h2 className="text-[42px] font-medium leading-[48px]">
+                <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]">
                   Ready to find the <span className="text-brand-lime">right team setup?</span>
-                </h2>
+                </MotionHeading>
                 <p className="text-lg font-light leading-6">
                   Book a 15-minuite call to discuss the option that fits your needs.
                 </p>
               </div>
-              <Link
+              <Link data-motion-cta
                 to="/contact"
                 className="flex h-[55px] min-w-0 flex-1 items-center justify-center rounded-lg border border-brand-purple-mid bg-brand-lime px-8 py-4 text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
               >

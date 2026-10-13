@@ -19,7 +19,7 @@ export default function MobileHomeRoleCard({ role, motionDelay }: { role: Role; 
   const id = useId();
 
   return (
-    <article data-home-motion={motionDelay === undefined ? undefined : 'up'} data-home-motion-delay={motionDelay} className="home-mobile-role rounded-lg bg-[#f9f7fd] p-2 lg:hidden" data-expanded={expanded}>
+    <article data-motion={motionDelay === undefined ? undefined : 'up'} data-motion-delay={motionDelay} className="home-mobile-role rounded-lg bg-[#f9f7fd] p-2 lg:hidden" data-expanded={expanded}>
       <button
         type="button"
         id={`${id}-toggle`}

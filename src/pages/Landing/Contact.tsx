@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { openBooking } from '../../components/booking/calBooking';
@@ -35,15 +36,15 @@ export default function Contact() {
       <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,#411c80_0%,#301265_50%,#1f0849_100%)] lg:bg-none">
         <div className="relative mx-auto grid h-full w-full items-center gap-6 px-10 pt-[169.5px] lg:w-[992px] lg:translate-y-0 lg:grid-cols-[492px_481px] lg:px-0 lg:pb-0 lg:pt-[180px]">
           <div>
-            <h1 className="figma-heading-gradient figma-heading-contact text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
+            <MotionHeading as="h1" className="figma-heading-gradient figma-heading-contact text-[36px] font-medium leading-[42px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
               <span className="text-white lg:text-brand-lime">Contact</span> Us
-            </h1>
+            </MotionHeading>
             <p className="mt-3 max-w-md text-lg font-light leading-6 text-white lg:mt-8 lg:max-w-none lg:text-2xl lg:leading-[normal]">
                 Looking to extend your finance team? Speak to our UK team or send us a message.
             </p>
           </div>
           {/* Brand ring graphic */}
-          <div className="hidden lg:block">
+          <div data-motion="fade" data-motion-delay="160" className="hidden lg:block">
             <img src={heroRings} alt="" aria-hidden className="h-[274px] w-[481px] object-contain" />
           </div>
         </div>
@@ -54,7 +55,7 @@ export default function Contact() {
         <div className="grid -translate-y-[66px] gap-0 lg:mx-auto lg:min-h-[717px] lg:w-[992px] lg:translate-y-0 lg:grid-cols-[401px_566px] lg:grid-rows-[255px_minmax(438px,auto)] lg:gap-6">
           {/* Mobile-only: Book a call + "or send a message" divider */}
           <div className="lg:hidden">
-            <button
+            <button data-motion-cta
               type="button"
               onClick={openBooking}
               className="flex h-[48px] w-full items-center justify-center rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-linear hover:bg-white hover:text-brand-purple-mid"
@@ -71,7 +72,7 @@ export default function Contact() {
           {/* Form — right column on desktop (spans both rows); no card chrome on mobile */}
           <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:flex lg:min-h-[717px] lg:flex-col lg:gap-[42px] lg:rounded-lg lg:border-2 lg:border-brand-purple/80 lg:bg-gradient-to-b lg:from-brand-purple-mid/80 lg:to-[#3b187b]/20 lg:px-[30px] lg:py-10">
             <div className="hidden lg:block">
-              <h2 className="text-[30px] font-bold leading-6 text-brand-lime">Send us a message</h2>
+              <MotionHeading as="h2" className="text-[30px] font-bold leading-6 text-brand-lime">Send us a message</MotionHeading>
               <p className="mt-6 text-lg leading-6 text-white">
                 Send us your enquiry and our team will get back to you.
               </p>
@@ -152,15 +153,15 @@ export default function Contact() {
           </div>
 
           {/* Prefer to talk — desktop card only (left column, top row) */}
-          <div className="hidden rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-brand-purple-mid/20 px-[30px] py-10 lg:col-start-1 lg:row-start-1 lg:flex lg:h-[255px] lg:flex-col lg:gap-9">
+          <div data-motion-item className="hidden rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-brand-purple-mid/20 px-[30px] py-10 lg:col-start-1 lg:row-start-1 lg:flex lg:h-[255px] lg:flex-col lg:gap-9">
             <div className="flex items-start gap-6">
               <img src={phoneTalkIcon} alt="" className="h-8 w-8" />
-              <div className="flex flex-1 flex-col gap-2"><h2 className="text-[30px] font-bold leading-6 text-brand-lime">Prefer to talk?</h2>
+              <div className="flex flex-1 flex-col gap-2"><MotionHeading as="h2" className="text-[30px] font-bold leading-6 text-brand-lime">Prefer to talk?</MotionHeading>
               <p className="text-lg leading-6 text-white">
                 Book a 15-minuite call to discuss your needs.
               </p></div>
             </div>
-            <button
+            <button data-motion-cta
               type="button"
               onClick={openBooking}
               className="flex h-[55px] w-full items-center justify-center rounded-lg bg-brand-lime text-lg font-medium text-brand-purple-mid transition-colors duration-200 ease-out hover:bg-white hover:text-brand-purple-mid hover:border-brand-lime hover:outline hover:outline-1 hover:outline-offset-[-1px] hover:outline-brand-lime"
@@ -170,8 +171,8 @@ export default function Contact() {
           </div>
 
           {/* Contact details — left column, bottom row */}
-          <div className="relative top-[49px] rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 px-[22px] py-7 lg:top-0 lg:col-start-1 lg:row-start-2 lg:min-h-[438px] lg:px-[30px] lg:py-10">
-            <h2 className="text-2xl leading-[30px] text-white lg:text-[30px] lg:leading-6">Contact details</h2>
+          <div data-motion-item className="relative top-[49px] rounded-lg border-2 border-brand-purple/80 bg-gradient-to-b from-brand-purple-mid/80 to-[#3b187b]/20 px-[22px] py-7 lg:top-0 lg:col-start-1 lg:row-start-2 lg:min-h-[438px] lg:px-[30px] lg:py-10">
+            <MotionHeading as="h2" className="text-2xl leading-[30px] text-white lg:text-[30px] lg:leading-6">Contact details</MotionHeading>
             <div className="mt-9 space-y-3">
               <div className="flex items-start gap-4 border-b border-white/10 pb-3">
                 <img src={emailIcon} alt="" className="h-8 w-8 shrink-0" />

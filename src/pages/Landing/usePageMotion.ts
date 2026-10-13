@@ -1,18 +1,31 @@
 import { useLayoutEffect, type RefObject } from 'react';
-import './home-motion.css';
+import './page-motion.css';
+import { preparePageMotion } from './pageMotionTargets';
 
 // Run the entire entrance sequence, including staggered delays, 25% slower.
-const HOME_MOTION_SPEED = 0.75;
+const PAGE_MOTION_SPEED = 0.75;
 
-/** Homepage-only entrances from the October Loom. Layout and hover transforms
+/** Entrances from the approved October Loom. Layout and hover transforms
  * remain independent; content is visible unless this enhancement is running. */
-export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
+export default function usePageMotion(ref: RefObject<HTMLElement | null>, routeKey = '', discover = false, enabled = true) {
   useLayoutEffect(() => {
     const root = ref.current;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!root || reducedMotion.matches || typeof IntersectionObserver === 'undefined' || !Element.prototype.animate) return;
+    if (!root || !enabled || reducedMotion.matches || typeof IntersectionObserver === 'undefined' || !Element.prototype.animate) return;
 
-    const targets = Array.from(root.querySelectorAll<HTMLElement>('[data-home-motion], .home-motion-fade'));
+    const restoreAttributes = discover ? preparePageMotion(root) : () => {};
+    const candidates = Array.from(root.querySelectorAll<HTMLElement>('[data-motion], .page-motion-fade'));
+    const targetSet = new Set(candidates);
+    const targets = candidates.filter(target => {
+      if (target.closest('[hidden], [data-motion-skip]')) return false;
+      // One entrance per visual unit: card/form children remain readable when
+      // interacting, and opening an accordion never restarts its entrance.
+      for (let parent = target.parentElement; parent && parent !== root; parent = parent.parentElement) {
+        if (targetSet.has(parent)) return false;
+      }
+      return true;
+    });
+    const opacity = new Map(targets.map(target => [target, getComputedStyle(target).opacity]));
     const animations = new Map<HTMLElement, Animation[]>();
     let disposed = false;
 
@@ -24,7 +37,7 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
       if (disposed || !gradient) return;
       gradient.style.setProperty('--motion-gradient-width', `${gradient.clientWidth}px`);
       gradient.style.setProperty('--motion-gradient-height', `${gradient.clientHeight}px`);
-      gradient.querySelectorAll<HTMLElement>('.home-motion-word').forEach(word => {
+      gradient.querySelectorAll<HTMLElement>('.page-motion-word').forEach(word => {
         word.style.setProperty('--motion-gradient-x', `${-word.offsetLeft}px`);
         word.style.setProperty('--motion-gradient-y', `${-word.offsetTop}px`);
       });
@@ -35,42 +48,50 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
     void document.fonts.ready.then(updateGradient);
 
     const finish = (target: HTMLElement) => {
-      target.dataset.homeMotionState = 'done';
+      target.dataset.motionState = 'done';
       animations.get(target)?.forEach(animation => animation.cancel());
       animations.delete(target);
     };
 
     const reveal = (target: HTMLElement) => {
-      if (target.dataset.homeMotionState !== 'pending') return;
+      if (target.dataset.motionState !== 'pending') return;
       const compact = window.matchMedia('(max-width: 1023px)').matches;
-      const type = target.dataset.homeMotion ?? 'fade';
-      const words = type === 'words' ? Array.from(target.querySelectorAll<HTMLElement>('.home-motion-word')) : [];
+      const requestedType = target.dataset.motion ?? 'fade';
+      const style = getComputedStyle(target);
+      // Some responsive gradients come from CSS rather than a heading class.
+      // Keep their mask on one layer so text cannot disappear mid-animation.
+      const type = requestedType === 'words' && style.backgroundClip.includes('text') && style.backgroundImage !== 'none'
+        ? 'down' : requestedType;
+      const words = type === 'words' ? Array.from(target.querySelectorAll<HTMLElement>('.page-motion-word')) : [];
       const parts = words.length ? words : [target];
-      const specifiedDelay = Number(target.dataset.homeMotionDelay ?? 0);
+      const specifiedDelay = Number(target.dataset.motionDelay ?? 0);
       // Keep the hero's composed sequence; shorter delays suit vertically
       // stacked mobile cards, which each wait until they enter the viewport.
-      const delay = compact && !target.closest('.home-hero') ? Math.min(specifiedDelay * 0.7, 320) : specifiedDelay;
+      const delay = compact && !target.closest('.home-hero, [data-motion-hero]') ? Math.min(specifiedDelay * 0.7, 320) : specifiedDelay;
       const distance = compact ? 28 : type === 'words' ? 60 : 36;
+      const requestedSpeed = Number(target.dataset.motionSpeed ?? 1);
+      const speed = Number.isFinite(requestedSpeed) && requestedSpeed > 0 ? requestedSpeed : 1;
       const from: Keyframe = type === 'scale'
         ? { opacity: 0, scale: 0.86 }
         : type === 'fade'
           ? { opacity: 0 }
           : { opacity: 0, translate: `0 ${type === 'down' || type === 'words' ? -distance : distance}px` };
-      const to: Keyframe = type === 'scale' ? { opacity: 1, scale: 1 }
-        : type === 'fade' ? { opacity: 1 } : { opacity: 1, translate: '0 0' };
+      const endOpacity = words.length ? 1 : Number(opacity.get(target) ?? 1);
+      const to: Keyframe = type === 'scale' ? { opacity: endOpacity, scale: 1 }
+        : type === 'fade' ? { opacity: endOpacity } : { opacity: endOpacity, translate: '0 0' };
 
       try {
         const running: Animation[] = [];
         animations.set(target, running);
         parts.forEach((part, index) => {
           running.push(part.animate([from, to], {
-            duration: (type === 'scale' ? 900 : type === 'words' ? 800 : 720) / HOME_MOTION_SPEED,
-            delay: (delay + index * 50) / HOME_MOTION_SPEED,
+            duration: (type === 'scale' ? 900 : type === 'words' ? 800 : 720) / (PAGE_MOTION_SPEED * speed),
+            delay: (delay + index * 50) / PAGE_MOTION_SPEED,
             easing: type === 'words' ? 'cubic-bezier(0.22, 1.28, 0.36, 1)' : 'cubic-bezier(0.22, 1, 0.36, 1)',
             fill: 'both',
           }));
         });
-        target.dataset.homeMotionState = 'running';
+        target.dataset.motionState = 'running';
         void Promise.all(running.map(animation => animation.finished)).then(
           () => { if (!disposed) finish(target); },
           () => { /* Cancellation on unmount / reduced motion is intentional. */ },
@@ -90,7 +111,7 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
     }, { threshold: 0, rootMargin: '0px 0px -7% 0px' });
 
     targets.forEach(target => {
-      target.dataset.homeMotionState = 'pending';
+      target.dataset.motionState = 'pending';
       observer.observe(target);
     });
 
@@ -100,9 +121,14 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
     };
     const onMotionChange = () => { if (reducedMotion.matches) showAll(); };
     const onFocus = (event: FocusEvent) => {
-      if (!(event.target instanceof Element)) return;
-      const target = event.target.closest<HTMLElement>('[data-home-motion], .home-motion-fade');
-      if (target) { observer.unobserve(target); finish(target); }
+      if (!(event.target instanceof Element) || !event.target.matches(':focus-visible')) return;
+      // A focused descendant can have its own unused motion marker; finish
+      // every active ancestor so keyboard focus is immediately visible.
+      // Pointer focus must not snap a moving card between pointerdown/up,
+      // which could move a short button away before its click completes.
+      for (const target of targets) {
+        if (target.contains(event.target)) { observer.unobserve(target); finish(target); }
+      }
     };
     reducedMotion.addEventListener('change', onMotionChange);
     root.addEventListener('focusin', onFocus);
@@ -113,7 +139,8 @@ export default function useHomeMotion(ref: RefObject<HTMLDivElement | null>) {
       resizeObserver?.disconnect();
       reducedMotion.removeEventListener('change', onMotionChange);
       root.removeEventListener('focusin', onFocus);
-      targets.forEach(target => delete target.dataset.homeMotionState);
+      targets.forEach(target => delete target.dataset.motionState);
+      restoreAttributes();
     };
-  }, [ref]);
+  }, [ref, routeKey, discover, enabled]);
 }

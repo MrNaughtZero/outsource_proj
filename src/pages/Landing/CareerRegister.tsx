@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import paperclipIcon from '../../assets/landing/career/paperclip.svg';
@@ -43,10 +44,10 @@ export default function CareerRegister() {
       {/* ===== Hero heading ===== */}
       <section className="relative overflow-hidden">
         <div className="relative mx-auto w-full px-10 pt-[181px] lg:w-[992px] lg:px-0 lg:pt-[180px]">
-          <h1 className="figma-heading-gradient figma-heading-register text-[36px] font-medium leading-[42px] tracking-[-.98px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
+          <MotionHeading as="h1" className="figma-heading-gradient figma-heading-register text-[36px] font-medium leading-[42px] tracking-[-.98px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2px]">
             <span className="block lg:inline">Start Your <span className="text-brand-lime">Journey</span></span>{' '}
             <span className="block text-white lg:inline lg:text-transparent">With Us</span>
-          </h1>
+          </MotionHeading>
           <p className="mt-4 text-lg leading-6 text-white lg:mt-8 lg:text-2xl lg:font-light lg:leading-normal">
             Tell us about yourself and the kind of role you’re interested in. Upload your CV and we’ll
             contact you when a suitable opportunity matches your experience.
@@ -59,7 +60,7 @@ export default function CareerRegister() {
         <form onSubmit={handleSubmit} className="w-full rounded-2xl bg-white px-6 py-[30px] text-brand-purple-mid ring-1 ring-inset ring-[rgba(92,52,161,0.37)] lg:min-h-[962px] lg:w-[820px] lg:p-[60px]">
           <div className="flex flex-col gap-6 lg:gap-14">
             <div className="flex flex-col gap-2 lg:gap-4">
-              <h2 className="text-2xl font-medium leading-[30px] lg:text-[42px] lg:leading-[48px]">Complete Your Registration</h2>
+              <MotionHeading as="h2" className="text-2xl font-medium leading-[30px] lg:text-[42px] lg:leading-[48px]">Complete Your Registration</MotionHeading>
               <p className="text-lg font-light leading-6 lg:text-lg lg:leading-6">Please fill in your details</p>
             </div>
 

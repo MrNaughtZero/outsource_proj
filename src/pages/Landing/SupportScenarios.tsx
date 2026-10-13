@@ -1,3 +1,4 @@
+import MotionHeading from './components/MotionHeading';
 import { useRef, useState } from 'react';
 import useDesktopDragScroll from './hooks/useDesktopDragScroll';
 import SupportScenariosMobile from './mobile/SupportScenariosMobile';
@@ -32,9 +33,9 @@ export default function SupportScenarios() {
       <main className="solutions-page-desktop hidden bg-brand-purple-dark text-white lg:block">
         <section className="h-96 bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,0)]">
           <div className="fig-shell pt-[180px]">
-            <h1 className="figma-heading-gradient figma-heading-support whitespace-nowrap text-[64px] font-medium leading-[72px] tracking-[-2px]">
+            <MotionHeading as="h1" className="figma-heading-gradient figma-heading-support whitespace-nowrap text-[64px] font-medium leading-[72px] tracking-[-2px]">
               Real Problems. Real <span className="text-brand-lime">Solutions.</span>
-            </h1>
+            </MotionHeading>
             <p className="mt-8 w-[984px] text-2xl font-light leading-[normal]">
               Discover how outsourced finance professionals can help you manage costs, increase capacity and keep work moving.
             </p>
@@ -45,11 +46,11 @@ export default function SupportScenarios() {
           <div className="fig-shell flex max-w-[991px] flex-col items-start overflow-hidden rounded-lg border border-brand-purple bg-gradient-to-b from-brand-purple-mid to-[rgba(65,28,128,.28)] px-[59px] py-[39px]">
             <div className="flex min-h-[204px] w-[871px] items-center gap-6">
               <div className="flex min-h-[204px] w-[491px] shrink-0 flex-col gap-3 py-6">
-                <h2 className="text-[42px] font-medium leading-[48px]">
+                <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]">
                   {activeScenario.titleStart}
                   <span className="text-brand-lime">{activeScenario.titleHighlight}</span>
                   {activeScenario.titleEnd}
-                </h2>
+                </MotionHeading>
                 <p className="text-lg font-light leading-6">
                   {activeScenario.intro}
                 </p>
@@ -70,7 +71,7 @@ export default function SupportScenarios() {
             <div className="mt-[30px] flex w-[871px] flex-col gap-4">
               <ol className="flex w-full items-start gap-2">
                 {activeScenario.steps.map(([title], index) => (
-                  <li
+                  <li data-motion="scale" data-motion-delay={index * 140}
                     key={title}
                     className={`flex items-center gap-3 ${index === 0 ? 'w-[286px] pl-4' : index === 1 ? 'w-[290px]' : 'min-w-0 flex-1'}`}
                   >
