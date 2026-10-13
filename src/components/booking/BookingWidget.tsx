@@ -5,14 +5,14 @@ import './booking.css';
 
 export default function BookingWidget() {
   const { pathname } = useLocation();
-  const onContact = isContactPage(pathname);
+  const hideFloatingButton = isContactPage(pathname) || pathname.replace(/\/+$/, '').toLowerCase() === '/login';
 
-  // Hide the host before Cal loads, including direct visits to /contact.
-  // The popup remains available through the page's own booking buttons.
+  // Hide the host before Cal loads, including direct visits to login/contact.
+  // Contact's own booking buttons can still open the popup.
   useLayoutEffect(() => {
-    document.documentElement.toggleAttribute('data-cal-contact', onContact);
-    return () => document.documentElement.removeAttribute('data-cal-contact');
-  }, [onContact]);
+    document.documentElement.toggleAttribute('data-cal-floating-hidden', hideFloatingButton);
+    return () => document.documentElement.removeAttribute('data-cal-floating-hidden');
+  }, [hideFloatingButton]);
 
   useEffect(() => {
     showBookingButton();

@@ -75,9 +75,9 @@ const platformFeatures = [
 ] as const;
 
 const performanceFeatures = [
-  { icon: phoneIcon, label: 'Call your people on a UK number' },
-  { icon: whatsappIcon, label: 'WhatsApp messages and calls from your mobile' },
-  { icon: videoIcon, label: 'Connect face-to-face over video' },
+  { icon: phoneIcon, label: 'Call your people on a dedicated UK number' },
+  { icon: whatsappIcon, label: 'Message or call directly from your mobile' },
+  { icon: videoIcon, label: 'Connect face-to-face through video calls' },
 ] as const;
 
 function Heading({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -237,15 +237,14 @@ function PerformanceSection() {
       <div className="relative mx-auto flex max-w-[992px] flex-col items-center gap-10 lg:h-full lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <div className="w-full lg:flex lg:w-[398px] lg:flex-col lg:gap-8 lg:py-8">
           <Heading className="text-left">
-            <span className="block whitespace-nowrap"><span className="text-brand-lime">Direct access</span> to your</span>
-            <span className="block">people</span>
+            <span className="text-brand-lime">Direct access</span> to your people
           </Heading>
-          <p data-motion="up" data-motion-delay="180" className="mt-6 text-lg font-light leading-6 lg:mt-0">Call or message the people doing your work through our secure workspace, or use WhatsApp directly from your mobile.</p>
+          <p data-motion="up" data-motion-delay="180" className="mt-6 text-lg font-light leading-6 lg:mt-0">Call, message or connect over video with the people doing your work during UK working hours. Communicate directly through our secure Workspace or from your mobile.</p>
           <div className="mt-6 space-y-4 lg:mt-0">
             {performanceFeatures.map((feature, index) => (
               <div data-motion="up" data-motion-delay={index * 150} key={feature.label} className="flex items-center gap-3 rounded-lg border-2 border-brand-purple/50 bg-gradient-to-r from-brand-purple-mid/50 to-[rgba(45,18,92,0.5)] p-4 lg:gap-5 lg:px-6 lg:py-4">
                 <img src={feature.icon} alt="" className="h-8 w-8 shrink-0" />
-                <p className={`text-lg font-medium leading-6 lg:leading-[30px] ${index === 0 ? 'lg:whitespace-nowrap' : 'lg:w-[298px]'}`}>{feature.label}</p>
+                <p className="min-w-0 flex-1 text-lg font-medium leading-6 lg:leading-[30px]">{feature.label}</p>
               </div>
             ))}
           </div>

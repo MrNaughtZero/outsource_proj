@@ -1,4 +1,4 @@
-html[data-cal-contact] #outsource-cal-floating-button {
+html[data-cal-floating-hidden] #outsource-cal-floating-button {
   display: none !important;
 }
 

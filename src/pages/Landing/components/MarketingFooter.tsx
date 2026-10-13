@@ -78,9 +78,9 @@ function FooterContact({ mobile = false }: { mobile?: boolean }) {
 }
 
 function FooterSocials({ mobile = false }: { mobile?: boolean }) {
-  return <div className="flex items-start gap-8">
-    <span><img src={mobile ? footerInstagramMobile : footerInstagram} alt="Instagram" className="max-w-none" /></span>
+  return <div className={`flex items-center ${mobile ? 'gap-8' : 'gap-[30px]'}`}>
     <a href="https://www.linkedin.com/company/outsource-com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src={mobile ? footerLinkedinMobile : footerLinkedin} alt="" className="max-w-none" /></a>
+    <span><img src={mobile ? footerInstagramMobile : footerInstagram} alt="Instagram" className="max-w-none" /></span>
   </div>;
 }
 
@@ -100,7 +100,7 @@ function FooterLegal({ mobile = false }: { mobile?: boolean }) {
 }
 
 function FooterActions() {
-  return <div className="flex shrink-0 items-start text-lg font-medium leading-6">
+  return <div className="flex shrink-0 items-start text-lg font-medium leading-6 lg:h-[22px] lg:items-center">
     <Link to="/login" className="group/client-login flex h-10 items-center gap-[14px] rounded-lg px-4 py-2 text-brand-lime transition-colors duration-300 ease-out hover:bg-white hover:text-brand-purple-mid">
       <span className="relative h-[22px] w-6 shrink-0"><img src={footerClientLogin} alt="" className="absolute inset-0 max-w-none group-hover/client-login:invisible" /><img src={footerClientLoginHover} alt="" className="invisible absolute inset-0 max-w-none group-hover/client-login:visible" /></span>Client login
     </Link>

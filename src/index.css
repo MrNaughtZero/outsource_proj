@@ -1119,7 +1119,7 @@ input::-ms-clear {
   .home-roles { min-height: 1028.5px; }
   .home-onboarding { height: 860px; }
   .home-platform { min-height: 570px; }
-  .home-performance { height: 873px; }
+  .home-performance { min-height: 873px; }
   .home-relief { min-height: 676px; overflow: hidden; }
 
   .how-page > section:nth-child(4) { min-height: 880px; }
