@@ -6,11 +6,24 @@ import ReliefSection from './components/ReliefSection';
 import { DEFAULT_SUPPORT_SCENARIO, findSupportScenario, SUPPORT_SCENARIOS } from './supportScenariosData';
 
 export default function SupportScenarios() {
+  const contentRef = useRef<HTMLDivElement>(null);
   const cardsScrollerRef = useRef<HTMLDivElement>(null);
   useDesktopDragScroll(cardsScrollerRef);
   const [cardsScrollProgress, setCardsScrollProgress] = useState(0);
   const [activeScenarioSlug, setActiveScenarioSlug] = useState(DEFAULT_SUPPORT_SCENARIO.slug);
   const activeScenario = findSupportScenario(activeScenarioSlug);
+
+  const selectScenario = (slug: string) => {
+    setActiveScenarioSlug(slug);
+    const content = contentRef.current;
+    if (!content) return;
+
+    const headerHeight = document.querySelector('.marketing-header')?.getBoundingClientRect().height ?? 0;
+    window.scrollTo({
+      top: Math.max(0, window.scrollY + content.getBoundingClientRect().top - headerHeight - 16),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+  };
 
   const updateCardsScrollProgress = () => {
     const scroller = cardsScrollerRef.current;
@@ -43,7 +56,7 @@ export default function SupportScenarios() {
         </section>
 
         <section className="pb-[120px]">
-          <div className="fig-shell flex max-w-[991px] flex-col items-start overflow-hidden rounded-lg border border-brand-purple bg-gradient-to-b from-brand-purple-mid to-[rgba(65,28,128,.28)] px-[59px] py-[39px]">
+          <div ref={contentRef} className="fig-shell flex max-w-[991px] flex-col items-start overflow-hidden rounded-lg border border-brand-purple bg-gradient-to-b from-brand-purple-mid to-[rgba(65,28,128,.28)] px-[59px] py-[39px]">
             <div className="flex min-h-[204px] w-[871px] items-center gap-6">
               <div className="flex min-h-[204px] w-[491px] shrink-0 flex-col gap-3 py-6">
                 <MotionHeading as="h2" className="text-[42px] font-medium leading-[48px]">
@@ -116,7 +129,7 @@ export default function SupportScenarios() {
                   key={scenario.slug}
                   type="button"
                   aria-pressed={scenario.slug === activeScenario.slug}
-                  onClick={() => setActiveScenarioSlug(scenario.slug)}
+                  onClick={() => selectScenario(scenario.slug)}
                   className={`solutions-scenario-card relative flex h-[150px] w-[254px] shrink-0 flex-col rounded-lg p-[30px] text-left ring-inset transition-[background-color,box-shadow] duration-300 ease-out ${
                     scenario.slug === activeScenario.slug
                       ? 'bg-[#4e2790] ring-[1.5px] ring-brand-lime'
