@@ -27,7 +27,7 @@ export default function CareersMobile() {
     <div className="careers-mobile bg-brand-purple-dark text-white">
       <section className="careers-mobile-hero relative min-h-[663px] overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,.53)] px-10 pb-[60px] pt-[141px] max-[379px]:px-5">
         <div className="careers-mobile-hero-content mx-auto w-full max-w-[720px]">
-          <div className="relative aspect-[313/210] w-full overflow-hidden"><img src={heroMosaic} alt="Careers at Outsource.com" className="absolute left-0 top-[-46.26%] h-[146.32%] w-full max-w-none" /></div>
+          <div data-motion-skip className="relative aspect-[313/210] w-full overflow-hidden"><img src={heroMosaic} alt="Careers at Outsource.com" className="absolute left-0 top-[-46.26%] h-[146.32%] w-full max-w-none" /></div>
           <MotionHeading as="h1" className="mt-9 text-[30px] font-medium leading-9">Build your career with <span className="text-brand-lime">Outsource.com</span></MotionHeading>
           <p className="mt-4 text-lg leading-6">Explore career opportunities in Dhaka and Manchester. Register your interest and we’ll contact you when a suitable role becomes available.</p>
           <button data-motion-cta onClick={handleRegister} className="mt-8 inline-flex h-12 w-[225px] max-w-full items-center justify-center whitespace-nowrap rounded-lg border border-brand-periwinkle px-5 py-2 text-lg leading-6 transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">Register your interest</button>

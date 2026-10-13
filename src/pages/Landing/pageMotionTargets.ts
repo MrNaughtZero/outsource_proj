@@ -23,7 +23,8 @@ export function preparePageMotion(root: HTMLElement) {
   markAll('form', 'fade', 320);
   markAll('.compare-costs-section', 'fade');
   markAll('.policy-copy', 'up', 160);
-  markAll('.how-hero-artwork, .how-workspace-art, .role-detail-hero-artwork, .about-locations-globe, .platform-login-workspace, .team-options-hero-art-stage, .team-hero-pattern', 'fade', 160);
+  // Hero artwork uses data-motion-skip so it is visible from the first paint.
+  markAll('.how-workspace-art, .about-locations-globe', 'fade', 160);
   markAll('img[alt]:not([alt=""])', 'fade', 160);
   markAll('p', 'up', 160);
   markAll('a[data-motion-cta], button[data-motion-cta]', 'up', 420);

@@ -171,7 +171,7 @@ export default function About() {
     <>
       <div className="about-page hidden bg-brand-purple-dark text-white lg:block">
         <section className="relative h-[1250px] overflow-hidden">
-          <img src={hero} alt="Outsource.com team" className="absolute left-1/2 top-[-231px] h-[1035px] w-[1497px] max-w-none -translate-x-1/2" />
+          <img data-motion-skip src={hero} alt="Outsource.com team" className="absolute left-1/2 top-[-231px] h-[1035px] w-[1497px] max-w-none -translate-x-1/2" />
           <div className="relative flex h-full flex-col items-center justify-between px-8 pb-[100px] pt-[144px] xl:px-[144px]">
             <HeroTitle />
             <ValuesSection />

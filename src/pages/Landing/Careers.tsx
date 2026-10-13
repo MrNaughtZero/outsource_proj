@@ -56,6 +56,7 @@ export default function Careers() {
             {/* People mosaic */}
             <div className="relative h-[477px] w-[483px]">
               <img
+                data-motion-skip
                 src={heroMosaic}
                 alt="Careers at Outsource.com"
                 className="h-full w-full object-contain"

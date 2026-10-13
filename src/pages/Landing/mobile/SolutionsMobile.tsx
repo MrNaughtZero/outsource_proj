@@ -33,7 +33,7 @@ export default function SolutionsMobile() {
   return (
     <div className="team-mobile bg-brand-purple-dark text-white">
       <section className="relative h-[479px] overflow-hidden bg-brand-purple-dark px-10 pb-[60px] pt-[180px] max-[379px]:px-5">
-        <img src={hero} alt="" aria-hidden="true" className="team-hero-pattern pointer-events-none absolute max-w-none opacity-80" />
+        <img data-motion-skip src={hero} alt="" aria-hidden="true" className="team-hero-pattern pointer-events-none absolute max-w-none opacity-80" />
         <div className="relative"><MotionHeading as="h1" className="text-[36px] font-medium leading-[42px]"><span className="block">Finance</span><span className="text-brand-lime">team options</span> that fit how you work</MotionHeading><p className="mt-4 text-lg leading-6">Choose the team structure that matches your goals, budget and the level of finance support you need.</p></div>
       </section>
 

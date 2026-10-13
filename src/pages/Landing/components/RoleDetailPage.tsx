@@ -124,7 +124,7 @@ export default function RoleDetailPage({
             </div>
             <Link data-motion-cta to="/contact" className="inline-flex h-12 w-[137px] whitespace-nowrap items-center justify-center rounded-lg border border-brand-periwinkle px-5 lg:h-14 lg:w-auto lg:px-8 text-lg font-normal text-white transition-colors duration-200 ease-linear hover:border-transparent hover:bg-brand-lime hover:text-brand-purple-mid">Book a call</Link>
           </div>
-          <div className={`role-detail-hero-artwork relative order-1 w-full overflow-hidden md:h-[210px] lg:order-2 lg:h-full lg:min-w-0 lg:flex-1 ${fluidPhoneHero ? 'aspect-[313/210] h-auto md:aspect-auto' : 'h-[210px]'}`}>
+          <div data-motion-skip className={`role-detail-hero-artwork relative order-1 w-full overflow-hidden md:h-[210px] lg:order-2 lg:h-full lg:min-w-0 lg:flex-1 ${fluidPhoneHero ? 'aspect-[313/210] h-auto md:aspect-auto' : 'h-[210px]'}`}>
             <img src={heroImage} alt={heroImageAlt} style={{ top: mobileHeroImageTop }} className={`role-detail-hero-art absolute left-[.08%] h-[144.76%] w-[99.92%] max-w-none lg:static lg:h-full lg:w-full ${heroImageFit === 'cover' ? 'object-cover' : 'object-contain'}`} />
             <div className="absolute inset-0 bg-gradient-to-b from-[60.478%] from-[rgba(44,16,94,0)] to-[#2c105e] lg:hidden" />
           </div>

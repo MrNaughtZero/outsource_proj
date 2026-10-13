@@ -71,7 +71,7 @@ export default function HowItWorks() {
     <div className="how-page overflow-hidden bg-brand-purple-dark text-white">
       <section className="how-hero lg:h-[681px] lg:bg-gradient-to-b lg:from-brand-purple-dark lg:to-[rgba(57,24,116,0.53)] lg:px-0 lg:pb-20 lg:pt-[156px]">
         <div className="fig-shell flex flex-col items-center justify-center px-5 pb-[60px] pt-[151px] max-[379px]:px-0 md:px-0 md:pt-[122px] lg:grid lg:h-full lg:grid-cols-[484px_480px] lg:gap-6 lg:px-0 lg:py-0">
-          <div className="how-hero-artwork h-[268px] w-full lg:order-2 lg:h-[445px] lg:w-[480px]">
+          <div data-motion-skip className="how-hero-artwork h-[268px] w-full lg:order-2 lg:h-[445px] lg:w-[480px]">
             <img src={hero} alt="Your Outsource team" className="h-full w-full object-contain" />
           </div>
           <div className="mt-4 text-center lg:order-1 lg:mt-0 lg:w-[484px] lg:text-left">

@@ -44,7 +44,7 @@ export default function Contact() {
             </p>
           </div>
           {/* Brand ring graphic */}
-          <div data-motion="fade" data-motion-delay="160" className="hidden lg:block">
+          <div data-motion-skip className="hidden lg:block">
             <img src={heroRings} alt="" aria-hidden className="h-[274px] w-[481px] object-contain" />
           </div>
         </div>

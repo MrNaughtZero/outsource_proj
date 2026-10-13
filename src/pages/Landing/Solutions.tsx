@@ -47,7 +47,7 @@ export default function Solutions() {
     <>
       <main className="team-options-desktop hidden bg-brand-purple-dark text-white lg:block">
         <section className="relative h-[530px] overflow-hidden bg-gradient-to-b from-brand-purple-dark to-[rgba(57,24,116,.53)] pb-[60px] pt-[180px]">
-          <div className="team-options-hero-art-stage pointer-events-none absolute overflow-hidden" aria-hidden="true">
+          <div data-motion-skip className="team-options-hero-art-stage pointer-events-none absolute overflow-hidden" aria-hidden="true">
             <img
               src={hero}
               alt=""

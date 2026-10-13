@@ -42,7 +42,7 @@ export default function AboutMobile() {
   return (
     <div className="about-mobile overflow-hidden bg-brand-purple-dark text-white">
       <section className="about-hero-section relative h-[501px] overflow-hidden">
-        <div className="about-hero-artwork absolute left-0 top-[57px] h-[444px] w-full overflow-hidden">
+        <div data-motion-skip className="about-hero-artwork absolute left-0 top-[57px] h-[444px] w-full overflow-hidden">
           <img src={hero} alt="Outsource.com team" className="absolute left-1/2 top-0 h-auto w-[max(100%,673px)] max-w-none -translate-x-1/2 -translate-y-[9.68%]" />
         </div>
         <div className="about-hero-title absolute left-10 right-10 top-[157px] flex flex-col items-center text-center text-[36px] leading-[42px] tracking-[-.36px] max-[379px]:left-5 max-[379px]:right-5">
